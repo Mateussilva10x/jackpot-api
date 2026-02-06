@@ -6,5 +6,6 @@ public enum MatchPhase {
     ROUND_16,
     QUARTER,
     SEMI,
+    THIRD_PLACE,
     FINAL
 }

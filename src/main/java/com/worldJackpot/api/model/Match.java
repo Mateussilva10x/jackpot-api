@@ -3,10 +3,16 @@ package com.worldJackpot.api.model;
 import com.worldJackpot.api.model.enums.MatchPhase;
 import com.worldJackpot.api.model.enums.MatchStatus;
 import jakarta.persistence.*;
+import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "matches")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
