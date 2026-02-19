@@ -29,11 +29,20 @@ public class AuthService {
             throw new IllegalArgumentException("Email already pending or registered");
         }
 
+        UserRole role = UserRole.USER;
+        if (request.getRole() != null && !request.getRole().isEmpty()) {
+            try {
+                role = UserRole.valueOf(request.getRole().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("Invalid role: " + request.getRole());
+            }
+        }
+
         User user = User.builder()
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(UserRole.USER) // Default role
+                .role(role)
                 .totalPoints(0)
                 .rankingPosition(0)
                 .build();
