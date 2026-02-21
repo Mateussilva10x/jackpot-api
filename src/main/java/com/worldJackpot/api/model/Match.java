@@ -39,4 +39,9 @@ public class Match {
     private MatchStatus status;
 
     private String referenceCode;
+
+    private Long nextMatchId;
+
+    @Enumerated(EnumType.STRING)
+    private com.worldJackpot.api.model.enums.NextMatchSlot nextMatchSlot;
 }

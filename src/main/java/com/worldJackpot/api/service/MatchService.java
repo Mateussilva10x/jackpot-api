@@ -25,7 +25,8 @@ public class MatchService {
     private final MatchRepository matchRepository;
     private final BetRepository betRepository;
 
-    private final RecalculationService recalculationService; // Injected service
+    private final RecalculationService recalculationService;
+    private final MatchProgressionService matchProgressionService;
 
     @Transactional(readOnly = true)
     public List<BetDto.MatchGroupResponse> getMatchesGroupedByGroup(Long userId) {
@@ -67,6 +68,12 @@ public class MatchService {
         matchRepository.save(match);
         
         recalculationService.recalculatePoints(match.getId());
+        
+        if (match.getPhase() == com.worldJackpot.api.model.enums.MatchPhase.GROUP) {
+            matchProgressionService.processGroupStageCompletion(match.getGroupName());
+        } else {
+            matchProgressionService.processKnockoutProgression(match);
+        }
     }
 
     private BetDto.MatchBetResponse mapToMatchBetResponse(Match match, Bet bet) {
