@@ -97,7 +97,7 @@ class AdminMatchIntegrationTest {
 
     @Test
     void shouldReturn403ForNonAdmin() throws Exception {
-        MatchScoreUpdateDto dto = new MatchScoreUpdateDto(2, 1);
+        MatchScoreUpdateDto dto = new MatchScoreUpdateDto(2, 1, null);
         
         mockMvc.perform(put("/admin/matches/" + matchId)
                         .header("Authorization", "Bearer " + userToken)
@@ -108,7 +108,7 @@ class AdminMatchIntegrationTest {
 
     @Test
     void shouldFinalizeMatchSuccessfully() throws Exception {
-        MatchScoreUpdateDto dto = new MatchScoreUpdateDto(2, 1);
+        MatchScoreUpdateDto dto = new MatchScoreUpdateDto(2, 1, null);
 
         mockMvc.perform(put("/admin/matches/" + matchId)
                         .header("Authorization", "Bearer " + adminToken)
@@ -126,7 +126,7 @@ class AdminMatchIntegrationTest {
 
     @Test
     void shouldReturn400ForInvalidScore() throws Exception {
-        MatchScoreUpdateDto dto = new MatchScoreUpdateDto(-1, 1);
+        MatchScoreUpdateDto dto = new MatchScoreUpdateDto(-1, 1, null);
 
         mockMvc.perform(put("/admin/matches/" + matchId)
                         .header("Authorization", "Bearer " + adminToken)
@@ -137,7 +137,7 @@ class AdminMatchIntegrationTest {
 
     @Test
     void shouldReturn404ForNonExistentMatch() throws Exception {
-        MatchScoreUpdateDto dto = new MatchScoreUpdateDto(2, 1);
+        MatchScoreUpdateDto dto = new MatchScoreUpdateDto(2, 1, null);
 
         mockMvc.perform(put("/admin/matches/999999")
                         .header("Authorization", "Bearer " + adminToken)

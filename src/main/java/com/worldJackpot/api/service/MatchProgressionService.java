@@ -221,6 +221,10 @@ public class MatchProgressionService {
     }
 
     private Team determineWinner(Match match) {
+        if (match.getPenaltyWinner() != null) {
+            return match.getPenaltyWinner();
+        }
+        
         if (match.getHomeScore() == null || match.getAwayScore() == null) return null;
         
         if (match.getHomeScore() > match.getAwayScore()) {
@@ -229,7 +233,6 @@ public class MatchProgressionService {
             return match.getTeamAway();
         }
         
-        // TODO: Handle penalty shootouts for knockout draws
         return null;
     }
 }

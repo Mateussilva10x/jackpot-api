@@ -116,6 +116,6 @@ class AuthIntegrationTest {
         
         // A better approach for this generic test is to check if we get 401 without token on a protected route.
         mockMvc.perform(get("/some-protected-route"))
-                .andExpect(status().isForbidden()); // Or Unauthorized depending on config
+                .andExpect(status().isUnauthorized()); // Or Unauthorized depending on config
     }
 }

@@ -18,4 +18,6 @@ public class MatchScoreUpdateDto {
     @NotNull(message = "Away score is required")
     @Min(value = 0, message = "Away score must be non-negative")
     private Integer awayScore;
+
+    private Long penaltyWinnerId;
 }

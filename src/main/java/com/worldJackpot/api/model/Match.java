@@ -44,4 +44,8 @@ public class Match {
 
     @Enumerated(EnumType.STRING)
     private com.worldJackpot.api.model.enums.NextMatchSlot nextMatchSlot;
+
+    @ManyToOne
+    @JoinColumn(name = "penalty_winner_id")
+    private Team penaltyWinner;
 }

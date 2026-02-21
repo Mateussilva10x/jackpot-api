@@ -130,4 +130,53 @@ class RecalculationServiceTest {
 
         assertEquals(0, bet.getPointsEarned());
     }
+
+    @Test
+    void testCalculatePoints_ExtraTimeExactScore_10Points() throws Exception {
+        match.setHomeScore(3);
+        match.setAwayScore(2); // Resolved in extra time
+
+        Bet bet = new Bet();
+        bet.setHomeScore(3);
+        bet.setAwayScore(2);
+
+        invokeCalculatePointsForBet(match, bet);
+
+        assertEquals(10, bet.getPointsEarned());
+    }
+
+    @Test
+    void testCalculatePoints_Penalties_Ignored_5PointsForDraw() throws Exception {
+        match.setHomeScore(1);
+        match.setAwayScore(1);
+        com.worldJackpot.api.model.Team penaltyWinner = new com.worldJackpot.api.model.Team();
+        penaltyWinner.setId(2L);
+        match.setPenaltyWinner(penaltyWinner); // Away team won on penalties
+
+        Bet bet = new Bet();
+        bet.setHomeScore(0);
+        bet.setAwayScore(0); // User bet a draw but with different score.
+
+        invokeCalculatePointsForBet(match, bet);
+
+        // Result should still be based on 1-1 vs 0-0. So 5 points for matching the draw result.
+        assertEquals(5, bet.getPointsEarned());
+    }
+
+    @Test
+    void testCalculatePoints_Penalties_ExactScore_10Points() throws Exception {
+        match.setHomeScore(2);
+        match.setAwayScore(2);
+        com.worldJackpot.api.model.Team penaltyWinner = new com.worldJackpot.api.model.Team();
+        penaltyWinner.setId(1L);
+        match.setPenaltyWinner(penaltyWinner); // Home team won on penalties
+
+        Bet bet = new Bet();
+        bet.setHomeScore(2);
+        bet.setAwayScore(2); // Exact score of the extra time
+
+        invokeCalculatePointsForBet(match, bet);
+
+        assertEquals(10, bet.getPointsEarned());
+    }
 }

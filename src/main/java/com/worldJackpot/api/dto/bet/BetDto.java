@@ -64,5 +64,6 @@ public class BetDto {
     public static class MatchGroupResponse {
         private String group;
         private List<MatchBetResponse> matches;
+        private String ruleInfo;
     }
 }

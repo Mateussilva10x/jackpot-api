@@ -24,6 +24,7 @@ public class MatchService {
 
     private final MatchRepository matchRepository;
     private final BetRepository betRepository;
+    private final com.worldJackpot.api.repository.TeamRepository teamRepository;
 
     private final RecalculationService recalculationService;
     private final MatchProgressionService matchProgressionService;
@@ -48,7 +49,7 @@ public class MatchService {
         // Ensure groups A-L order if needed, but for now simple iteration
         groupedMatches.forEach((group, matchList) -> {
             matchList.sort((m1, m2) -> m1.getDateTime().compareTo(m2.getDateTime()));
-            response.add(new BetDto.MatchGroupResponse(group, matchList));
+            response.add(new BetDto.MatchGroupResponse(group, matchList, "Vale resultado após prorrogação, exceto pênaltis."));
         });
         
         // precise sorting of groups could be added here if 'group' keys are consistently sortable
@@ -63,6 +64,13 @@ public class MatchService {
 
         match.setHomeScore(dto.getHomeScore());
         match.setAwayScore(dto.getAwayScore());
+        
+        if (dto.getPenaltyWinnerId() != null) {
+            com.worldJackpot.api.model.Team penaltyWinner = teamRepository.findById(dto.getPenaltyWinnerId())
+                .orElseThrow(() -> new com.worldJackpot.api.exception.ResourceNotFoundException("Team not found"));
+            match.setPenaltyWinner(penaltyWinner);
+        }
+        
         match.setStatus(MatchStatus.FINISHED);
         
         matchRepository.save(match);

@@ -114,7 +114,10 @@ class SecurityIntegrationTest {
 
     @Test
     void shouldReturn403WhenUserAccessesAdminRoute() throws Exception {
-        mockMvc.perform(post("/admin/matches")
+        com.worldJackpot.api.dto.match.MatchScoreUpdateDto dto = new com.worldJackpot.api.dto.match.MatchScoreUpdateDto(1, 0, null);
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put("/admin/matches/" + matchId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(dto))
                         .header("Authorization", "Bearer " + userToken))
                 .andExpect(status().isForbidden())
                 .andDo(org.springframework.test.web.servlet.result.MockMvcResultHandlers.print());
@@ -122,7 +125,10 @@ class SecurityIntegrationTest {
 
     @Test
     void shouldAllowAdminAccessToAdminRoute() throws Exception {
-        mockMvc.perform(post("/admin/matches")
+        com.worldJackpot.api.dto.match.MatchScoreUpdateDto dto = new com.worldJackpot.api.dto.match.MatchScoreUpdateDto(1, 0, null);
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put("/admin/matches/" + matchId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(dto))
                         .header("Authorization", "Bearer " + adminToken))
                 .andExpect(status().isOk())
                 .andDo(org.springframework.test.web.servlet.result.MockMvcResultHandlers.print());
