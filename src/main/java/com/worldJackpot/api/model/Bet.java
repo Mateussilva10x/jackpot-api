@@ -36,6 +36,9 @@ public class Bet {
     @Column(nullable = false)
     private Integer awayScore;
 
+    @Column
+    private Integer pointsEarned;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 
