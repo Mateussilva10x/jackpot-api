@@ -60,8 +60,8 @@ public class MatchProgressionService {
             Team home = m.getTeamHome();
             Team away = m.getTeamAway();
             
-            standingMap.putIfAbsent(home, new GroupStanding(home, 0, 0, 0, 0));
-            standingMap.putIfAbsent(away, new GroupStanding(away, 0, 0, 0, 0));
+            standingMap.putIfAbsent(home, new GroupStanding(home, 0, 0, 0, 0, 0, 0, 0, 0));
+            standingMap.putIfAbsent(away, new GroupStanding(away, 0, 0, 0, 0, 0, 0, 0, 0));
             
             GroupStanding homeStanding = standingMap.get(home);
             GroupStanding awayStanding = standingMap.get(away);
@@ -78,14 +78,23 @@ public class MatchProgressionService {
             awayStanding.setGoalsAgainst(awayStanding.getGoalsAgainst() + homeGoals);
             awayStanding.setGoalDifference(awayStanding.getGoalsFor() - awayStanding.getGoalsAgainst());
             
-            // Add points
+            // Add points and W/D/L stats
+            homeStanding.setMatchesPlayed(homeStanding.getMatchesPlayed() + 1);
+            awayStanding.setMatchesPlayed(awayStanding.getMatchesPlayed() + 1);
+            
             if (homeGoals > awayGoals) {
                 homeStanding.setPoints(homeStanding.getPoints() + 3);
+                homeStanding.setWins(homeStanding.getWins() + 1);
+                awayStanding.setLosses(awayStanding.getLosses() + 1);
             } else if (awayGoals > homeGoals) {
                 awayStanding.setPoints(awayStanding.getPoints() + 3);
+                awayStanding.setWins(awayStanding.getWins() + 1);
+                homeStanding.setLosses(homeStanding.getLosses() + 1);
             } else {
                 homeStanding.setPoints(homeStanding.getPoints() + 1);
                 awayStanding.setPoints(awayStanding.getPoints() + 1);
+                homeStanding.setDraws(homeStanding.getDraws() + 1);
+                awayStanding.setDraws(awayStanding.getDraws() + 1);
             }
         }
 
@@ -170,6 +179,36 @@ public class MatchProgressionService {
             String placeholderIso = "3RD" + (i + 1);
             replacePlaceholderWithRealTeam(placeholderIso, bestThird);
         }
+    }
+    
+    public Map<String, List<com.worldJackpot.api.dto.match.GroupStandingDto>> calculateAllGroupStandingsDto() {
+        List<Match> allGroupMatches = matchRepository.findByPhase(MatchPhase.GROUP);
+        Map<String, List<Match>> matchesByGroup = allGroupMatches.stream().collect(Collectors.groupingBy(Match::getGroupName));
+        
+        Map<String, List<com.worldJackpot.api.dto.match.GroupStandingDto>> result = new HashMap<>();
+        
+        for (Map.Entry<String, List<Match>> entry : matchesByGroup.entrySet()) {
+            List<GroupStanding> standings = calculateGroupStandings(entry.getValue());
+            List<com.worldJackpot.api.dto.match.GroupStandingDto> dtoList = standings.stream().map(s -> 
+                com.worldJackpot.api.dto.match.GroupStandingDto.builder()
+                        .teamName(s.getTeam().getName())
+                        .isoCode(s.getTeam().getIsoCode())
+                        .flagUrl(s.getTeam().getFlagUrl())
+                        .points(s.getPoints())
+                        .matchesPlayed(s.getMatchesPlayed())
+                        .wins(s.getWins())
+                        .draws(s.getDraws())
+                        .losses(s.getLosses())
+                        .goalsFor(s.getGoalsFor())
+                        .goalsAgainst(s.getGoalsAgainst())
+                        .goalDifference(s.getGoalDifference())
+                        .build()
+            ).collect(Collectors.toList());
+            
+            result.put(entry.getKey(), dtoList);
+        }
+        
+        return result;
     }
 
     @Transactional

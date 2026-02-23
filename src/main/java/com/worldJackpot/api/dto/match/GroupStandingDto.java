@@ -1,6 +1,5 @@
 package com.worldJackpot.api.dto.match;
 
-import com.worldJackpot.api.model.Team;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GroupStanding {
-    private Team team;
+public class GroupStandingDto {
+    private String teamName;
+    private String isoCode;
+    private String flagUrl;
     private int points;
     private int matchesPlayed;
     private int wins;
