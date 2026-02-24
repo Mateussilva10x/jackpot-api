@@ -17,4 +17,6 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
     List<Match> findByGroupNameAndPhase(String groupName, MatchPhase phase);
     List<Match> findByTeamHomeIsoCode(String isoCode);
     List<Match> findByTeamAwayIsoCode(String isoCode);
+    List<Match> findByPhaseOrderByMatchDateAsc(MatchPhase phase);
+    List<Match> findByPhaseNotOrderByMatchDateAsc(MatchPhase phase);
 }

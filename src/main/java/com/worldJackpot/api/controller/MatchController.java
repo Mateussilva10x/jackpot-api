@@ -30,7 +30,9 @@ public class MatchController {
     @GetMapping
     @Operation(summary = "Get all matches", description = "Retrieves a list of matches grouped by their corresponding stages.")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved matches")
-    public ResponseEntity<List<BetDto.MatchGroupResponse>> getMatches(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<List<BetDto.MatchGroupResponse>> getMatches(
+            @AuthenticationPrincipal UserDetails userDetails,
+            @org.springframework.web.bind.annotation.RequestParam(required = false) String type) {
         Long userId = null;
         if (userDetails != null && userDetails instanceof User) {
             userId = ((User) userDetails).getId();
@@ -41,6 +43,6 @@ public class MatchController {
         // Let's verify CustomUserDetailsService implementation.
         // It returns 'User' which implements UserDetails. So the cast (User) userDetails is safe IF authenticated.
 
-        return ResponseEntity.ok(matchService.getMatchesGroupedByGroup(userId));
+        return ResponseEntity.ok(matchService.getMatchesGroupedByGroup(userId, type));
     }
 }

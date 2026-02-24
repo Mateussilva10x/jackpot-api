@@ -30,12 +30,22 @@ public class MatchService {
     private final MatchProgressionService matchProgressionService;
 
     @Transactional(readOnly = true)
-    public List<BetDto.MatchGroupResponse> getMatchesGroupedByGroup(Long userId) {
-        List<Match> matches = matchRepository.findAll();
+    public List<BetDto.MatchGroupResponse> getMatchesGroupedByGroup(Long userId, String type) {
+        List<Match> matches;
+        
+        if ("GROUP".equalsIgnoreCase(type)) {
+            matches = matchRepository.findByPhaseOrderByMatchDateAsc(com.worldJackpot.api.model.enums.MatchPhase.GROUP);
+        } else if ("KNOCKOUT".equalsIgnoreCase(type)) {
+            matches = matchRepository.findByPhaseNotOrderByMatchDateAsc(com.worldJackpot.api.model.enums.MatchPhase.GROUP);
+        } else {
+            matches = matchRepository.findAll();
+        }
+
         Map<Long, Bet> userBetsMap;
 
-        if (userId != null) {
-            userBetsMap = betRepository.findByUserId(userId).stream()
+        if (userId != null && !matches.isEmpty()) {
+            List<Long> matchIds = matches.stream().map(Match::getId).collect(Collectors.toList());
+            userBetsMap = betRepository.findByUserIdAndMatchIdIn(userId, matchIds).stream()
                     .collect(Collectors.toMap(bet -> bet.getMatch().getId(), Function.identity()));
         } else {
             userBetsMap = Map.of();
@@ -96,6 +106,10 @@ public class MatchService {
                     .build();
         }
 
+        String groupValue = (match.getPhase() != com.worldJackpot.api.model.enums.MatchPhase.GROUP) 
+                ? match.getPhase().name() 
+                : match.getGroupName();
+
         return BetDto.MatchBetResponse.builder()
                 .id(match.getId())
                 .homeTeam(match.getTeamHome().getName())
@@ -104,7 +118,7 @@ public class MatchService {
                 .awayTeamFlag(match.getTeamAway().getFlagUrl())
                 .dateTime(match.getMatchDate())
                 .status(match.getStatus().name())
-                .group(match.getGroupName())
+                .group(groupValue)
                 .userBet(betResponse)
                 .build();
     }
