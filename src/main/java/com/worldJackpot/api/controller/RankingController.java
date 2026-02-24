@@ -4,6 +4,9 @@ import com.worldJackpot.api.dto.user.UserRankingDto;
 import com.worldJackpot.api.model.User;
 import com.worldJackpot.api.repository.UserRepository;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,6 +29,7 @@ public class RankingController {
 
     @GetMapping
     @Operation(summary = "Get the global leaderboard ranking")
+    @ApiResponse(responseCode = "200", description = "Returning leaderboard page")
     public ResponseEntity<Page<UserRankingDto>> getRanking(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "50") int size) {
@@ -50,6 +54,11 @@ public class RankingController {
     
     @GetMapping("/me")
     @Operation(summary = "Get current user's ranking position and points")
+    @SecurityRequirement(name = "bearerAuth")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User's ranking retrieved successfully"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized request")
+    })
     public ResponseEntity<UserRankingDto> getMyRanking(@AuthenticationPrincipal UserDetails userDetails) {
         if (userDetails instanceof User user) {
             // Note: Efficient absolute rank calculation requires a specific query counting points greater than user's points.

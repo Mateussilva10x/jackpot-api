@@ -1,5 +1,6 @@
 package com.worldJackpot.api.dto.bet;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +13,11 @@ public class BonusBetDto {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class BonusBetRequest {
+        @Schema(description = "ID of the predicted champion team", example = "1")
         private Long championTeamId;
+        @Schema(description = "ID of the predicted runner-up team", example = "2")
         private Long runnerUpTeamId;
+        @Schema(description = "Name of the predicted top scorer", example = "Vinicius Junior")
         private String topScorer;
     }
 
@@ -22,11 +26,17 @@ public class BonusBetDto {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class BonusBetResponse {
+        @Schema(description = "Bonus Bet ID", example = "50")
         private Long id;
+        @Schema(description = "ID of the predicted champion team", example = "1")
         private Long championTeamId;
+        @Schema(description = "Name of the predicted champion team", example = "Brazil")
         private String championTeamName;
+        @Schema(description = "ID of the predicted runner-up team", example = "2")
         private Long runnerUpTeamId;
+        @Schema(description = "Name of the predicted runner-up team", example = "France")
         private String runnerUpTeamName;
+        @Schema(description = "Name of the predicted top scorer", example = "Vinicius Junior")
         private String topScorer;
     }
 }
