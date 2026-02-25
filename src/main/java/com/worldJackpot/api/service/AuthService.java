@@ -71,4 +71,16 @@ public class AuthService {
                 .role(user.getRole().name())
                 .build();
     }
+
+    public AuthDto.AuthResponse getMe(User user) {
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+        String jwt = tokenProvider.generateToken(authentication);
+
+        return AuthDto.AuthResponse.builder()
+                .token(jwt)
+                .id(user.getId())
+                .email(user.getEmail())
+                .role(user.getRole().name())
+                .build();
+    }
 }
