@@ -39,4 +39,19 @@ public class BonusBetDto {
         @Schema(description = "Name of the predicted top scorer", example = "Vinicius Junior")
         private String topScorer;
     }
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class BonusBetResolutionRequest {
+        @Schema(description = "ID of the final champion team", example = "1")
+        private Long championTeamId;
+        
+        @Schema(description = "ID of the final runner-up team", example = "2")
+        private Long runnerUpTeamId;
+        
+        @Schema(description = "Name of the final top scorer", example = "Vinicius Junior")
+        private String topScorer;
+    }
 }

@@ -1,6 +1,8 @@
 package com.worldJackpot.api.controller;
 
+import com.worldJackpot.api.dto.bet.BonusBetDto;
 import com.worldJackpot.api.dto.match.MatchScoreUpdateDto;
+import com.worldJackpot.api.service.BonusBetService;
 import com.worldJackpot.api.service.MatchService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class AdminController {
 
     private final MatchService matchService;
+    private final BonusBetService bonusBetService;
 
     @PutMapping("/matches/{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -34,6 +37,20 @@ public class AdminController {
     })
     public ResponseEntity<Void> finalizeMatch(@PathVariable Long id, @RequestBody @Valid MatchScoreUpdateDto dto) {
         matchService.finalizeMatch(id, dto);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/bonus-bets/resolve")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Resolve Bonus Bets", description = "Resolves all users' bonus bets against the official outcome and awards points.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Bonus bets resolved successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid request format"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden - requires ADMIN role")
+    })
+    public ResponseEntity<Void> resolveBonusBets(@RequestBody @Valid BonusBetDto.BonusBetResolutionRequest request) {
+        bonusBetService.resolveBonusBets(request);
         return ResponseEntity.ok().build();
     }
 }

@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BonusBetService {
@@ -64,5 +66,41 @@ public class BonusBetService {
                 .runnerUpTeamName(bet.getRunnerUpTeam() != null ? bet.getRunnerUpTeam().getName() : null)
                 .topScorer(bet.getTopScorer())
                 .build();
+    }
+
+    @Transactional
+    public void resolveBonusBets(BonusBetDto.BonusBetResolutionRequest request) {
+        List<BonusBet> allBets = bonusBetRepository.findAll();
+
+        for (BonusBet bet : allBets) {
+            User user = bet.getUser();
+            int pointsEarned = 0;
+
+            // Check Champion
+            if (bet.getChampionTeam() != null && request.getChampionTeamId() != null) {
+                if (bet.getChampionTeam().getId().equals(request.getChampionTeamId())) {
+                    pointsEarned += 20;
+                }
+            }
+
+            // Check Runner-up
+            if (bet.getRunnerUpTeam() != null && request.getRunnerUpTeamId() != null) {
+                if (bet.getRunnerUpTeam().getId().equals(request.getRunnerUpTeamId())) {
+                    pointsEarned += 15;
+                }
+            }
+
+            // Check Top Scorer
+            if (bet.getTopScorer() != null && request.getTopScorer() != null) {
+                if (bet.getTopScorer().trim().equalsIgnoreCase(request.getTopScorer().trim())) {
+                    pointsEarned += 10;
+                }
+            }
+
+            if (pointsEarned > 0) {
+                user.setTotalPoints((user.getTotalPoints() == null ? 0 : user.getTotalPoints()) + pointsEarned);
+                userRepository.save(user);
+            }
+        }
     }
 }
