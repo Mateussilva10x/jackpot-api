@@ -62,4 +62,28 @@ public class AuthController {
         }
         return ResponseEntity.status(401).build();
     }
+
+    @PostMapping("/forgot-password")
+    @Operation(summary = "Request password reset", description = "Generates and returns a password reset token for testing purposes.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Token generated successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid email format"),
+            @ApiResponse(responseCode = "404", description = "User not found")
+    })
+    public ResponseEntity<String> forgotPassword(@Valid @RequestBody AuthDto.ForgotPasswordRequest request) {
+        String token = authService.forgotPassword(request.getEmail());
+        // For test purposes only. In prod, DO NOT return the token!
+        return ResponseEntity.ok(token);
+    }
+
+    @PostMapping("/reset-password")
+    @Operation(summary = "Reset password", description = "Resets the user's password using the provided token.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Password reset successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid or expired token, or invalid new password format")
+    })
+    public ResponseEntity<Void> resetPassword(@Valid @RequestBody AuthDto.ResetPasswordRequest request) {
+        authService.resetPassword(request.getToken(), request.getNewPassword());
+        return ResponseEntity.ok().build();
+    }
 }

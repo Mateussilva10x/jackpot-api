@@ -60,8 +60,32 @@ public class AuthDto {
         
         @Schema(description = "User's role", example = "USER")
         private String role;
-        
         @Schema(description = "User's email", example = "john.doe@example.com")
         private String email;
+    }
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ForgotPasswordRequest {
+        @Schema(description = "User's email address", example = "john@example.com")
+        @NotBlank(message = "Email is required")
+        @Email(message = "Invalid email format")
+        private String email;
+    }
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ResetPasswordRequest {
+        @Schema(description = "The token received to reset the password")
+        @NotBlank(message = "Token is required")
+        private String token;
+
+        @Schema(description = "User's new password", example = "newStrongPass123")
+        @NotBlank(message = "New password is required")
+        private String newPassword;
     }
 }
