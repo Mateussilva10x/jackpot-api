@@ -40,6 +40,7 @@ public class RankingController {
                 .id(user.getId())
                 .name(user.getName())
                 .totalPoints(user.getTotalPoints() == null ? 0 : user.getTotalPoints())
+                .avatarId(user.getAvatarId())
                 .build());
                 
         // Set the ranking position logically based on the page/index
@@ -67,6 +68,7 @@ public class RankingController {
                     .id(user.getId())
                     .name(user.getName())
                     .totalPoints(user.getTotalPoints() == null ? 0 : user.getTotalPoints())
+                    .avatarId(user.getAvatarId())
                     .build());
         }
         return ResponseEntity.status(401).build();

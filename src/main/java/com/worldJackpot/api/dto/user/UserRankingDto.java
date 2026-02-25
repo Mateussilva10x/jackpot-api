@@ -19,4 +19,6 @@ public class UserRankingDto {
     private Integer totalPoints;
     @Schema(description = "User's position in global ranking", example = "5")
     private Integer rankingPosition;
+    @Schema(description = "User's avatar ID", example = "avatar_1")
+    private String avatarId;
 }
