@@ -26,6 +26,9 @@ public class UserProfileDto {
     @Schema(description = "User's position in global ranking", example = "5")
     private Integer rankingPosition;
     
+    @Schema(description = "User's avatar ID", example = "avatar_1")
+    private String avatarId;
+    
     @Schema(description = "List of matches with the user's bets")
     private List<BetDto.MatchGroupResponse> bets;
 }

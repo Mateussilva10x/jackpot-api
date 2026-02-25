@@ -30,6 +30,9 @@ public class AuthDto {
 
         @Schema(description = "Optional user role (e.g. USER, ADMIN)", example = "USER", defaultValue = "USER")
         private String role;
+
+        @Schema(description = "Optional avatar ID for the user's profile icon", example = "avatar_1")
+        private String avatarId;
     }
 
     @Data
@@ -62,6 +65,9 @@ public class AuthDto {
         private String role;
         @Schema(description = "User's email", example = "john.doe@example.com")
         private String email;
+
+        @Schema(description = "User's avatar ID", example = "avatar_1")
+        private String avatarId;
     }
 
     @Data

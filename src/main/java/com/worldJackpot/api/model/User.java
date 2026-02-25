@@ -45,6 +45,8 @@ public class User implements UserDetails {
     private Integer totalPoints;
     private Integer rankingPosition;
 
+    private String avatarId;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 

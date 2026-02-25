@@ -49,6 +49,7 @@ public class AuthService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(role)
+                .avatarId(request.getAvatarId())
                 .totalPoints(0)
                 .rankingPosition(0)
                 .build();
@@ -75,6 +76,7 @@ public class AuthService {
                 .id(user.getId())
                 .email(user.getEmail())
                 .role(user.getRole().name())
+                .avatarId(user.getAvatarId())
                 .build();
     }
 
@@ -87,6 +89,7 @@ public class AuthService {
                 .id(user.getId())
                 .email(user.getEmail())
                 .role(user.getRole().name())
+                .avatarId(user.getAvatarId())
                 .build();
     }
 

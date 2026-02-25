@@ -30,6 +30,7 @@ public class UserService {
                 .name(user.getName())
                 .totalPoints(user.getTotalPoints() == null ? 0 : user.getTotalPoints())
                 .rankingPosition(user.getRankingPosition())
+                .avatarId(user.getAvatarId())
                 .bets(userBets)
                 .build();
     }
