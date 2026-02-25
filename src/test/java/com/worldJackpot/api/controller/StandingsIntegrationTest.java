@@ -27,10 +27,11 @@ class StandingsIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private StandingsService standingsService;
 
     @Test
+    @org.springframework.security.test.context.support.WithMockUser(roles = "USER")
     void shouldReturnStandings() throws Exception {
         GroupStandingDto brazil = GroupStandingDto.builder()
                 .teamName("Brazil")

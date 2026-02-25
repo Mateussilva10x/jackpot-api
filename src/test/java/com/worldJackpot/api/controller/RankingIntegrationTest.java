@@ -35,7 +35,7 @@ class RankingIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private UserRepository userRepository;
 
     @BeforeEach
@@ -49,6 +49,7 @@ class RankingIntegrationTest {
     }
 
     @Test
+    @WithMockUser(roles = "USER")
     void shouldReturnRankingList() throws Exception {
         mockMvc.perform(get("/ranking")
                         .contentType(MediaType.APPLICATION_JSON))
