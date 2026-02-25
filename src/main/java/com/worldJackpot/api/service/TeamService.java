@@ -18,7 +18,7 @@ public class TeamService {
 
     @Transactional(readOnly = true)
     public List<TeamDTO> getAllTeams() {
-        return teamRepository.findAll().stream()
+        return teamRepository.findTop48ByOrderByIdAsc().stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
