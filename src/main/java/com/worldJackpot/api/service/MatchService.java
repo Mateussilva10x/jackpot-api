@@ -102,6 +102,7 @@ public class MatchService {
                     .matchId(match.getId())
                     .homeScore(bet.getHomeScore())
                     .awayScore(bet.getAwayScore())
+                    .selectedWinnerId(bet.getSelectedWinner() != null ? bet.getSelectedWinner().getId() : null)
                     .updatedAt(bet.getUpdatedAt())
                     .build();
         }

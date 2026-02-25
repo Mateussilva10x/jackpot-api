@@ -84,34 +84,49 @@ public class RecalculationService {
         int betHome = bet.getHomeScore();
         int betAway = bet.getAwayScore();
 
+        int basePoints = 0;
+
         // Rule 1: Exact Score (10 pts)
         if (matchHome == betHome && matchAway == betAway) {
-            return 10;
+            basePoints = 10;
+        } else {
+            // Determine match result
+            int matchResult = Integer.compare(matchHome, matchAway); // 1 (Home Win), -1 (Away Win), 0 (Draw)
+            int betResult = Integer.compare(betHome, betAway);
+
+            // Rule 2 & 3: Winner or Draw match
+            if (matchResult == betResult) {
+                // Rule 3 exception for draws: if it's a draw and not exact score (checked above), it's 5 pts. Goal diff is always 0.
+                if (matchResult == 0) {
+                    basePoints = 5;
+                } else {
+                    int matchDiff = matchHome - matchAway;
+                    int betDiff = betHome - betAway;
+
+                    // Rule 2: Goal Difference matches (7 pts)
+                    if (matchDiff == betDiff) {
+                        basePoints = 7;
+                    } else {
+                        // Rule 3: Only Winner (5 pts)
+                        basePoints = 5;
+                    }
+                }
+            }
         }
 
-        // Determine match result
-        int matchResult = Integer.compare(matchHome, matchAway); // 1 (Home Win), -1 (Away Win), 0 (Draw)
+        // Extra logic for knockout stage draw winners
+        int matchResult = Integer.compare(matchHome, matchAway);
         int betResult = Integer.compare(betHome, betAway);
-
-        // Rule 2 & 3: Winner or Draw match
-        if (matchResult == betResult) {
-            // Rule 3 exception for draws: if it's a draw and not exact score (checked above), it's 5 pts. Goal diff is always 0.
-            if (matchResult == 0) {
-                return 5;
+        if (match.getPhase() != com.worldJackpot.api.model.enums.MatchPhase.GROUP 
+                && betResult == 0 
+                && matchResult == 0) {
+            if (bet.getSelectedWinner() != null && match.getPenaltyWinner() != null) {
+                if (bet.getSelectedWinner().getId().equals(match.getPenaltyWinner().getId())) {
+                    basePoints += 5; // 5 extra points for guessing the advancing team correctly
+                }
             }
-
-            int matchDiff = matchHome - matchAway;
-            int betDiff = betHome - betAway;
-
-            // Rule 2: Goal Difference matches (7 pts)
-            if (matchDiff == betDiff) {
-                return 7;
-            }
-            // Rule 3: Only Winner (5 pts)
-            return 5;
         }
 
-        // Rule 4: Total miss (0 pts)
-        return 0;
+        return basePoints;
     }
 }

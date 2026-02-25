@@ -39,6 +39,10 @@ public class Bet {
     @Column
     private Integer pointsEarned;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "selected_winner_id")
+    private Team selectedWinner;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 

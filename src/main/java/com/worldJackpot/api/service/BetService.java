@@ -4,8 +4,10 @@ import com.worldJackpot.api.dto.bet.BetDto;
 import com.worldJackpot.api.model.Bet;
 import com.worldJackpot.api.model.Match;
 import com.worldJackpot.api.model.User;
+import com.worldJackpot.api.model.Team;
 import com.worldJackpot.api.repository.BetRepository;
 import com.worldJackpot.api.repository.MatchRepository;
+import com.worldJackpot.api.repository.TeamRepository;
 import com.worldJackpot.api.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class BetService {
     private final BetRepository betRepository;
     private final MatchRepository matchRepository;
     private final UserRepository userRepository;
+    private final TeamRepository teamRepository;
     private final com.worldJackpot.api.util.MatchDeadlineValidator deadlineValidator;
 
     @Transactional
@@ -42,6 +45,14 @@ public class BetService {
 
             bet.setHomeScore(request.getHomeScore());
             bet.setAwayScore(request.getAwayScore());
+
+            if (request.getSelectedWinnerId() != null) {
+                Team selectedWinner = teamRepository.findById(request.getSelectedWinnerId())
+                        .orElseThrow(() -> new RuntimeException("Selected winner Team not found: " + request.getSelectedWinnerId()));
+                bet.setSelectedWinner(selectedWinner);
+            } else {
+                bet.setSelectedWinner(null);
+            }
 
             betRepository.save(bet);
         }

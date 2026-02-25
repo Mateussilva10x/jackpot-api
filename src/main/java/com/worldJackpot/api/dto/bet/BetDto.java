@@ -31,6 +31,9 @@ public class BetDto {
         @NotNull(message = "Away score is required")
         @Min(value = 0, message = "Score must be non-negative")
         private Integer awayScore;
+
+        @Schema(description = "Selected winner ID for knockout matches if predicted score is a draw", example = "2")
+        private Long selectedWinnerId;
     }
 
     @Data
@@ -46,6 +49,8 @@ public class BetDto {
         private Integer homeScore;
         @Schema(description = "Predicted away score", example = "1")
         private Integer awayScore;
+        @Schema(description = "Selected winner ID", example = "2")
+        private Long selectedWinnerId;
         @Schema(description = "Timestamp when the bet was last updated")
         private LocalDateTime updatedAt;
     }
