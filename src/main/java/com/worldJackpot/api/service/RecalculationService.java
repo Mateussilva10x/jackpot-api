@@ -63,8 +63,11 @@ public class RecalculationService {
                 }
             }
 
-            if (totalPointsGained > 0) {
+            if (totalPointsGained != 0) {
                 user.setTotalPoints((user.getTotalPoints() == null ? 0 : user.getTotalPoints()) + totalPointsGained);
+                if (user.getTotalPoints() < 0) {
+                    user.setTotalPoints(0);
+                }
                 userRepository.save(user); // Save updated user
             }
         }

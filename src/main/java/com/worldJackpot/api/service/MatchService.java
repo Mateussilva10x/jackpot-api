@@ -121,6 +121,8 @@ public class MatchService {
                 .status(match.getStatus().name())
                 .group(groupValue)
                 .userBet(betResponse)
+                .officialHomeScore(match.getHomeScore())
+                .officialAwayScore(match.getAwayScore())
                 .build();
     }
 }

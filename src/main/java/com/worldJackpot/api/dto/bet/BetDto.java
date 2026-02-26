@@ -78,6 +78,10 @@ public class BetDto {
         private String group;
         @Schema(description = "User's current bet for this match (if any)")
         private BetResponse userBet;
+        @Schema(description = "Official Home Score", example = "2")
+        private Integer officialHomeScore;
+        @Schema(description = "Official Away Score", example = "1")
+        private Integer officialAwayScore;
     }
 
     @Data
