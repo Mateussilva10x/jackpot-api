@@ -4,7 +4,7 @@ import com.worldJackpot.api.model.enums.MatchPhase;
 import com.worldJackpot.api.model.enums.MatchStatus;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Table(name = "matches")
@@ -26,7 +26,7 @@ public class Match {
     @JoinColumn(name = "team_away_id")
     private Team teamAway;
 
-    private LocalDateTime matchDate;
+    private Instant matchDate;
 
     @Enumerated(EnumType.STRING)
     private MatchPhase phase;

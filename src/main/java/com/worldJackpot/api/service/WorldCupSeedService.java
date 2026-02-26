@@ -17,7 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
@@ -113,7 +115,7 @@ public class WorldCupSeedService {
             Match match = Match.builder()
                     .teamHome(teamHome)
                     .teamAway(teamAway)
-                    .matchDate(LocalDateTime.parse(matchDTO.getMatchDate(), formatter))
+                    .matchDate(LocalDateTime.parse(matchDTO.getMatchDate(), formatter).toInstant(ZoneOffset.UTC))
                     .phase(MatchPhase.valueOf(matchDTO.getPhase()))
                     .groupName(matchDTO.getGroupName())
                     .status(MatchStatus.valueOf(matchDTO.getStatus()))

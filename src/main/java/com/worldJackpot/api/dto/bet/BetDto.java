@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 public class BetDto {
@@ -52,7 +52,7 @@ public class BetDto {
         @Schema(description = "Selected winner ID", example = "2")
         private Long selectedWinnerId;
         @Schema(description = "Timestamp when the bet was last updated")
-        private LocalDateTime updatedAt;
+        private Instant updatedAt;
     }
 
     @Data
@@ -71,7 +71,7 @@ public class BetDto {
         @Schema(description = "URL or code for away team flag", example = "AR")
         private String awayTeamFlag;
         @Schema(description = "Match Date and Time")
-        private LocalDateTime dateTime;
+        private Instant dateTime;
         @Schema(description = "Match Status", example = "SCHEDULED")
         private String status;
         @Schema(description = "Group the match belongs to", example = "G")
