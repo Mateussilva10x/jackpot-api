@@ -40,40 +40,36 @@ public class RecalculationService {
             return;
         }
 
-        // Group bets by userId to optimize user updates
+        // Group bets by userId
         Map<Long, List<Bet>> betsByUser = bets.stream()
                 .collect(Collectors.groupingBy(bet -> bet.getUser().getId()));
 
-        for (Map.Entry<Long, List<Bet>> entry : betsByUser.entrySet()) {
-            Long userId = entry.getKey();
-            List<Bet> userBets = entry.getValue();
+        // Step 1: Update pointsEarned on every bet for this match
+        for (List<Bet> userBets : betsByUser.values()) {
+            for (Bet bet : userBets) {
+                int newPoints = calculatePointsForBet(match, bet);
+                bet.setPointsEarned(newPoints);
+            }
+        }
 
+        // Save all updated bets first so the sum below sees fresh values
+        betRepository.saveAll(bets);
+
+        // Step 2: Recompute each user's totalPoints FROM SCRATCH by summing ALL their bets.
+        // This makes the recalculation idempotent — no matter how many times the admin
+        // changes the score, the ranking will always reflect the correct, current state.
+        for (Long userId : betsByUser.keySet()) {
             User user = userRepository.findById(userId).orElse(null);
             if (user == null) continue;
 
-            int totalPointsGained = 0;
+            int totalPoints = betRepository.findByUserId(userId).stream()
+                    .filter(b -> b.getPointsEarned() != null)
+                    .mapToInt(Bet::getPointsEarned)
+                    .sum();
 
-            for (Bet bet : userBets) {
-                int newPoints = calculatePointsForBet(match, bet);
-                int oldPoints = bet.getPointsEarned() != null ? bet.getPointsEarned() : 0;
-
-                if (oldPoints != newPoints || bet.getPointsEarned() == null) {
-                    bet.setPointsEarned(newPoints);
-                    totalPointsGained += (newPoints - oldPoints);
-                }
-            }
-
-            if (totalPointsGained != 0) {
-                user.setTotalPoints((user.getTotalPoints() == null ? 0 : user.getTotalPoints()) + totalPointsGained);
-                if (user.getTotalPoints() < 0) {
-                    user.setTotalPoints(0);
-                }
-                userRepository.save(user); // Save updated user
-            }
+            user.setTotalPoints(totalPoints);
+            userRepository.save(user);
         }
-        
-        // Save all updated bets in batch (if supported by JPA config)
-        betRepository.saveAll(bets);
 
         log.info("Finished recalculation for match ID: {}. Processed {} bets.", matchId, bets.size());
     }
