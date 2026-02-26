@@ -8,7 +8,6 @@ import com.worldJackpot.api.repository.MatchRepository;
 import com.worldJackpot.api.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +24,6 @@ public class RecalculationService {
     private final BetRepository betRepository;
     private final UserRepository userRepository;
 
-    @Async
     @Transactional
     public void recalculatePoints(Long matchId) {
         log.info("Starting background points recalculation for match ID: {}", matchId);
@@ -56,14 +54,13 @@ public class RecalculationService {
             int totalPointsGained = 0;
 
             for (Bet bet : userBets) {
-                if (bet.getPointsEarned() != null) {
-                    log.debug("Bet {} already processed. Skipping.", bet.getId());
-                    continue; // Skip if already calculated
-                }
+                int newPoints = calculatePointsForBet(match, bet);
+                int oldPoints = bet.getPointsEarned() != null ? bet.getPointsEarned() : 0;
 
-                int points = calculatePointsForBet(match, bet);
-                bet.setPointsEarned(points);
-                totalPointsGained += points;
+                if (oldPoints != newPoints || bet.getPointsEarned() == null) {
+                    bet.setPointsEarned(newPoints);
+                    totalPointsGained += (newPoints - oldPoints);
+                }
             }
 
             if (totalPointsGained > 0) {
