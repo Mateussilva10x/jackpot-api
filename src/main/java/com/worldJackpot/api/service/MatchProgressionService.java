@@ -54,14 +54,20 @@ public class MatchProgressionService {
     private List<GroupStanding> calculateGroupStandings(List<Match> matches) {
         Map<Team, GroupStanding> standingMap = new HashMap<>();
 
+        // Initialize all teams in the group first
+        for (Match m : matches) {
+            Team home = m.getTeamHome();
+            Team away = m.getTeamAway();
+            
+            if (home != null) standingMap.putIfAbsent(home, new GroupStanding(home, 0, 0, 0, 0, 0, 0, 0, 0));
+            if (away != null) standingMap.putIfAbsent(away, new GroupStanding(away, 0, 0, 0, 0, 0, 0, 0, 0));
+        }
+
         for (Match m : matches) {
             if (m.getStatus() != MatchStatus.FINISHED) continue;
             
             Team home = m.getTeamHome();
             Team away = m.getTeamAway();
-            
-            standingMap.putIfAbsent(home, new GroupStanding(home, 0, 0, 0, 0, 0, 0, 0, 0));
-            standingMap.putIfAbsent(away, new GroupStanding(away, 0, 0, 0, 0, 0, 0, 0, 0));
             
             GroupStanding homeStanding = standingMap.get(home);
             GroupStanding awayStanding = standingMap.get(away);
