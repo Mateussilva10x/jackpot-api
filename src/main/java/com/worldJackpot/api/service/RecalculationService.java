@@ -99,17 +99,6 @@ public class RecalculationService {
             basePoints = 3;
         }
 
-        // Extra logic for knockout stage draw winners
-        if (match.getPhase() != com.worldJackpot.api.model.enums.MatchPhase.GROUP 
-                && betResult == 0 
-                && matchResult == 0) {
-            if (bet.getSelectedWinner() != null && match.getPenaltyWinner() != null) {
-                if (bet.getSelectedWinner().getId().equals(match.getPenaltyWinner().getId())) {
-                    basePoints += 5; // 5 extra points for guessing the advancing team correctly
-                }
-            }
-        }
-
         return basePoints;
     }
 }
