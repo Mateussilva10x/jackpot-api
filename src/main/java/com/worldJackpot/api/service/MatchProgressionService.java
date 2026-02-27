@@ -5,7 +5,6 @@ import com.worldJackpot.api.model.Match;
 import com.worldJackpot.api.model.Team;
 import com.worldJackpot.api.model.enums.MatchPhase;
 import com.worldJackpot.api.model.enums.MatchStatus;
-import com.worldJackpot.api.model.enums.NextMatchSlot;
 import com.worldJackpot.api.repository.MatchRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -233,36 +232,42 @@ public class MatchProgressionService {
             return;
         }
 
-        if (finalizedMatch.getNextMatchId() == null) {
-            log.info("Match {} has no nextMatchId. This might be the final.", finalizedMatch.getId());
+        // Extract match number from referenceCode (e.g. "WC2026-R32-73" -> "73")
+        String referenceCode = finalizedMatch.getReferenceCode();
+        if (referenceCode == null) {
+            log.warn("Match {} has no referenceCode. Cannot determine winner placeholder.", finalizedMatch.getId());
             return;
         }
 
-        Match nextMatch = matchRepository.findById(finalizedMatch.getNextMatchId())
-                .orElse(null);
-
-        if (nextMatch == null) {
-            log.error("Next match with ID {} not found for match {}", finalizedMatch.getNextMatchId(), finalizedMatch.getId());
+        int lastDash = referenceCode.lastIndexOf('-');
+        if (lastDash < 0 || lastDash >= referenceCode.length() - 1) {
+            log.warn("Match {} referenceCode '{}' has no numeric suffix.", finalizedMatch.getId(), referenceCode);
             return;
         }
+
+        String matchNumberStr = referenceCode.substring(lastDash + 1);
+        String winnerPlaceholderIso = "W" + matchNumberStr;
 
         Team winner = determineWinner(finalizedMatch);
         if (winner == null) {
-            log.warn("Could not determine winner for match {} (perhaps a draw in knockout?). Needs manual intervention or penalty logic.", finalizedMatch.getId());
+            log.warn("Could not determine winner for match {} (draw with no penalty winner?).", finalizedMatch.getId());
             return;
         }
 
-        if (finalizedMatch.getNextMatchSlot() == NextMatchSlot.HOME) {
-            nextMatch.setTeamHome(winner);
-        } else if (finalizedMatch.getNextMatchSlot() == NextMatchSlot.AWAY) {
-            nextMatch.setTeamAway(winner);
-        } else {
-             log.error("Match {} has nextMatchId but no nextMatchSlot configured!", finalizedMatch.getId());
-             return;
+        log.info("Advancing winner {} via placeholder {} for match {}", winner.getName(), winnerPlaceholderIso, referenceCode);
+        replacePlaceholderWithRealTeam(winnerPlaceholderIso, winner);
+
+        // For SEMI-final matches also place the loser into the 3rd-place match
+        if (finalizedMatch.getPhase() == MatchPhase.SEMI) {
+            Team loser = determineLoser(finalizedMatch);
+            if (loser != null) {
+                // Placeholder slots L101 and L102 correspond to losers of the two semi-finals
+                // We use numeric suffix to determine which loser slot: 101 -> L101, 102 -> L102
+                String loserPlaceholderIso = "L" + matchNumberStr;
+                log.info("Placing loser {} into 3rd-place slot {} for semi {}", loser.getName(), loserPlaceholderIso, referenceCode);
+                replacePlaceholderWithRealTeam(loserPlaceholderIso, loser);
+            }
         }
-        
-        matchRepository.save(nextMatch);
-        log.info("Successfully advanced team {} to next match {}", winner.getName(), nextMatch.getId());
     }
 
     private Team determineWinner(Match match) {
@@ -279,5 +284,16 @@ public class MatchProgressionService {
         }
         
         return null;
+    }
+
+    private Team determineLoser(Match match) {
+        Team winner = determineWinner(match);
+        if (winner == null) return null;
+
+        if (winner.equals(match.getTeamHome())) {
+            return match.getTeamAway();
+        } else {
+            return match.getTeamHome();
+        }
     }
 }
