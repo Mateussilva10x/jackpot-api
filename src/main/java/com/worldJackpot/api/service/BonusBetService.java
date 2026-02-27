@@ -79,21 +79,21 @@ public class BonusBetService {
             // Check Champion
             if (bet.getChampionTeam() != null && request.getChampionTeamId() != null) {
                 if (bet.getChampionTeam().getId().equals(request.getChampionTeamId())) {
-                    pointsEarned += 20;
+                    pointsEarned += 50;
                 }
             }
 
             // Check Runner-up
             if (bet.getRunnerUpTeam() != null && request.getRunnerUpTeamId() != null) {
                 if (bet.getRunnerUpTeam().getId().equals(request.getRunnerUpTeamId())) {
-                    pointsEarned += 15;
+                    pointsEarned += 25;
                 }
             }
 
             // Check Top Scorer
             if (bet.getTopScorer() != null && request.getTopScorer() != null) {
                 if (bet.getTopScorer().trim().equalsIgnoreCase(request.getTopScorer().trim())) {
-                    pointsEarned += 10;
+                    pointsEarned += 70;
                 }
             }
 
