@@ -4,6 +4,7 @@ import com.worldJackpot.api.dto.bet.BonusBetDto;
 import com.worldJackpot.api.dto.match.MatchScoreUpdateDto;
 import com.worldJackpot.api.service.BonusBetService;
 import com.worldJackpot.api.service.MatchService;
+import com.worldJackpot.api.service.SystemResetService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class AdminController {
 
     private final MatchService matchService;
     private final BonusBetService bonusBetService;
+    private final SystemResetService systemResetService;
 
     @PutMapping("/matches/{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -51,6 +53,19 @@ public class AdminController {
     })
     public ResponseEntity<Void> resolveBonusBets(@RequestBody @Valid BonusBetDto.BonusBetResolutionRequest request) {
         bonusBetService.resolveBonusBets(request);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/system/reset")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Reset the entire database environment", description = "Wipes out all bets, results, and non-admin users. Re-seeds the matches from the initial backup. WARNING: extremely destructive operation.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Database successfully reset to initial state"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden - requires ADMIN role")
+    })
+    public ResponseEntity<Void> resetDatabase() {
+        systemResetService.resetDatabase();
         return ResponseEntity.ok().build();
     }
 }

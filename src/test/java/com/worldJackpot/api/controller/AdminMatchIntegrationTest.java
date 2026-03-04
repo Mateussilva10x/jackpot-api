@@ -64,7 +64,7 @@ class AdminMatchIntegrationTest {
         userRepository.deleteAll();
 
         // Register User
-        AuthDto.RegisterRequest userRequest = new AuthDto.RegisterRequest("User", "user@example.com", "password", "USER");
+        AuthDto.RegisterRequest userRequest = new AuthDto.RegisterRequest("User", "user@example.com", "password", "USER", null);
         String userAuthResponse = mockMvc.perform(post("/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userRequest)))
@@ -72,7 +72,7 @@ class AdminMatchIntegrationTest {
         userToken = objectMapper.readTree(userAuthResponse).get("token").asText();
 
         // Register Admin
-        AuthDto.RegisterRequest adminRequest = new AuthDto.RegisterRequest("Admin", "admin@example.com", "password", "ADMIN");
+        AuthDto.RegisterRequest adminRequest = new AuthDto.RegisterRequest("Admin", "admin@example.com", "password", "ADMIN", null);
         String adminAuthResponse = mockMvc.perform(post("/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(adminRequest)))
@@ -86,7 +86,7 @@ class AdminMatchIntegrationTest {
         Match match = Match.builder()
                 .teamHome(teamA)
                 .teamAway(teamB)
-                .matchDate(LocalDateTime.now().plusDays(1))
+                .matchDate(LocalDateTime.now().plusDays(1).toInstant(java.time.ZoneOffset.UTC))
                 .phase(MatchPhase.GROUP)
                 .status(MatchStatus.SCHEDULED)
                 .groupName("A")

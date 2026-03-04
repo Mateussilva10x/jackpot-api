@@ -64,7 +64,7 @@ class SecurityIntegrationTest {
         userRepository.deleteAll();
 
         // Register User
-        AuthDto.RegisterRequest userRequest = new AuthDto.RegisterRequest("User", "user@example.com", "password", "USER");
+        AuthDto.RegisterRequest userRequest = new AuthDto.RegisterRequest("User", "user@example.com", "password", "USER", null);
         String userAuthResponse = mockMvc.perform(post("/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userRequest)))
@@ -72,7 +72,7 @@ class SecurityIntegrationTest {
         userToken = objectMapper.readTree(userAuthResponse).get("token").asText();
 
         // Register Admin
-        AuthDto.RegisterRequest adminRequest = new AuthDto.RegisterRequest("Admin", "admin@example.com", "password", "ADMIN");
+        AuthDto.RegisterRequest adminRequest = new AuthDto.RegisterRequest("Admin", "admin@example.com", "password", "ADMIN", null);
         String adminAuthResponse = mockMvc.perform(post("/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(adminRequest)))
@@ -86,7 +86,7 @@ class SecurityIntegrationTest {
         Match match = Match.builder()
                 .teamHome(teamA)
                 .teamAway(teamB)
-                .matchDate(LocalDateTime.now().plusDays(1))
+                .matchDate(LocalDateTime.now().plusDays(1).toInstant(java.time.ZoneOffset.UTC))
                 .phase(MatchPhase.GROUP)
                 .status(MatchStatus.SCHEDULED)
                 .groupName("A")
@@ -140,14 +140,14 @@ class SecurityIntegrationTest {
         Match pastMatch = matchRepository.save(Match.builder()
                 .teamHome(teamRepository.findAll().get(0))
                 .teamAway(teamRepository.findAll().get(1))
-                .matchDate(LocalDateTime.now().minusHours(1))
+                .matchDate(LocalDateTime.now().minusHours(1).toInstant(java.time.ZoneOffset.UTC))
                 .phase(MatchPhase.GROUP)
                 .status(MatchStatus.FINISHED)
                 .groupName("A")
                 .referenceCode("M2")
                 .build());
 
-        List<BetDto.BetRequest> bets = List.of(new BetDto.BetRequest(pastMatch.getId(), 2, 1));
+        List<BetDto.BetRequest> bets = List.of(new BetDto.BetRequest(pastMatch.getId(), 2, 1, null));
 
         mockMvc.perform(post("/bets")
                         .header("Authorization", "Bearer " + userToken)

@@ -38,7 +38,7 @@ class AuthIntegrationTest {
 
     @Test
     void shouldRegisterUserSuccessfully() throws Exception {
-        AuthDto.RegisterRequest request = new AuthDto.RegisterRequest("Test User", "test@example.com", "password123", null);
+        AuthDto.RegisterRequest request = new AuthDto.RegisterRequest("Test User", "test@example.com", "password123", "USER", null);
 
         mockMvc.perform(post("/auth/register")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -50,7 +50,7 @@ class AuthIntegrationTest {
 
     @Test
     void shouldFailRegisterWithDuplicateEmail() throws Exception {
-        AuthDto.RegisterRequest request = new AuthDto.RegisterRequest("Test User", "test@example.com", "password123", null);
+        AuthDto.RegisterRequest request = new AuthDto.RegisterRequest("Test User", "test@example.com", "password123", "USER", null);
         
         // Register first user
         mockMvc.perform(post("/auth/register")
@@ -69,7 +69,7 @@ class AuthIntegrationTest {
     @Test
     void shouldLoginSuccessfully() throws Exception {
         // Create user
-        AuthDto.RegisterRequest registerRequest = new AuthDto.RegisterRequest("Login User", "login@example.com", "password123", null);
+        AuthDto.RegisterRequest registerRequest = new AuthDto.RegisterRequest("Login User", "login@example.com", "password123", "USER", null);
         mockMvc.perform(post("/auth/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(registerRequest)))
@@ -98,7 +98,7 @@ class AuthIntegrationTest {
     @Test
     void shouldAccessSecuredEndpointWithToken() throws Exception {
         // Register to get token
-        AuthDto.RegisterRequest request = new AuthDto.RegisterRequest("Secured User", "secured@example.com", "password123", null);
+        AuthDto.RegisterRequest request = new AuthDto.RegisterRequest("Secured User", "secured@example.com", "password123", "USER", null);
         String responseContent = mockMvc.perform(post("/auth/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))

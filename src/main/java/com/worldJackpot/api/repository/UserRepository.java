@@ -13,4 +13,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     
     @org.springframework.data.jpa.repository.Query("SELECT u FROM User u WHERE u.role = 'USER' ORDER BY COALESCE(u.totalPoints, 0) DESC")
     org.springframework.data.domain.Page<User> findAllOrderByTotalPointsDesc(org.springframework.data.domain.Pageable pageable);
+
+    @org.springframework.data.jpa.repository.Modifying
+    @org.springframework.data.jpa.repository.Query("DELETE FROM User u WHERE u.role != :role")
+    void deleteByRoleNot(@org.springframework.data.repository.query.Param("role") com.worldJackpot.api.model.enums.UserRole role);
+
+    java.util.List<User> findByRole(com.worldJackpot.api.model.enums.UserRole role);
 }

@@ -64,11 +64,29 @@ class RecalculationIntegrationTest {
                 .email("bob@example.com")
                 .password("pass")
                 .role(UserRole.USER)
-                .totalPoints(10) // Bob already has 10 points from previous games
+                .totalPoints(0)
+                .build());
+
+        Match oldMatch = matchRepository.save(Match.builder()
+                .matchDate(LocalDateTime.now().minusDays(2).toInstant(java.time.ZoneOffset.UTC))
+                .phase(MatchPhase.GROUP)
+                .status(MatchStatus.FINISHED)
+                .groupName("B")
+                .referenceCode("M0")
+                .homeScore(1)
+                .awayScore(0)
+                .build());
+
+        betRepository.save(Bet.builder()
+                .user(user2)
+                .match(oldMatch)
+                .homeScore(1)
+                .awayScore(0)
+                .pointsEarned(10) // Mocking that this past bet already awarded 10 points
                 .build());
 
         match = matchRepository.save(Match.builder()
-                .matchDate(LocalDateTime.now().minusDays(1))
+                .matchDate(LocalDateTime.now().minusDays(1).toInstant(java.time.ZoneOffset.UTC))
                 .phase(MatchPhase.GROUP)
                 .status(MatchStatus.FINISHED)
                 .groupName("A")
@@ -85,7 +103,7 @@ class RecalculationIntegrationTest {
                 .awayScore(1)
                 .build());
 
-        // Bob guesses 3-1 (Winner only -> 5 pts, because goal diff is 2 instead of 1)
+        // Bob guesses 3-1 (Winner + exact away score -> 7 pts: got the winner AND 1 away goal)
         betRepository.save(Bet.builder()
                 .user(user2)
                 .match(match)
@@ -103,18 +121,20 @@ class RecalculationIntegrationTest {
         Thread.sleep(1000);
 
         List<Bet> allBets = betRepository.findAll();
-        assertEquals(2, allBets.size());
+        assertEquals(3, allBets.size());
 
         Bet aliceBet = allBets.stream().filter(b -> b.getUser().getId().equals(user1.getId())).findFirst().orElseThrow();
-        Bet bobBet = allBets.stream().filter(b -> b.getUser().getId().equals(user2.getId())).findFirst().orElseThrow();
+        Bet bobBet = allBets.stream()
+                .filter(b -> b.getUser().getId().equals(user2.getId()) && b.getMatch().getId().equals(match.getId()))
+                .findFirst().orElseThrow();
 
         assertEquals(10, aliceBet.getPointsEarned(), "Alice should have earned 10 points for exact match");
-        assertEquals(5, bobBet.getPointsEarned(), "Bob should have earned 5 points for winner only");
+        assertEquals(7, bobBet.getPointsEarned(), "Bob should have earned 7 points for winner + exact away score");
 
         User updatedUser1 = userRepository.findById(user1.getId()).orElseThrow();
         User updatedUser2 = userRepository.findById(user2.getId()).orElseThrow();
 
         assertEquals(10, updatedUser1.getTotalPoints(), "Alice total points should be 10 (0 + 10)");
-        assertEquals(15, updatedUser2.getTotalPoints(), "Bob total points should be 15 (10 + 5)");
+        assertEquals(17, updatedUser2.getTotalPoints(), "Bob total points should be 17 (10 + 7)");
     }
 }

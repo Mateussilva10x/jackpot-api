@@ -70,10 +70,10 @@ class BetIntegrationTest {
         userRepository.deleteAll();
 
         // Register User
-        AuthDto.RegisterRequest registerRequest = new AuthDto.RegisterRequest("Bettor", "bettor@example.com", "password", null);
+        AuthDto.RegisterRequest userRequest = new AuthDto.RegisterRequest("User", "user@example.com", "password", "USER", null);
         String authResponse = mockMvc.perform(post("/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(registerRequest)))
+                        .content(objectMapper.writeValueAsString(userRequest)))
                 .andReturn().getResponse().getContentAsString();
         token = objectMapper.readTree(authResponse).get("token").asText();
 
@@ -87,7 +87,7 @@ class BetIntegrationTest {
         Match match = Match.builder()
                 .teamHome(teamHome)
                 .teamAway(teamAway)
-                .matchDate(LocalDateTime.now().plusDays(1))
+                .matchDate(LocalDateTime.now().plusDays(1).toInstant(java.time.ZoneOffset.UTC))
                 .phase(MatchPhase.GROUP)
                 .status(MatchStatus.SCHEDULED)
                 .groupName("A")
@@ -108,7 +108,7 @@ class BetIntegrationTest {
     @Test
     void shouldPlaceBetSuccessfully() throws Exception {
         List<BetDto.BetRequest> bets = List.of(
-                new BetDto.BetRequest(matchId, 2, 1)
+             new BetDto.BetRequest(matchId, 2, 1, null)
         );
 
         mockMvc.perform(post("/bets")
@@ -128,14 +128,14 @@ class BetIntegrationTest {
     @Test
     void shouldUpdateExistingBet() throws Exception {
         // Place initial bet
-        List<BetDto.BetRequest> initialBets = List.of(new BetDto.BetRequest(matchId, 1, 0));
+        List<BetDto.BetRequest> initialBets = List.of(new BetDto.BetRequest(matchId, 1, 0, null));
         mockMvc.perform(post("/bets")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(initialBets)));
 
         // Update bet
-        List<BetDto.BetRequest> updatedBets = List.of(new BetDto.BetRequest(matchId, 3, 3));
+        List<BetDto.BetRequest> updatedBets = List.of(new BetDto.BetRequest(matchId, 3, 3, null));
         mockMvc.perform(post("/bets")
                         .header("Authorization", "Bearer " + token)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -156,14 +156,14 @@ class BetIntegrationTest {
         Match pastMatch = matchRepository.save(Match.builder()
                 .teamHome(teamRepository.findById(teamHomeId).get())
                 .teamAway(teamRepository.findById(teamAwayId).get())
-                .matchDate(LocalDateTime.now().minusHours(1))
+                .matchDate(LocalDateTime.now().minusHours(1).toInstant(java.time.ZoneOffset.UTC))
                 .phase(MatchPhase.GROUP)
                 .status(MatchStatus.FINISHED)
                 .groupName("A")
                 .referenceCode("M2")
                 .build());
 
-        List<BetDto.BetRequest> bets = List.of(new BetDto.BetRequest(pastMatch.getId(), 2, 1));
+        List<BetDto.BetRequest> bets = List.of(new BetDto.BetRequest(pastMatch.getId(), 2, 1, null));
 
         mockMvc.perform(post("/bets")
                         .header("Authorization", "Bearer " + token)
