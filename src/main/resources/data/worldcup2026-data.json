@@ -1,0 +1,1619 @@
+{
+  "teams": [
+    {
+      "name": "Mexico",
+      "isoCode": "MEX",
+      "group": "A",
+      "flagUrl": "https://flagcdn.com/w320/mx.png"
+    },
+    {
+      "name": "South Africa",
+      "isoCode": "ZAF",
+      "group": "A",
+      "flagUrl": "https://flagcdn.com/w320/za.png"
+    },
+    {
+      "name": "South Korea",
+      "isoCode": "KOR",
+      "group": "A",
+      "flagUrl": "https://flagcdn.com/w320/kr.png"
+    },
+    {
+      "name": "UEFA Playoff D Winner",
+      "isoCode": "UEFD",
+      "group": "A",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Canada",
+      "isoCode": "CAN",
+      "group": "B",
+      "flagUrl": "https://flagcdn.com/w320/ca.png"
+    },
+    {
+      "name": "UEFA Playoff A Winner",
+      "isoCode": "UEFA",
+      "group": "B",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Qatar",
+      "isoCode": "QAT",
+      "group": "B",
+      "flagUrl": "https://flagcdn.com/w320/qa.png"
+    },
+    {
+      "name": "Switzerland",
+      "isoCode": "SUI",
+      "group": "B",
+      "flagUrl": "https://flagcdn.com/w320/ch.png"
+    },
+    {
+      "name": "Brazil",
+      "isoCode": "BRA",
+      "group": "C",
+      "flagUrl": "https://flagcdn.com/w320/br.png"
+    },
+    {
+      "name": "Morocco",
+      "isoCode": "MAR",
+      "group": "C",
+      "flagUrl": "https://flagcdn.com/w320/ma.png"
+    },
+    {
+      "name": "Haiti",
+      "isoCode": "HAI",
+      "group": "C",
+      "flagUrl": "https://flagcdn.com/w320/ht.png"
+    },
+    {
+      "name": "Scotland",
+      "isoCode": "SCO",
+      "group": "C",
+      "flagUrl": "https://flagcdn.com/w320/gb-sct.png"
+    },
+    {
+      "name": "USA",
+      "isoCode": "USA",
+      "group": "D",
+      "flagUrl": "https://flagcdn.com/w320/us.png"
+    },
+    {
+      "name": "Paraguay",
+      "isoCode": "PAR",
+      "group": "D",
+      "flagUrl": "https://flagcdn.com/w320/py.png"
+    },
+    {
+      "name": "Australia",
+      "isoCode": "AUS",
+      "group": "D",
+      "flagUrl": "https://flagcdn.com/w320/au.png"
+    },
+    {
+      "name": "UEFA Playoff C Winner",
+      "isoCode": "UEFC",
+      "group": "D",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Germany",
+      "isoCode": "GER",
+      "group": "E",
+      "flagUrl": "https://flagcdn.com/w320/de.png"
+    },
+    {
+      "name": "Curacao",
+      "isoCode": "CUW",
+      "group": "E",
+      "flagUrl": "https://flagcdn.com/w320/cw.png"
+    },
+    {
+      "name": "Ivory Coast",
+      "isoCode": "CIV",
+      "group": "E",
+      "flagUrl": "https://flagcdn.com/w320/ci.png"
+    },
+    {
+      "name": "Ecuador",
+      "isoCode": "ECU",
+      "group": "E",
+      "flagUrl": "https://flagcdn.com/w320/ec.png"
+    },
+    {
+      "name": "Netherlands",
+      "isoCode": "NED",
+      "group": "F",
+      "flagUrl": "https://flagcdn.com/w320/nl.png"
+    },
+    {
+      "name": "Japan",
+      "isoCode": "JPN",
+      "group": "F",
+      "flagUrl": "https://flagcdn.com/w320/jp.png"
+    },
+    {
+      "name": "UEFA Playoff B Winner",
+      "isoCode": "UEFB",
+      "group": "F",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Tunisia",
+      "isoCode": "TUN",
+      "group": "F",
+      "flagUrl": "https://flagcdn.com/w320/tn.png"
+    },
+    {
+      "name": "Belgium",
+      "isoCode": "BEL",
+      "group": "G",
+      "flagUrl": "https://flagcdn.com/w320/be.png"
+    },
+    {
+      "name": "Egypt",
+      "isoCode": "EGY",
+      "group": "G",
+      "flagUrl": "https://flagcdn.com/w320/eg.png"
+    },
+    {
+      "name": "Iran",
+      "isoCode": "IRN",
+      "group": "G",
+      "flagUrl": "https://flagcdn.com/w320/ir.png"
+    },
+    {
+      "name": "New Zealand",
+      "isoCode": "NZL",
+      "group": "G",
+      "flagUrl": "https://flagcdn.com/w320/nz.png"
+    },
+    {
+      "name": "Spain",
+      "isoCode": "ESP",
+      "group": "H",
+      "flagUrl": "https://flagcdn.com/w320/es.png"
+    },
+    {
+      "name": "Cabo Verde",
+      "isoCode": "CPV",
+      "group": "H",
+      "flagUrl": "https://flagcdn.com/w320/cv.png"
+    },
+    {
+      "name": "Saudi Arabia",
+      "isoCode": "KSA",
+      "group": "H",
+      "flagUrl": "https://flagcdn.com/w320/sa.png"
+    },
+    {
+      "name": "Uruguay",
+      "isoCode": "URU",
+      "group": "H",
+      "flagUrl": "https://flagcdn.com/w320/uy.png"
+    },
+    {
+      "name": "France",
+      "isoCode": "FRA",
+      "group": "I",
+      "flagUrl": "https://flagcdn.com/w320/fr.png"
+    },
+    {
+      "name": "Senegal",
+      "isoCode": "SEN",
+      "group": "I",
+      "flagUrl": "https://flagcdn.com/w320/sn.png"
+    },
+    {
+      "name": "FIFA Playoff 2 Winner",
+      "isoCode": "FIF2",
+      "group": "I",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Norway",
+      "isoCode": "NOR",
+      "group": "I",
+      "flagUrl": "https://flagcdn.com/w320/no.png"
+    },
+    {
+      "name": "Argentina",
+      "isoCode": "ARG",
+      "group": "J",
+      "flagUrl": "https://flagcdn.com/w320/ar.png"
+    },
+    {
+      "name": "Algeria",
+      "isoCode": "ALG",
+      "group": "J",
+      "flagUrl": "https://flagcdn.com/w320/dz.png"
+    },
+    {
+      "name": "Austria",
+      "isoCode": "AUT",
+      "group": "J",
+      "flagUrl": "https://flagcdn.com/w320/at.png"
+    },
+    {
+      "name": "Jordan",
+      "isoCode": "JOR",
+      "group": "J",
+      "flagUrl": "https://flagcdn.com/w320/jo.png"
+    },
+    {
+      "name": "Portugal",
+      "isoCode": "POR",
+      "group": "K",
+      "flagUrl": "https://flagcdn.com/w320/pt.png"
+    },
+    {
+      "name": "FIFA Playoff 1 Winner",
+      "isoCode": "FIF1",
+      "group": "K",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Uzbekistan",
+      "isoCode": "UZB",
+      "group": "K",
+      "flagUrl": "https://flagcdn.com/w320/uz.png"
+    },
+    {
+      "name": "Colombia",
+      "isoCode": "COL",
+      "group": "K",
+      "flagUrl": "https://flagcdn.com/w320/co.png"
+    },
+    {
+      "name": "England",
+      "isoCode": "ENG",
+      "group": "L",
+      "flagUrl": "https://flagcdn.com/w320/gb-eng.png"
+    },
+    {
+      "name": "Croatia",
+      "isoCode": "CRO",
+      "group": "L",
+      "flagUrl": "https://flagcdn.com/w320/hr.png"
+    },
+    {
+      "name": "Ghana",
+      "isoCode": "GHA",
+      "group": "L",
+      "flagUrl": "https://flagcdn.com/w320/gh.png"
+    },
+    {
+      "name": "Panama",
+      "isoCode": "PAN",
+      "group": "L",
+      "flagUrl": "https://flagcdn.com/w320/pa.png"
+    },
+    {
+      "name": "Winner Group A",
+      "isoCode": "1A",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group A",
+      "isoCode": "2A",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Group B",
+      "isoCode": "1B",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group B",
+      "isoCode": "2B",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Group C",
+      "isoCode": "1C",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group C",
+      "isoCode": "2C",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Group D",
+      "isoCode": "1D",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group D",
+      "isoCode": "2D",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Group E",
+      "isoCode": "1E",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group E",
+      "isoCode": "2E",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Group F",
+      "isoCode": "1F",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group F",
+      "isoCode": "2F",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Group G",
+      "isoCode": "1G",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group G",
+      "isoCode": "2G",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Group H",
+      "isoCode": "1H",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group H",
+      "isoCode": "2H",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Group I",
+      "isoCode": "1I",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group I",
+      "isoCode": "2I",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Group J",
+      "isoCode": "1J",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group J",
+      "isoCode": "2J",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Group K",
+      "isoCode": "1K",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group K",
+      "isoCode": "2K",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Group L",
+      "isoCode": "1L",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Runner-up Group L",
+      "isoCode": "2L",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Best 3rd Place 1",
+      "isoCode": "3RD1",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Best 3rd Place 2",
+      "isoCode": "3RD2",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Best 3rd Place 3",
+      "isoCode": "3RD3",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Best 3rd Place 4",
+      "isoCode": "3RD4",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Best 3rd Place 5",
+      "isoCode": "3RD5",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Best 3rd Place 6",
+      "isoCode": "3RD6",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Best 3rd Place 7",
+      "isoCode": "3RD7",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Best 3rd Place 8",
+      "isoCode": "3RD8",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 73",
+      "isoCode": "W73",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 74",
+      "isoCode": "W74",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 75",
+      "isoCode": "W75",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 76",
+      "isoCode": "W76",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 77",
+      "isoCode": "W77",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 78",
+      "isoCode": "W78",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 79",
+      "isoCode": "W79",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 80",
+      "isoCode": "W80",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 81",
+      "isoCode": "W81",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 82",
+      "isoCode": "W82",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 83",
+      "isoCode": "W83",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 84",
+      "isoCode": "W84",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 85",
+      "isoCode": "W85",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 86",
+      "isoCode": "W86",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 87",
+      "isoCode": "W87",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 88",
+      "isoCode": "W88",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 89",
+      "isoCode": "W89",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 90",
+      "isoCode": "W90",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 91",
+      "isoCode": "W91",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 92",
+      "isoCode": "W92",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 93",
+      "isoCode": "W93",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 94",
+      "isoCode": "W94",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 95",
+      "isoCode": "W95",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 96",
+      "isoCode": "W96",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 97",
+      "isoCode": "W97",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 98",
+      "isoCode": "W98",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 99",
+      "isoCode": "W99",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 100",
+      "isoCode": "W100",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Loser Match 101",
+      "isoCode": "L101",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Loser Match 102",
+      "isoCode": "L102",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 101",
+      "isoCode": "W101",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    },
+    {
+      "name": "Winner Match 102",
+      "isoCode": "W102",
+      "group": "KO",
+      "flagUrl": "https://flagcdn.com/w320/xx.png"
+    }
+  ],
+  "matches": [
+    {
+      "teamHomeIsoCode": "MEX",
+      "teamAwayIsoCode": "ZAF",
+      "matchDate": "2026-06-11T12:00:00",
+      "phase": "GROUP",
+      "groupName": "A",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-A-1"
+    },
+    {
+      "teamHomeIsoCode": "KOR",
+      "teamAwayIsoCode": "UEFD",
+      "matchDate": "2026-06-11T15:00:00",
+      "phase": "GROUP",
+      "groupName": "A",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-A-2"
+    },
+    {
+      "teamHomeIsoCode": "MEX",
+      "teamAwayIsoCode": "KOR",
+      "matchDate": "2026-06-17T12:00:00",
+      "phase": "GROUP",
+      "groupName": "A",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-A-3"
+    },
+    {
+      "teamHomeIsoCode": "ZAF",
+      "teamAwayIsoCode": "UEFD",
+      "matchDate": "2026-06-17T15:00:00",
+      "phase": "GROUP",
+      "groupName": "A",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-A-4"
+    },
+    {
+      "teamHomeIsoCode": "ZAF",
+      "teamAwayIsoCode": "KOR",
+      "matchDate": "2026-06-23T16:00:00",
+      "phase": "GROUP",
+      "groupName": "A",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-A-5"
+    },
+    {
+      "teamHomeIsoCode": "UEFD",
+      "teamAwayIsoCode": "MEX",
+      "matchDate": "2026-06-23T16:00:00",
+      "phase": "GROUP",
+      "groupName": "A",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-A-6"
+    },
+    {
+      "teamHomeIsoCode": "CAN",
+      "teamAwayIsoCode": "UEFA",
+      "matchDate": "2026-06-12T12:00:00",
+      "phase": "GROUP",
+      "groupName": "B",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-B-1"
+    },
+    {
+      "teamHomeIsoCode": "QAT",
+      "teamAwayIsoCode": "SUI",
+      "matchDate": "2026-06-12T15:00:00",
+      "phase": "GROUP",
+      "groupName": "B",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-B-2"
+    },
+    {
+      "teamHomeIsoCode": "CAN",
+      "teamAwayIsoCode": "QAT",
+      "matchDate": "2026-06-18T12:00:00",
+      "phase": "GROUP",
+      "groupName": "B",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-B-3"
+    },
+    {
+      "teamHomeIsoCode": "UEFA",
+      "teamAwayIsoCode": "SUI",
+      "matchDate": "2026-06-18T15:00:00",
+      "phase": "GROUP",
+      "groupName": "B",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-B-4"
+    },
+    {
+      "teamHomeIsoCode": "UEFA",
+      "teamAwayIsoCode": "QAT",
+      "matchDate": "2026-06-24T16:00:00",
+      "phase": "GROUP",
+      "groupName": "B",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-B-5"
+    },
+    {
+      "teamHomeIsoCode": "SUI",
+      "teamAwayIsoCode": "CAN",
+      "matchDate": "2026-06-24T16:00:00",
+      "phase": "GROUP",
+      "groupName": "B",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-B-6"
+    },
+    {
+      "teamHomeIsoCode": "BRA",
+      "teamAwayIsoCode": "MAR",
+      "matchDate": "2026-06-12T18:00:00",
+      "phase": "GROUP",
+      "groupName": "C",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-C-1"
+    },
+    {
+      "teamHomeIsoCode": "HAI",
+      "teamAwayIsoCode": "SCO",
+      "matchDate": "2026-06-12T21:00:00",
+      "phase": "GROUP",
+      "groupName": "C",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-C-2"
+    },
+    {
+      "teamHomeIsoCode": "BRA",
+      "teamAwayIsoCode": "HAI",
+      "matchDate": "2026-06-18T18:00:00",
+      "phase": "GROUP",
+      "groupName": "C",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-C-3"
+    },
+    {
+      "teamHomeIsoCode": "MAR",
+      "teamAwayIsoCode": "SCO",
+      "matchDate": "2026-06-18T21:00:00",
+      "phase": "GROUP",
+      "groupName": "C",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-C-4"
+    },
+    {
+      "teamHomeIsoCode": "MAR",
+      "teamAwayIsoCode": "HAI",
+      "matchDate": "2026-06-24T20:00:00",
+      "phase": "GROUP",
+      "groupName": "C",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-C-5"
+    },
+    {
+      "teamHomeIsoCode": "SCO",
+      "teamAwayIsoCode": "BRA",
+      "matchDate": "2026-06-24T20:00:00",
+      "phase": "GROUP",
+      "groupName": "C",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-C-6"
+    },
+    {
+      "teamHomeIsoCode": "USA",
+      "teamAwayIsoCode": "PAR",
+      "matchDate": "2026-06-13T12:00:00",
+      "phase": "GROUP",
+      "groupName": "D",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-D-1"
+    },
+    {
+      "teamHomeIsoCode": "AUS",
+      "teamAwayIsoCode": "UEFC",
+      "matchDate": "2026-06-13T15:00:00",
+      "phase": "GROUP",
+      "groupName": "D",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-D-2"
+    },
+    {
+      "teamHomeIsoCode": "USA",
+      "teamAwayIsoCode": "AUS",
+      "matchDate": "2026-06-19T12:00:00",
+      "phase": "GROUP",
+      "groupName": "D",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-D-3"
+    },
+    {
+      "teamHomeIsoCode": "PAR",
+      "teamAwayIsoCode": "UEFC",
+      "matchDate": "2026-06-19T15:00:00",
+      "phase": "GROUP",
+      "groupName": "D",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-D-4"
+    },
+    {
+      "teamHomeIsoCode": "PAR",
+      "teamAwayIsoCode": "AUS",
+      "matchDate": "2026-06-25T16:00:00",
+      "phase": "GROUP",
+      "groupName": "D",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-D-5"
+    },
+    {
+      "teamHomeIsoCode": "UEFC",
+      "teamAwayIsoCode": "USA",
+      "matchDate": "2026-06-25T16:00:00",
+      "phase": "GROUP",
+      "groupName": "D",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-D-6"
+    },
+    {
+      "teamHomeIsoCode": "GER",
+      "teamAwayIsoCode": "CUW",
+      "matchDate": "2026-06-13T18:00:00",
+      "phase": "GROUP",
+      "groupName": "E",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-E-1"
+    },
+    {
+      "teamHomeIsoCode": "CIV",
+      "teamAwayIsoCode": "ECU",
+      "matchDate": "2026-06-13T21:00:00",
+      "phase": "GROUP",
+      "groupName": "E",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-E-2"
+    },
+    {
+      "teamHomeIsoCode": "GER",
+      "teamAwayIsoCode": "CIV",
+      "matchDate": "2026-06-19T18:00:00",
+      "phase": "GROUP",
+      "groupName": "E",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-E-3"
+    },
+    {
+      "teamHomeIsoCode": "CUW",
+      "teamAwayIsoCode": "ECU",
+      "matchDate": "2026-06-19T21:00:00",
+      "phase": "GROUP",
+      "groupName": "E",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-E-4"
+    },
+    {
+      "teamHomeIsoCode": "CUW",
+      "teamAwayIsoCode": "CIV",
+      "matchDate": "2026-06-25T20:00:00",
+      "phase": "GROUP",
+      "groupName": "E",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-E-5"
+    },
+    {
+      "teamHomeIsoCode": "ECU",
+      "teamAwayIsoCode": "GER",
+      "matchDate": "2026-06-25T20:00:00",
+      "phase": "GROUP",
+      "groupName": "E",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-E-6"
+    },
+    {
+      "teamHomeIsoCode": "NED",
+      "teamAwayIsoCode": "JPN",
+      "matchDate": "2026-06-14T12:00:00",
+      "phase": "GROUP",
+      "groupName": "F",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-F-1"
+    },
+    {
+      "teamHomeIsoCode": "UEFB",
+      "teamAwayIsoCode": "TUN",
+      "matchDate": "2026-06-14T15:00:00",
+      "phase": "GROUP",
+      "groupName": "F",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-F-2"
+    },
+    {
+      "teamHomeIsoCode": "NED",
+      "teamAwayIsoCode": "UEFB",
+      "matchDate": "2026-06-20T12:00:00",
+      "phase": "GROUP",
+      "groupName": "F",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-F-3"
+    },
+    {
+      "teamHomeIsoCode": "JPN",
+      "teamAwayIsoCode": "TUN",
+      "matchDate": "2026-06-20T15:00:00",
+      "phase": "GROUP",
+      "groupName": "F",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-F-4"
+    },
+    {
+      "teamHomeIsoCode": "JPN",
+      "teamAwayIsoCode": "UEFB",
+      "matchDate": "2026-06-26T16:00:00",
+      "phase": "GROUP",
+      "groupName": "F",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-F-5"
+    },
+    {
+      "teamHomeIsoCode": "TUN",
+      "teamAwayIsoCode": "NED",
+      "matchDate": "2026-06-26T16:00:00",
+      "phase": "GROUP",
+      "groupName": "F",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-F-6"
+    },
+    {
+      "teamHomeIsoCode": "BEL",
+      "teamAwayIsoCode": "EGY",
+      "matchDate": "2026-06-14T18:00:00",
+      "phase": "GROUP",
+      "groupName": "G",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-G-1"
+    },
+    {
+      "teamHomeIsoCode": "IRN",
+      "teamAwayIsoCode": "NZL",
+      "matchDate": "2026-06-14T21:00:00",
+      "phase": "GROUP",
+      "groupName": "G",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-G-2"
+    },
+    {
+      "teamHomeIsoCode": "BEL",
+      "teamAwayIsoCode": "IRN",
+      "matchDate": "2026-06-20T18:00:00",
+      "phase": "GROUP",
+      "groupName": "G",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-G-3"
+    },
+    {
+      "teamHomeIsoCode": "EGY",
+      "teamAwayIsoCode": "NZL",
+      "matchDate": "2026-06-20T21:00:00",
+      "phase": "GROUP",
+      "groupName": "G",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-G-4"
+    },
+    {
+      "teamHomeIsoCode": "EGY",
+      "teamAwayIsoCode": "IRN",
+      "matchDate": "2026-06-26T20:00:00",
+      "phase": "GROUP",
+      "groupName": "G",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-G-5"
+    },
+    {
+      "teamHomeIsoCode": "NZL",
+      "teamAwayIsoCode": "BEL",
+      "matchDate": "2026-06-26T20:00:00",
+      "phase": "GROUP",
+      "groupName": "G",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-G-6"
+    },
+    {
+      "teamHomeIsoCode": "ESP",
+      "teamAwayIsoCode": "CPV",
+      "matchDate": "2026-06-15T12:00:00",
+      "phase": "GROUP",
+      "groupName": "H",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-H-1"
+    },
+    {
+      "teamHomeIsoCode": "KSA",
+      "teamAwayIsoCode": "URU",
+      "matchDate": "2026-06-15T15:00:00",
+      "phase": "GROUP",
+      "groupName": "H",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-H-2"
+    },
+    {
+      "teamHomeIsoCode": "ESP",
+      "teamAwayIsoCode": "KSA",
+      "matchDate": "2026-06-21T12:00:00",
+      "phase": "GROUP",
+      "groupName": "H",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-H-3"
+    },
+    {
+      "teamHomeIsoCode": "CPV",
+      "teamAwayIsoCode": "URU",
+      "matchDate": "2026-06-21T15:00:00",
+      "phase": "GROUP",
+      "groupName": "H",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-H-4"
+    },
+    {
+      "teamHomeIsoCode": "CPV",
+      "teamAwayIsoCode": "KSA",
+      "matchDate": "2026-06-27T16:00:00",
+      "phase": "GROUP",
+      "groupName": "H",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-H-5"
+    },
+    {
+      "teamHomeIsoCode": "URU",
+      "teamAwayIsoCode": "ESP",
+      "matchDate": "2026-06-27T16:00:00",
+      "phase": "GROUP",
+      "groupName": "H",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-H-6"
+    },
+    {
+      "teamHomeIsoCode": "FRA",
+      "teamAwayIsoCode": "SEN",
+      "matchDate": "2026-06-15T18:00:00",
+      "phase": "GROUP",
+      "groupName": "I",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-I-1"
+    },
+    {
+      "teamHomeIsoCode": "FIF2",
+      "teamAwayIsoCode": "NOR",
+      "matchDate": "2026-06-15T21:00:00",
+      "phase": "GROUP",
+      "groupName": "I",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-I-2"
+    },
+    {
+      "teamHomeIsoCode": "FRA",
+      "teamAwayIsoCode": "FIF2",
+      "matchDate": "2026-06-21T18:00:00",
+      "phase": "GROUP",
+      "groupName": "I",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-I-3"
+    },
+    {
+      "teamHomeIsoCode": "SEN",
+      "teamAwayIsoCode": "NOR",
+      "matchDate": "2026-06-21T21:00:00",
+      "phase": "GROUP",
+      "groupName": "I",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-I-4"
+    },
+    {
+      "teamHomeIsoCode": "SEN",
+      "teamAwayIsoCode": "FIF2",
+      "matchDate": "2026-06-27T20:00:00",
+      "phase": "GROUP",
+      "groupName": "I",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-I-5"
+    },
+    {
+      "teamHomeIsoCode": "NOR",
+      "teamAwayIsoCode": "FRA",
+      "matchDate": "2026-06-27T20:00:00",
+      "phase": "GROUP",
+      "groupName": "I",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-I-6"
+    },
+    {
+      "teamHomeIsoCode": "ARG",
+      "teamAwayIsoCode": "ALG",
+      "matchDate": "2026-06-16T12:00:00",
+      "phase": "GROUP",
+      "groupName": "J",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-J-1"
+    },
+    {
+      "teamHomeIsoCode": "AUT",
+      "teamAwayIsoCode": "JOR",
+      "matchDate": "2026-06-16T15:00:00",
+      "phase": "GROUP",
+      "groupName": "J",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-J-2"
+    },
+    {
+      "teamHomeIsoCode": "ARG",
+      "teamAwayIsoCode": "AUT",
+      "matchDate": "2026-06-22T12:00:00",
+      "phase": "GROUP",
+      "groupName": "J",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-J-3"
+    },
+    {
+      "teamHomeIsoCode": "ALG",
+      "teamAwayIsoCode": "JOR",
+      "matchDate": "2026-06-22T15:00:00",
+      "phase": "GROUP",
+      "groupName": "J",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-J-4"
+    },
+    {
+      "teamHomeIsoCode": "ALG",
+      "teamAwayIsoCode": "AUT",
+      "matchDate": "2026-06-27T16:00:00",
+      "phase": "GROUP",
+      "groupName": "J",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-J-5"
+    },
+    {
+      "teamHomeIsoCode": "JOR",
+      "teamAwayIsoCode": "ARG",
+      "matchDate": "2026-06-27T16:00:00",
+      "phase": "GROUP",
+      "groupName": "J",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-J-6"
+    },
+    {
+      "teamHomeIsoCode": "POR",
+      "teamAwayIsoCode": "FIF1",
+      "matchDate": "2026-06-16T18:00:00",
+      "phase": "GROUP",
+      "groupName": "K",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-K-1"
+    },
+    {
+      "teamHomeIsoCode": "UZB",
+      "teamAwayIsoCode": "COL",
+      "matchDate": "2026-06-16T21:00:00",
+      "phase": "GROUP",
+      "groupName": "K",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-K-2"
+    },
+    {
+      "teamHomeIsoCode": "POR",
+      "teamAwayIsoCode": "UZB",
+      "matchDate": "2026-06-22T18:00:00",
+      "phase": "GROUP",
+      "groupName": "K",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-K-3"
+    },
+    {
+      "teamHomeIsoCode": "FIF1",
+      "teamAwayIsoCode": "COL",
+      "matchDate": "2026-06-22T21:00:00",
+      "phase": "GROUP",
+      "groupName": "K",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-K-4"
+    },
+    {
+      "teamHomeIsoCode": "FIF1",
+      "teamAwayIsoCode": "UZB",
+      "matchDate": "2026-06-27T20:00:00",
+      "phase": "GROUP",
+      "groupName": "K",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-K-5"
+    },
+    {
+      "teamHomeIsoCode": "COL",
+      "teamAwayIsoCode": "POR",
+      "matchDate": "2026-06-27T20:00:00",
+      "phase": "GROUP",
+      "groupName": "K",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-K-6"
+    },
+    {
+      "teamHomeIsoCode": "ENG",
+      "teamAwayIsoCode": "CRO",
+      "matchDate": "2026-06-17T12:00:00",
+      "phase": "GROUP",
+      "groupName": "L",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-L-1"
+    },
+    {
+      "teamHomeIsoCode": "GHA",
+      "teamAwayIsoCode": "PAN",
+      "matchDate": "2026-06-17T15:00:00",
+      "phase": "GROUP",
+      "groupName": "L",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-L-2"
+    },
+    {
+      "teamHomeIsoCode": "ENG",
+      "teamAwayIsoCode": "GHA",
+      "matchDate": "2026-06-23T12:00:00",
+      "phase": "GROUP",
+      "groupName": "L",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-L-3"
+    },
+    {
+      "teamHomeIsoCode": "CRO",
+      "teamAwayIsoCode": "PAN",
+      "matchDate": "2026-06-23T15:00:00",
+      "phase": "GROUP",
+      "groupName": "L",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-L-4"
+    },
+    {
+      "teamHomeIsoCode": "CRO",
+      "teamAwayIsoCode": "GHA",
+      "matchDate": "2026-06-27T16:00:00",
+      "phase": "GROUP",
+      "groupName": "L",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-L-5"
+    },
+    {
+      "teamHomeIsoCode": "PAN",
+      "teamAwayIsoCode": "ENG",
+      "matchDate": "2026-06-27T16:00:00",
+      "phase": "GROUP",
+      "groupName": "L",
+      "status": "SCHEDULED",
+      "referenceCode": "WC2026-G-L-6"
+    },
+    {
+      "referenceCode": "WC2026-R32-73",
+      "teamHomeIsoCode": "2A",
+      "teamAwayIsoCode": "2B",
+      "matchDate": "2026-06-28T13:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-74",
+      "teamHomeIsoCode": "1E",
+      "teamAwayIsoCode": "3RD1",
+      "matchDate": "2026-06-29T13:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-75",
+      "teamHomeIsoCode": "1F",
+      "teamAwayIsoCode": "2C",
+      "matchDate": "2026-06-29T16:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-76",
+      "teamHomeIsoCode": "1C",
+      "teamAwayIsoCode": "2F",
+      "matchDate": "2026-06-29T19:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-77",
+      "teamHomeIsoCode": "1I",
+      "teamAwayIsoCode": "3RD3",
+      "matchDate": "2026-06-30T13:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-78",
+      "teamHomeIsoCode": "2E",
+      "teamAwayIsoCode": "2I",
+      "matchDate": "2026-06-30T16:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-79",
+      "teamHomeIsoCode": "1A",
+      "teamAwayIsoCode": "3RD4",
+      "matchDate": "2026-06-30T19:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-80",
+      "teamHomeIsoCode": "1L",
+      "teamAwayIsoCode": "3RD5",
+      "matchDate": "2026-07-01T13:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-81",
+      "teamHomeIsoCode": "1D",
+      "teamAwayIsoCode": "3RD2",
+      "matchDate": "2026-07-01T16:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-82",
+      "teamHomeIsoCode": "1G",
+      "teamAwayIsoCode": "3RD6",
+      "matchDate": "2026-07-01T19:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-83",
+      "teamHomeIsoCode": "2K",
+      "teamAwayIsoCode": "2L",
+      "matchDate": "2026-07-02T13:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-84",
+      "teamHomeIsoCode": "1H",
+      "teamAwayIsoCode": "2J",
+      "matchDate": "2026-07-02T16:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-85",
+      "teamHomeIsoCode": "1B",
+      "teamAwayIsoCode": "3RD7",
+      "matchDate": "2026-07-02T19:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-86",
+      "teamHomeIsoCode": "1J",
+      "teamAwayIsoCode": "2H",
+      "matchDate": "2026-07-03T13:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-87",
+      "teamHomeIsoCode": "1K",
+      "teamAwayIsoCode": "3RD8",
+      "matchDate": "2026-07-03T16:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R32-88",
+      "teamHomeIsoCode": "2D",
+      "teamAwayIsoCode": "2G",
+      "matchDate": "2026-07-03T19:00:00",
+      "phase": "ROUND_32",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+
+    {
+      "referenceCode": "WC2026-R16-89",
+      "teamHomeIsoCode": "W74",
+      "teamAwayIsoCode": "W77",
+      "matchDate": "2026-07-04T13:00:00",
+      "phase": "ROUND_16",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R16-90",
+      "teamHomeIsoCode": "W73",
+      "teamAwayIsoCode": "W75",
+      "matchDate": "2026-07-04T16:00:00",
+      "phase": "ROUND_16",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R16-91",
+      "teamHomeIsoCode": "W76",
+      "teamAwayIsoCode": "W78",
+      "matchDate": "2026-07-05T13:00:00",
+      "phase": "ROUND_16",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R16-92",
+      "teamHomeIsoCode": "W79",
+      "teamAwayIsoCode": "W80",
+      "matchDate": "2026-07-05T16:00:00",
+      "phase": "ROUND_16",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R16-93",
+      "teamHomeIsoCode": "W81",
+      "teamAwayIsoCode": "W82",
+      "matchDate": "2026-07-06T13:00:00",
+      "phase": "ROUND_16",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R16-94",
+      "teamHomeIsoCode": "W83",
+      "teamAwayIsoCode": "W84",
+      "matchDate": "2026-07-06T16:00:00",
+      "phase": "ROUND_16",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R16-95",
+      "teamHomeIsoCode": "W85",
+      "teamAwayIsoCode": "W86",
+      "matchDate": "2026-07-07T13:00:00",
+      "phase": "ROUND_16",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-R16-96",
+      "teamHomeIsoCode": "W87",
+      "teamAwayIsoCode": "W88",
+      "matchDate": "2026-07-07T16:00:00",
+      "phase": "ROUND_16",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+
+    {
+      "referenceCode": "WC2026-QF-97",
+      "teamHomeIsoCode": "W89",
+      "teamAwayIsoCode": "W90",
+      "matchDate": "2026-07-09T13:00:00",
+      "phase": "QUARTER",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-QF-98",
+      "teamHomeIsoCode": "W91",
+      "teamAwayIsoCode": "W92",
+      "matchDate": "2026-07-10T13:00:00",
+      "phase": "QUARTER",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-QF-99",
+      "teamHomeIsoCode": "W93",
+      "teamAwayIsoCode": "W94",
+      "matchDate": "2026-07-11T13:00:00",
+      "phase": "QUARTER",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-QF-100",
+      "teamHomeIsoCode": "W95",
+      "teamAwayIsoCode": "W96",
+      "matchDate": "2026-07-11T16:00:00",
+      "phase": "QUARTER",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+
+    {
+      "referenceCode": "WC2026-SF-101",
+      "teamHomeIsoCode": "W97",
+      "teamAwayIsoCode": "W98",
+      "matchDate": "2026-07-14T13:00:00",
+      "phase": "SEMI",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+    {
+      "referenceCode": "WC2026-SF-102",
+      "teamHomeIsoCode": "W99",
+      "teamAwayIsoCode": "W100",
+      "matchDate": "2026-07-15T13:00:00",
+      "phase": "SEMI",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+
+    {
+      "referenceCode": "WC2026-3RD-103",
+      "teamHomeIsoCode": "L101",
+      "teamAwayIsoCode": "L102",
+      "matchDate": "2026-07-18T13:00:00",
+      "phase": "THIRD_PLACE",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    },
+
+    {
+      "referenceCode": "WC2026-FIN-104",
+      "teamHomeIsoCode": "W101",
+      "teamAwayIsoCode": "W102",
+      "matchDate": "2026-07-19T15:00:00",
+      "phase": "FINAL",
+      "groupName": "KO",
+      "status": "SCHEDULED"
+    }
+  ]
+}
