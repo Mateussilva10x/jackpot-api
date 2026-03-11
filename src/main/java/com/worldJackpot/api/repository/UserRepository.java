@@ -8,8 +8,8 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email);
-    boolean existsByEmail(String email);
+    Optional<User> findByEmailIgnoreCase(String email);
+    boolean existsByEmailIgnoreCase(String email);
     
     @org.springframework.data.jpa.repository.Query("SELECT u FROM User u WHERE u.role = 'USER' ORDER BY COALESCE(u.totalPoints, 0) DESC")
     org.springframework.data.domain.Page<User> findAllOrderByTotalPointsDesc(org.springframework.data.domain.Pageable pageable);

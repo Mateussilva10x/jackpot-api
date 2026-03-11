@@ -31,7 +31,7 @@ public class AuthService {
 
     @Transactional
     public AuthDto.AuthResponse register(AuthDto.RegisterRequest request) {
-        if (userRepository.existsByEmail(request.getEmail())) {
+        if (userRepository.existsByEmailIgnoreCase(request.getEmail())) {
             throw new IllegalArgumentException("Email already pending or registered");
         }
 
@@ -68,7 +68,7 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.generateToken(authentication);
         
-        User user = userRepository.findByEmail(request.getEmail())
+        User user = userRepository.findByEmailIgnoreCase(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return AuthDto.AuthResponse.builder()
@@ -95,7 +95,7 @@ public class AuthService {
 
     @Transactional
     public String forgotPassword(String email) {
-        User user = userRepository.findByEmail(email)
+        User user = userRepository.findByEmailIgnoreCase(email)
                 .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
 
         // Delete any existing tokens for this user
