@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -28,6 +29,10 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider tokenProvider;
     private final PasswordResetTokenRepository tokenRepository;
+    private final EmailService emailService;
+
+    @Value("${app.frontend.url}")
+    private String frontendUrl;
 
     @Transactional
     public AuthDto.AuthResponse register(AuthDto.RegisterRequest request) {
@@ -94,7 +99,7 @@ public class AuthService {
     }
 
     @Transactional
-    public String forgotPassword(String email) {
+    public void forgotPassword(String email) {
         User user = userRepository.findByEmailIgnoreCase(email)
                 .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
 
@@ -111,9 +116,9 @@ public class AuthService {
 
         tokenRepository.save(resetToken);
 
-        // In a real application, you would send an email here.
-        // For now, we are simulating by simply returning the token.
-        return token;
+        // Send an email with the new ResendEmailService
+        String resetLink = frontendUrl + "/reset-password?token=" + token;
+        emailService.sendPasswordResetEmail(email, resetLink);
     }
 
     @Transactional

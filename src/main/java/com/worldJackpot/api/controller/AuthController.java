@@ -64,16 +64,15 @@ public class AuthController {
     }
 
     @PostMapping("/forgot-password")
-    @Operation(summary = "Request password reset", description = "Generates and returns a password reset token for testing purposes.")
+    @Operation(summary = "Request password reset", description = "Generates a reset token and sends a recovery email.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Token generated successfully"),
+            @ApiResponse(responseCode = "200", description = "Email sent successfully (if user exists)"),
             @ApiResponse(responseCode = "400", description = "Invalid email format"),
             @ApiResponse(responseCode = "404", description = "User not found")
     })
-    public ResponseEntity<String> forgotPassword(@Valid @RequestBody AuthDto.ForgotPasswordRequest request) {
-        String token = authService.forgotPassword(request.getEmail());
-        // For test purposes only. In prod, DO NOT return the token!
-        return ResponseEntity.ok(token);
+    public ResponseEntity<Void> forgotPassword(@Valid @RequestBody AuthDto.ForgotPasswordRequest request) {
+        authService.forgotPassword(request.getEmail());
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/reset-password")
