@@ -15,7 +15,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -29,10 +28,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider tokenProvider;
     private final PasswordResetTokenRepository tokenRepository;
-    private final EmailService emailService;
-
-    @Value("${app.frontend.url}")
-    private String frontendUrl;
+    private final SupabaseAuthService supabaseAuthService;
 
     @Transactional
     public AuthDto.AuthResponse register(AuthDto.RegisterRequest request) {
@@ -103,22 +99,8 @@ public class AuthService {
         User user = userRepository.findByEmailIgnoreCase(email)
                 .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
 
-        // Delete any existing tokens for this user
-        tokenRepository.deleteByUser(user);
-
-        // Generate new token
-        String token = UUID.randomUUID().toString();
-        PasswordResetToken resetToken = PasswordResetToken.builder()
-                .token(token)
-                .user(user)
-                .expiryDate(LocalDateTime.now().plusHours(1))
-                .build();
-
-        tokenRepository.save(resetToken);
-
-        // Send an email with the new ResendEmailService
-        String resetLink = frontendUrl + "/reset-password?token=" + token;
-        emailService.sendPasswordResetEmail(email, resetLink);
+        // Let Supabase handle the token generation and email dispatch
+        supabaseAuthService.sendRecoveryEmail(user.getEmail());
     }
 
     @Transactional

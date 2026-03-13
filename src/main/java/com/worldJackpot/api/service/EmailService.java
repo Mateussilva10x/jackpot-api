@@ -1,5 +1,0 @@
-package com.worldJackpot.api.service;
-
-public interface EmailService {
-    void sendPasswordResetEmail(String toEmail, String resetLink);
-}
