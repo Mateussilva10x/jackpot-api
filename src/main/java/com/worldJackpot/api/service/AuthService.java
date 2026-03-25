@@ -7,7 +7,6 @@ import com.worldJackpot.api.model.PasswordResetToken;
 import com.worldJackpot.api.repository.PasswordResetTokenRepository;
 import com.worldJackpot.api.repository.UserRepository;
 import com.worldJackpot.api.security.JwtTokenProvider;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,11 +15,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class AuthService {
 
     private final UserRepository userRepository;
@@ -29,6 +29,24 @@ public class AuthService {
     private final JwtTokenProvider tokenProvider;
     private final PasswordResetTokenRepository tokenRepository;
     private final SupabaseAuthService supabaseAuthService;
+    private final String frontendUrl;
+
+    public AuthService(
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            AuthenticationManager authenticationManager,
+            JwtTokenProvider tokenProvider,
+            PasswordResetTokenRepository tokenRepository,
+            SupabaseAuthService supabaseAuthService,
+            @Value("${app.frontend.url}") String frontendUrl) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.tokenProvider = tokenProvider;
+        this.tokenRepository = tokenRepository;
+        this.supabaseAuthService = supabaseAuthService;
+        this.frontendUrl = frontendUrl;
+    }
 
     @Transactional
     public AuthDto.AuthResponse register(AuthDto.RegisterRequest request) {
@@ -99,8 +117,19 @@ public class AuthService {
         User user = userRepository.findByEmailIgnoreCase(email)
                 .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
 
-        // Let Supabase handle the token generation and email dispatch
-        supabaseAuthService.sendRecoveryEmail(user.getEmail());
+        // Invalidate any existing token for this user
+        tokenRepository.deleteByUser(user);
+
+        String token = UUID.randomUUID().toString();
+        PasswordResetToken resetToken = PasswordResetToken.builder()
+                .token(token)
+                .user(user)
+                .expiryDate(LocalDateTime.now().plusHours(1))
+                .build();
+        tokenRepository.save(resetToken);
+
+        String resetLink = frontendUrl + "/reset-password?token=" + token;
+        supabaseAuthService.sendResetPasswordEmail(user.getEmail(), resetLink, user.getName());
     }
 
     @Transactional
