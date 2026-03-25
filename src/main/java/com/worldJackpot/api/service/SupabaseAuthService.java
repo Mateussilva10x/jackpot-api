@@ -34,8 +34,8 @@ public class SupabaseAuthService {
 
     public void sendResetPasswordEmail(String email, String resetLink, String userName) {
         if (supabaseUrl == null || supabaseUrl.isEmpty() || supabaseKey == null || supabaseKey.isEmpty()) {
-            log.warn("Supabase configuration is missing. Cannot send reset password email to {}", email);
-            return;
+            log.error("Supabase configuration is missing (SUPABASE_URL or SUPABASE_KEY). Cannot send reset password email to {}", email);
+            throw new RuntimeException("Supabase configuration is missing. Cannot send reset password email.");
         }
 
         String url = supabaseUrl + "/functions/v1/send-reset-password-email";
