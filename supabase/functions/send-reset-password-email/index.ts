@@ -1,5 +1,5 @@
 /// <reference types="https://esm.sh/@supabase/functions-js@2" />
-import { corsHeaders } from '../../_shared/cors.ts'
+import { corsHeaders } from "../../_shared/cors.ts";
 
 interface ResetPasswordPayload {
   email: string;
@@ -8,8 +8,8 @@ interface ResetPasswordPayload {
 }
 
 Deno.serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders });
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
   }
 
   try {
@@ -18,14 +18,21 @@ Deno.serve(async (req) => {
 
     if (!email || !resetLink) {
       return new Response(
-        JSON.stringify({ error: 'Campos obrigatórios ausentes: email e resetLink.' }),
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 400 }
+        JSON.stringify({
+          error: "Campos obrigatórios ausentes: email e resetLink.",
+        }),
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 400,
+        },
       );
     }
 
-    const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
+    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     if (!RESEND_API_KEY) {
-      throw new Error('RESEND_API_KEY não encontrada nas variáveis de ambiente.');
+      throw new Error(
+        "RESEND_API_KEY não encontrada nas variáveis de ambiente.",
+      );
     }
 
     const displayName = userName ?? email;
@@ -72,16 +79,16 @@ Deno.serve(async (req) => {
       </html>
     `;
 
-    const resendResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
       headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: 'World Jackpot <noreply@worldjackpot.com>',
+        from: "World Jackpot <hexabetting@bolaohexa.work.gd>",
         to: [email],
-        subject: 'Redefinição de senha - World Jackpot',
+        subject: "Redefinição de senha - World Jackpot",
         html: htmlBody,
       }),
     });
@@ -89,22 +96,35 @@ Deno.serve(async (req) => {
     const resendData = await resendResponse.json();
 
     if (!resendResponse.ok) {
-      console.error('[send-reset-password-email] Erro ao enviar email via Resend:', resendData);
+      console.error(
+        "[send-reset-password-email] Erro ao enviar email via Resend:",
+        resendData,
+      );
       throw new Error(`Resend API error: ${JSON.stringify(resendData)}`);
     }
 
-    console.log(`[send-reset-password-email] Email enviado com sucesso para ${email}. ID: ${resendData.id}`);
-
-    return new Response(
-      JSON.stringify({ success: true, message: 'Email de redefinição de senha enviado com sucesso.' }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 }
+    console.log(
+      `[send-reset-password-email] Email enviado com sucesso para ${email}. ID: ${resendData.id}`,
     );
 
-  } catch (err) {
-    console.error('[send-reset-password-email] ERRO:', err);
     return new Response(
-      JSON.stringify({ error: err?.message ?? 'Erro interno no servidor.' }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
+      JSON.stringify({
+        success: true,
+        message: "Email de redefinição de senha enviado com sucesso.",
+      }),
+      {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 200,
+      },
+    );
+  } catch (err) {
+    console.error("[send-reset-password-email] ERRO:", err);
+    return new Response(
+      JSON.stringify({ error: err?.message ?? "Erro interno no servidor." }),
+      {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 500,
+      },
     );
   }
 });
