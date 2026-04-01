@@ -19,10 +19,10 @@
       "flagUrl": "https://flagcdn.com/w320/kr.png"
     },
     {
-      "name": "UEFA Playoff D Winner",
-      "isoCode": "UEFD",
+      "name": "Czech Republic",
+      "isoCode": "CZE",
       "group": "A",
-      "flagUrl": "https://flagcdn.com/w320/xx.png"
+      "flagUrl": "https://flagcdn.com/w320/cz.png"
     },
     {
       "name": "Canada",
@@ -31,10 +31,10 @@
       "flagUrl": "https://flagcdn.com/w320/ca.png"
     },
     {
-      "name": "UEFA Playoff A Winner",
-      "isoCode": "UEFA",
+      "name": "Bosnia and Herzegovina",
+      "isoCode": "BIH",
       "group": "B",
-      "flagUrl": "https://flagcdn.com/w320/xx.png"
+      "flagUrl": "https://flagcdn.com/w320/ba.png"
     },
     {
       "name": "Qatar",
@@ -91,10 +91,10 @@
       "flagUrl": "https://flagcdn.com/w320/au.png"
     },
     {
-      "name": "UEFA Playoff C Winner",
-      "isoCode": "UEFC",
+      "name": "Türkiye",
+      "isoCode": "TUR",
       "group": "D",
-      "flagUrl": "https://flagcdn.com/w320/xx.png"
+      "flagUrl": "https://flagcdn.com/w320/tr.png"
     },
     {
       "name": "Germany",
@@ -133,10 +133,10 @@
       "flagUrl": "https://flagcdn.com/w320/jp.png"
     },
     {
-      "name": "UEFA Playoff B Winner",
-      "isoCode": "UEFB",
+      "name": "Sweden",
+      "isoCode": "SWE",
       "group": "F",
-      "flagUrl": "https://flagcdn.com/w320/xx.png"
+      "flagUrl": "https://flagcdn.com/w320/se.png"
     },
     {
       "name": "Tunisia",
@@ -205,10 +205,10 @@
       "flagUrl": "https://flagcdn.com/w320/sn.png"
     },
     {
-      "name": "FIFA Playoff 2 Winner",
-      "isoCode": "FIF2",
+      "name": "Iraq",
+      "isoCode": "IRQ",
       "group": "I",
-      "flagUrl": "https://flagcdn.com/w320/xx.png"
+      "flagUrl": "https://flagcdn.com/w320/iq.png"
     },
     {
       "name": "Norway",
@@ -247,10 +247,10 @@
       "flagUrl": "https://flagcdn.com/w320/pt.png"
     },
     {
-      "name": "FIFA Playoff 1 Winner",
-      "isoCode": "FIF1",
+      "name": "DR Congo",
+      "isoCode": "COD",
       "group": "K",
-      "flagUrl": "https://flagcdn.com/w320/xx.png"
+      "flagUrl": "https://flagcdn.com/w320/cd.png"
     },
     {
       "name": "Uzbekistan",
@@ -685,7 +685,7 @@
     },
     {
       "teamHomeIsoCode": "KOR",
-      "teamAwayIsoCode": "UEFD",
+      "teamAwayIsoCode": "CZE",
       "matchDate": "2026-06-11T15:00:00",
       "phase": "GROUP",
       "groupName": "A",
@@ -703,7 +703,7 @@
     },
     {
       "teamHomeIsoCode": "ZAF",
-      "teamAwayIsoCode": "UEFD",
+      "teamAwayIsoCode": "CZE",
       "matchDate": "2026-06-17T15:00:00",
       "phase": "GROUP",
       "groupName": "A",
@@ -720,7 +720,7 @@
       "referenceCode": "WC2026-G-A-5"
     },
     {
-      "teamHomeIsoCode": "UEFD",
+      "teamHomeIsoCode": "CZE",
       "teamAwayIsoCode": "MEX",
       "matchDate": "2026-06-23T16:00:00",
       "phase": "GROUP",
@@ -730,7 +730,7 @@
     },
     {
       "teamHomeIsoCode": "CAN",
-      "teamAwayIsoCode": "UEFA",
+      "teamAwayIsoCode": "BIH",
       "matchDate": "2026-06-12T12:00:00",
       "phase": "GROUP",
       "groupName": "B",
@@ -756,7 +756,7 @@
       "referenceCode": "WC2026-G-B-3"
     },
     {
-      "teamHomeIsoCode": "UEFA",
+      "teamHomeIsoCode": "BIH",
       "teamAwayIsoCode": "SUI",
       "matchDate": "2026-06-18T15:00:00",
       "phase": "GROUP",
@@ -765,7 +765,7 @@
       "referenceCode": "WC2026-G-B-4"
     },
     {
-      "teamHomeIsoCode": "UEFA",
+      "teamHomeIsoCode": "BIH",
       "teamAwayIsoCode": "QAT",
       "matchDate": "2026-06-24T16:00:00",
       "phase": "GROUP",
@@ -847,7 +847,7 @@
     },
     {
       "teamHomeIsoCode": "AUS",
-      "teamAwayIsoCode": "UEFC",
+      "teamAwayIsoCode": "TUR",
       "matchDate": "2026-06-13T15:00:00",
       "phase": "GROUP",
       "groupName": "D",
@@ -865,7 +865,7 @@
     },
     {
       "teamHomeIsoCode": "PAR",
-      "teamAwayIsoCode": "UEFC",
+      "teamAwayIsoCode": "TUR",
       "matchDate": "2026-06-19T15:00:00",
       "phase": "GROUP",
       "groupName": "D",
@@ -882,7 +882,7 @@
       "referenceCode": "WC2026-G-D-5"
     },
     {
-      "teamHomeIsoCode": "UEFC",
+      "teamHomeIsoCode": "TUR",
       "teamAwayIsoCode": "USA",
       "matchDate": "2026-06-25T16:00:00",
       "phase": "GROUP",
@@ -954,7 +954,7 @@
       "referenceCode": "WC2026-G-F-1"
     },
     {
-      "teamHomeIsoCode": "UEFB",
+      "teamHomeIsoCode": "SWE",
       "teamAwayIsoCode": "TUN",
       "matchDate": "2026-06-14T15:00:00",
       "phase": "GROUP",
@@ -964,7 +964,7 @@
     },
     {
       "teamHomeIsoCode": "NED",
-      "teamAwayIsoCode": "UEFB",
+      "teamAwayIsoCode": "SWE",
       "matchDate": "2026-06-20T12:00:00",
       "phase": "GROUP",
       "groupName": "F",
@@ -982,7 +982,7 @@
     },
     {
       "teamHomeIsoCode": "JPN",
-      "teamAwayIsoCode": "UEFB",
+      "teamAwayIsoCode": "SWE",
       "matchDate": "2026-06-26T16:00:00",
       "phase": "GROUP",
       "groupName": "F",
@@ -1116,7 +1116,7 @@
       "referenceCode": "WC2026-G-I-1"
     },
     {
-      "teamHomeIsoCode": "FIF2",
+      "teamHomeIsoCode": "IRQ",
       "teamAwayIsoCode": "NOR",
       "matchDate": "2026-06-15T21:00:00",
       "phase": "GROUP",
@@ -1126,7 +1126,7 @@
     },
     {
       "teamHomeIsoCode": "FRA",
-      "teamAwayIsoCode": "FIF2",
+      "teamAwayIsoCode": "IRQ",
       "matchDate": "2026-06-21T18:00:00",
       "phase": "GROUP",
       "groupName": "I",
@@ -1144,7 +1144,7 @@
     },
     {
       "teamHomeIsoCode": "SEN",
-      "teamAwayIsoCode": "FIF2",
+      "teamAwayIsoCode": "IRQ",
       "matchDate": "2026-06-27T20:00:00",
       "phase": "GROUP",
       "groupName": "I",
@@ -1216,7 +1216,7 @@
     },
     {
       "teamHomeIsoCode": "POR",
-      "teamAwayIsoCode": "FIF1",
+      "teamAwayIsoCode": "COD",
       "matchDate": "2026-06-16T18:00:00",
       "phase": "GROUP",
       "groupName": "K",
@@ -1242,7 +1242,7 @@
       "referenceCode": "WC2026-G-K-3"
     },
     {
-      "teamHomeIsoCode": "FIF1",
+      "teamHomeIsoCode": "COD",
       "teamAwayIsoCode": "COL",
       "matchDate": "2026-06-22T21:00:00",
       "phase": "GROUP",
@@ -1251,7 +1251,7 @@
       "referenceCode": "WC2026-G-K-4"
     },
     {
-      "teamHomeIsoCode": "FIF1",
+      "teamHomeIsoCode": "COD",
       "teamAwayIsoCode": "UZB",
       "matchDate": "2026-06-27T20:00:00",
       "phase": "GROUP",
