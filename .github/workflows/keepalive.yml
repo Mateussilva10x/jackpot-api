@@ -1,0 +1,50 @@
+name: Keepalive - Render Free Tier
+
+# Pings the API every 12 minutes during active hours to prevent Render from
+# spinning down the free instance.
+#
+# Active window:  09:00 - 03:00 BRT  (18 hours/day)
+# Sleep window:   03:00 - 09:00 BRT  (6 hours/day)
+#
+# BRT = UTC-3, so in UTC:
+#   Active: 12:00 UTC -> 06:00 UTC (next day)
+#   Sleep:  06:00 UTC -> 12:00 UTC
+#
+# Estimated usage: 18h/day × 30 days = 540 instance-hours/month (limit: 750h)
+
+on:
+  schedule:
+    # Every 12 minutes from 12:00 to 23:59 UTC  (09:00-20:59 BRT)
+    - cron: '*/12 12-23 * * *'
+    # Every 12 minutes from 00:00 to 05:59 UTC  (21:00-02:59 BRT)
+    - cron: '*/12 0-5 * * *'
+  workflow_dispatch: # Allow manual trigger for testing
+
+jobs:
+  ping:
+    name: Ping API
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Ping health endpoint
+        run: |
+          echo "Pinging API at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+
+          RESPONSE=$(curl \
+            --silent \
+            --max-time 30 \
+            --retry 2 \
+            --retry-delay 5 \
+            --write-out "%{http_code}" \
+            --output /dev/null \
+            "${{ vars.RENDER_URL }}")
+
+          echo "HTTP Status: $RESPONSE"
+
+          if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 400 ]; then
+            echo "API is alive."
+          else
+            echo "WARNING: Unexpected status code $RESPONSE"
+            exit 1
+          fi
