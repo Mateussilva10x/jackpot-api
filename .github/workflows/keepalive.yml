@@ -38,7 +38,7 @@ jobs:
             --retry-delay 10 \
             --write-out "%{http_code}" \
             --output /dev/null \
-            "${{ vars.RENDER_URL }}/teams")
+            "${{ vars.RENDER_URL }}/standings")
 
           echo "HTTP Status: $RESPONSE"
 
