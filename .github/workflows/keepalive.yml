@@ -33,12 +33,12 @@ jobs:
 
           RESPONSE=$(curl \
             --silent \
-            --max-time 30 \
+            --max-time 60 \
             --retry 2 \
-            --retry-delay 5 \
+            --retry-delay 10 \
             --write-out "%{http_code}" \
             --output /dev/null \
-            "${{ vars.RENDER_URL }}/matches")
+            "${{ vars.RENDER_URL }}/teams")
 
           echo "HTTP Status: $RESPONSE"
 
