@@ -2,9 +2,13 @@ package com.worldJackpot.api.repository;
 
 import com.worldJackpot.api.model.Match;
 import com.worldJackpot.api.model.enums.MatchPhase;
+import com.worldJackpot.api.model.enums.MatchStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +37,9 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
 
     @EntityGraph(attributePaths = {"teamHome", "teamAway"})
     List<Match> findByPhaseNotOrderByMatchDateAsc(MatchPhase phase);
+
+    @Query("SELECT m FROM Match m WHERE m.status = :status AND m.matchDate <= :now")
+    List<Match> findByStatusAndMatchDateBefore(@Param("status") MatchStatus status, @Param("now") Instant now);
 
     @Override
     @EntityGraph(attributePaths = {"teamHome", "teamAway"})
