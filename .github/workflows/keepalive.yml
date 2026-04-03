@@ -24,7 +24,7 @@ jobs:
   ping:
     name: Ping API
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 6
 
     steps:
       - name: Ping health endpoint
@@ -33,9 +33,9 @@ jobs:
 
           RESPONSE=$(curl \
             --silent \
-            --max-time 60 \
-            --retry 2 \
-            --retry-delay 10 \
+            --max-time 240 \
+            --retry 1 \
+            --retry-delay 15 \
             --write-out "%{http_code}" \
             --output /dev/null \
             "${{ vars.RENDER_URL }}/standings")
