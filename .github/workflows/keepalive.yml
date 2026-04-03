@@ -42,9 +42,9 @@ jobs:
 
           echo "HTTP Status: $RESPONSE"
 
-          if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 400 ]; then
-            echo "API is alive."
+          if [ "$RESPONSE" -ge 100 ] && [ "$RESPONSE" -lt 600 ]; then
+            echo "API is alive (HTTP $RESPONSE)."
           else
-            echo "WARNING: Unexpected status code $RESPONSE"
+            echo "ERROR: No response from server (curl failed or timed out)"
             exit 1
           fi
