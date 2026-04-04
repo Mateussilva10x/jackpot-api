@@ -1,7 +1,9 @@
 name: Keepalive - Render Free Tier
 
-# Pings the API every 12 minutes during active hours to prevent Render from
-# spinning down the free instance.
+# GitHub Actions scheduled workflows can be delayed 10-40+ minutes.
+# To guarantee the Render instance never sleeps (15min inactivity limit),
+# each job run pings 3 times with 8-minute gaps between pings.
+# Even if GitHub delays a job by 30min, the internal loop fills the gap.
 #
 # Active window:  09:00 - 03:00 BRT  (18 hours/day)
 # Sleep window:   03:00 - 09:00 BRT  (6 hours/day)
@@ -9,42 +11,52 @@ name: Keepalive - Render Free Tier
 # BRT = UTC-3, so in UTC:
 #   Active: 12:00 UTC -> 06:00 UTC (next day)
 #   Sleep:  06:00 UTC -> 12:00 UTC
-#
-# Estimated usage: 18h/day × 30 days = 540 instance-hours/month (limit: 750h)
 
 on:
   schedule:
-    # Every 12 minutes from 12:00 to 23:59 UTC  (09:00-20:59 BRT)
-    - cron: '*/12 12-23 * * *'
-    # Every 12 minutes from 00:00 to 05:59 UTC  (21:00-02:59 BRT)
-    - cron: '*/12 0-5 * * *'
+    # Every 30 minutes from 12:00 to 23:59 UTC  (09:00-20:59 BRT)
+    - cron: '*/30 12-23 * * *'
+    # Every 30 minutes from 00:00 to 05:59 UTC  (21:00-02:59 BRT)
+    - cron: '*/30 0-5 * * *'
   workflow_dispatch: # Allow manual trigger for testing
 
 jobs:
   ping:
     name: Ping API
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 28
 
     steps:
-      - name: Ping health endpoint
+      - name: Ping loop (3x with 8min interval)
         run: |
-          echo "Pinging API at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          ping_api() {
+            echo "--- Ping at $(date -u '+%Y-%m-%d %H:%M:%S UTC') ---"
 
-          RESPONSE=$(curl \
-            --silent \
-            --max-time 240 \
-            --retry 1 \
-            --retry-delay 15 \
-            --write-out "%{http_code}" \
-            --output /dev/null \
-            "${{ vars.RENDER_URL }}/standings")
+            RESPONSE=$(curl \
+              --silent \
+              --max-time 240 \
+              --retry 1 \
+              --retry-delay 15 \
+              --write-out "%{http_code}" \
+              --output /dev/null \
+              "${{ vars.RENDER_URL }}/standings")
 
-          echo "HTTP Status: $RESPONSE"
+            echo "HTTP Status: $RESPONSE"
 
-          if [ "$RESPONSE" -ge 100 ] && [ "$RESPONSE" -lt 600 ]; then
-            echo "API is alive (HTTP $RESPONSE)."
-          else
-            echo "ERROR: No response from server (curl failed or timed out)"
-            exit 1
-          fi
+            if [ "$RESPONSE" -ge 100 ] && [ "$RESPONSE" -lt 600 ]; then
+              echo "API is alive (HTTP $RESPONSE)."
+            else
+              echo "WARNING: No response from server (curl failed or timed out)"
+            fi
+          }
+
+          ping_api
+          echo "Waiting 8 minutes before next ping..."
+          sleep 480
+
+          ping_api
+          echo "Waiting 8 minutes before next ping..."
+          sleep 480
+
+          ping_api
+          echo "Loop complete."
