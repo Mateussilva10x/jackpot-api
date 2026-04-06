@@ -40,6 +40,19 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserProfile(id));
     }
 
+    @GetMapping("/me")
+    @Operation(summary = "Get current user's profile and their bets")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved profile"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized request")
+    })
+    public ResponseEntity<UserProfileDto> getMyProfile(@AuthenticationPrincipal UserDetails userDetails) {
+        if (userDetails instanceof User user) {
+            return ResponseEntity.ok(userService.getUserProfile(user.getId()));
+        }
+        return ResponseEntity.status(401).build();
+    }
+
     @PutMapping("/me/avatar")
     @Operation(summary = "Update current user's avatar", description = "Updates the avatarId for the currently authenticated user.")
     @ApiResponses(value = {
