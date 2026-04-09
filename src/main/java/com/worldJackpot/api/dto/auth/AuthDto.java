@@ -1,5 +1,6 @@
 package com.worldJackpot.api.dto.auth;
 
+import com.worldJackpot.api.dto.bet.BetDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -7,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 public class AuthDto {
 
@@ -57,17 +60,30 @@ public class AuthDto {
     public static class AuthResponse {
         @Schema(description = "JWT Token", example = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...")
         private String token;
-        
+
         @Schema(description = "User ID", example = "1")
         private Long id;
-        
+
         @Schema(description = "User's role", example = "USER")
         private String role;
+
         @Schema(description = "User's email", example = "john.doe@example.com")
         private String email;
 
         @Schema(description = "User's avatar ID", example = "avatar_1")
         private String avatarId;
+
+        @Schema(description = "User's name", example = "John Doe")
+        private String name;
+
+        @Schema(description = "User's total points", example = "150")
+        private Integer totalPoints;
+
+        @Schema(description = "User's position in global ranking", example = "5")
+        private Integer rankingPosition;
+
+        @Schema(description = "List of matches grouped by phase/group with the user's bets")
+        private List<BetDto.MatchGroupResponse> bets;
     }
 
     @Data

@@ -21,24 +21,27 @@ Você ganha 10 pontos se acertar exatamente o número de gols de ambas as equipe
 
 Você ganha 7 pontos se acertar quem venceu a partida (ou se foi empate) **E** acertar a quantidade de gols de pelo menos uma das equipes.
 
-- **Exemplo 1 (Vitória):**
+- **Exemplo 1 (Vitória - Acerto no Time da Casa):**
   - **Seu Palpite:** Brasil 3 x 0 Sérvia
   - **Resultado Oficial:** Brasil 2 x 0 Sérvia
   - **Pontos ganhos:** 7 pontos _(Acertou a vitória do Brasil e os 0 gols da Sérvia)_
-- **Exemplo 2 (Empate):**
-  - **Seu Palpite:** Brasil 1 x 1 Suíça
-  - **Resultado Oficial:** Brasil 2 x 2 Suíça
-  - **Pontos ganhos:** 7 pontos _(Acertou que seria empate, mas errou o placar exato)_ _(Nota: Qualquer empate não exato cai na regra de 5 pontos abaixo, a menos que as regras considerem um lado acerto. No sistema, como empate exige que os dois sejam iguais, você não pode acertar "um dos lados" em um empate sem acertar o placar exato. Logo, empates não exatos valem 5 pontos)._
-    _(Correção)_: Um exemplo real de 7 pontos seria: Palpite: Brasil 3 x 1. Resultado: Brasil 2 x 1 (Acerta o vencedor e o gol do time visitante).
+- **Exemplo 2 (Vitória - Acerto no Time Visitante):**
+  - **Seu Palpite:** Brasil 3 x 1 Argentina
+  - **Resultado Oficial:** Brasil 2 x 1 Argentina
+  - **Pontos ganhos:** 7 pontos _(Acertou a vitória do Brasil e os 1 gol da Argentina)_
 
 ### 3. Vencedor ou Empate (5 Pontos)
 
 Você ganha 5 pontos se acertar apenas o resultado da partida (quem venceu ou se foi empate), mas errar a quantidade de gols de ambas as equipes.
 
-- **Exemplo:**
+- **Exemplo 1 (Vitória):**
   - **Seu Palpite:** Brasil 1 x 0 Sérvia
   - **Resultado Oficial:** Brasil 3 x 1 Sérvia
   - **Pontos ganhos:** 5 pontos _(Acertou a vitória do Brasil, mas errou ambos os placares)_
+- **Exemplo 2 (Empate):**
+  - **Seu Palpite:** Brasil 1 x 1 Suíça
+  - **Resultado Oficial:** Brasil 2 x 2 Suíça
+  - **Pontos ganhos:** 5 pontos _(Acertou que seria empate, mas errou ambos os placares)_
 
 ### 4. Acerto de um dos Placares (3 Pontos)
 

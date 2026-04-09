@@ -1,6 +1,7 @@
 package com.worldJackpot.api.service;
 
 import com.worldJackpot.api.dto.auth.AuthDto;
+import com.worldJackpot.api.dto.bet.BetDto;
 import com.worldJackpot.api.model.User;
 import com.worldJackpot.api.model.enums.UserRole;
 import com.worldJackpot.api.model.PasswordResetToken;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -29,6 +31,7 @@ public class AuthService {
     private final JwtTokenProvider tokenProvider;
     private final PasswordResetTokenRepository tokenRepository;
     private final SupabaseAuthService supabaseAuthService;
+    private final MatchService matchService;
     private final String frontendUrl;
 
     public AuthService(
@@ -38,6 +41,7 @@ public class AuthService {
             JwtTokenProvider tokenProvider,
             PasswordResetTokenRepository tokenRepository,
             SupabaseAuthService supabaseAuthService,
+            MatchService matchService,
             @Value("${app.frontend.url}") String frontendUrl) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -45,6 +49,7 @@ public class AuthService {
         this.tokenProvider = tokenProvider;
         this.tokenRepository = tokenRepository;
         this.supabaseAuthService = supabaseAuthService;
+        this.matchService = matchService;
         this.frontendUrl = frontendUrl;
     }
 
@@ -103,12 +108,18 @@ public class AuthService {
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         String jwt = tokenProvider.generateToken(authentication);
 
+        List<BetDto.MatchGroupResponse> bets = matchService.getMatchesGroupedByGroup(user.getId(), null);
+
         return AuthDto.AuthResponse.builder()
                 .token(jwt)
                 .id(user.getId())
                 .email(user.getEmail())
+                .name(user.getName())
                 .role(user.getRole().name())
                 .avatarId(user.getAvatarId())
+                .totalPoints(user.getTotalPoints() == null ? 0 : user.getTotalPoints())
+                .rankingPosition(user.getRankingPosition())
+                .bets(bets)
                 .build();
     }
 
