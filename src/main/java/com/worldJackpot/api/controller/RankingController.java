@@ -1,8 +1,10 @@
 package com.worldJackpot.api.controller;
 
+import com.worldJackpot.api.dto.user.UserProfileDto;
 import com.worldJackpot.api.dto.user.UserRankingDto;
 import com.worldJackpot.api.model.User;
 import com.worldJackpot.api.repository.UserRepository;
+import com.worldJackpot.api.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RankingController {
 
     private final UserRepository userRepository;
+    private final UserService userService;
 
     @GetMapping
     @Operation(summary = "Get the global leaderboard ranking")
@@ -54,22 +57,15 @@ public class RankingController {
     }
     
     @GetMapping("/me")
-    @Operation(summary = "Get current user's ranking position and points")
+    @Operation(summary = "Get current user's ranking position, points and bets")
     @SecurityRequirement(name = "bearerAuth")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "User's ranking retrieved successfully"),
+            @ApiResponse(responseCode = "200", description = "User's profile and bets retrieved successfully"),
             @ApiResponse(responseCode = "401", description = "Unauthorized request")
     })
-    public ResponseEntity<UserRankingDto> getMyRanking(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<UserProfileDto> getMyRanking(@AuthenticationPrincipal UserDetails userDetails) {
         if (userDetails instanceof User user) {
-            // Note: Efficient absolute rank calculation requires a specific query counting points greater than user's points.
-            // For MVP simplicity, we approximate or just return points.
-            return ResponseEntity.ok(UserRankingDto.builder()
-                    .id(user.getId())
-                    .name(user.getName())
-                    .totalPoints(user.getTotalPoints() == null ? 0 : user.getTotalPoints())
-                    .avatarId(user.getAvatarId())
-                    .build());
+            return ResponseEntity.ok(userService.getUserProfile(user.getId()));
         }
         return ResponseEntity.status(401).build();
     }
