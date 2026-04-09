@@ -4,23 +4,24 @@ name: Keepalive - Render Free Tier
 # The Render free tier sleeps after 15 minutes of inactivity.
 # Pinging every 14 minutes ensures we always stay within the window.
 #
-# Active window:  08:00 - 03:00 BRT  (19 hours/day)
-# Sleep window:   03:00 - 08:00 BRT  (5 hours/day)
+# Active window:  08:00 - 02:00 BRT  (18 hours/day) — manhã até madrugada
+# Sleep window:   02:00 - 08:00 BRT  (6 hours/day)  — madrugada sem uso
 #
 # BRT = UTC-3, so in UTC:
-#   Active: 11:00 UTC -> 06:00 UTC (next day)
-#   Sleep:  06:00 UTC -> 11:00 UTC
+#   Active: 11:00 UTC -> 05:00 UTC (next day)
+#   Sleep:  05:00 UTC -> 11:00 UTC
 #
 # Compute budget estimate (750 hrs/month free tier):
-#   ~82 runs/day × ~1.5 min each ≈ 123 min/day ≈ 2.05 hrs/day ≈ ~63 hrs/month
+#   ~77 runs/day × ~3 min each ≈ 231 min/day (GitHub Actions)
+#   18 hrs/day active × 30 days ≈ 540 hrs/month Render instance hours
 #   Well within the 750 hr/month free tier limit.
 
 on:
   schedule:
     # Every 14 minutes from 11:00 to 23:59 UTC  (08:00-20:59 BRT)
     - cron: '0,14,28,42,56 11-23 * * *'
-    # Every 14 minutes from 00:00 to 05:56 UTC  (21:00-02:56 BRT)
-    - cron: '0,14,28,42,56 0-5 * * *'
+    # Every 14 minutes from 00:00 to 04:56 UTC  (21:00-01:56 BRT)
+    - cron: '0,14,28,42,56 0-4 * * *'
   workflow_dispatch: # Allow manual trigger for testing
 
 jobs:
