@@ -84,6 +84,9 @@ public class AuthDto {
 
         @Schema(description = "List of matches grouped by phase/group with the user's bets")
         private List<BetDto.MatchGroupResponse> bets;
+
+        @Schema(description = "Whether this is the user's first login (should be redirected to password reset flow)", example = "false")
+        private boolean isFirstLogin;
     }
 
     @Data

@@ -76,6 +76,7 @@ public class AuthService {
                 .avatarId(request.getAvatarId())
                 .totalPoints(0)
                 .rankingPosition(0)
+                .isFirstLogin(false)
                 .build();
 
         User savedUser = userRepository.save(user);
@@ -84,6 +85,7 @@ public class AuthService {
         return login(new AuthDto.LoginRequest(request.getEmail(), request.getPassword()));
     }
 
+    @Transactional
     public AuthDto.AuthResponse login(AuthDto.LoginRequest request) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
@@ -91,9 +93,15 @@ public class AuthService {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.generateToken(authentication);
-        
+
         User user = userRepository.findByEmailIgnoreCase(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
+
+        boolean firstLogin = user.isFirstLogin();
+        if (firstLogin) {
+            user.setFirstLogin(false);
+            userRepository.save(user);
+        }
 
         return AuthDto.AuthResponse.builder()
                 .token(jwt)
@@ -101,6 +109,7 @@ public class AuthService {
                 .email(user.getEmail())
                 .role(user.getRole().name())
                 .avatarId(user.getAvatarId())
+                .isFirstLogin(firstLogin)
                 .build();
     }
 
@@ -155,6 +164,7 @@ public class AuthService {
 
         User user = resetToken.getUser();
         user.setPassword(passwordEncoder.encode(newPassword));
+        user.setFirstLogin(false);
         userRepository.save(user);
 
         // Delete token after successful reset
