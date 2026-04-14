@@ -47,8 +47,8 @@ public class User implements UserDetails {
 
     private String avatarId;
 
-    @Column(nullable = false)
-    private boolean isFirstLogin = true;
+    @Column(name = "is_first_login", nullable = false)
+    private boolean firstLogin = true;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
