@@ -76,7 +76,7 @@ public class AuthService {
                 .avatarId(request.getAvatarId())
                 .totalPoints(0)
                 .rankingPosition(0)
-                .firstLogin(false)
+                .isFirstLogin(false)
                 .build();
 
         User savedUser = userRepository.save(user);
@@ -97,8 +97,8 @@ public class AuthService {
         User user = userRepository.findByEmailIgnoreCase(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        boolean firstLogin = user.isFirstLogin();
-        if (firstLogin) {
+        boolean isFirstLogin = user.isFirstLogin();
+        if (isFirstLogin) {
             user.setFirstLogin(false);
             userRepository.save(user);
         }
@@ -109,7 +109,7 @@ public class AuthService {
                 .email(user.getEmail())
                 .role(user.getRole().name())
                 .avatarId(user.getAvatarId())
-                .firstLogin(firstLogin)
+                .isFirstLogin(isFirstLogin)
                 .build();
     }
 
