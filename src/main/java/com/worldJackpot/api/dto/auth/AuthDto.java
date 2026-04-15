@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AuthDto {
 
@@ -86,6 +87,7 @@ public class AuthDto {
         private List<BetDto.MatchGroupResponse> bets;
 
         @Schema(description = "Whether this is the user's first login (should be redirected to password reset flow)", example = "false")
+        @JsonProperty("isFirstLogin")
         private boolean isFirstLogin;
     }
 
