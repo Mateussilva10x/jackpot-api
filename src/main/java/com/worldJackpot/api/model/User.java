@@ -47,6 +47,7 @@ public class User implements UserDetails {
 
     private String avatarId;
 
+    @Builder.Default
     @Column(name = "is_first_login", nullable = false)
     private boolean isFirstLogin = true;
 

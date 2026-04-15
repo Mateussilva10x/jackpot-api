@@ -76,7 +76,7 @@ public class AuthService {
                 .avatarId(request.getAvatarId())
                 .totalPoints(0)
                 .rankingPosition(0)
-                .isFirstLogin(false)
+                .isFirstLogin(true)
                 .build();
 
         User savedUser = userRepository.save(user);
