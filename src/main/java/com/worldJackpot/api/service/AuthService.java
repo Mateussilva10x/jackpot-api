@@ -81,8 +81,22 @@ public class AuthService {
 
         User savedUser = userRepository.save(user);
 
-        // Auto-login after registration
-        return login(new AuthDto.LoginRequest(request.getEmail(), request.getPassword()));
+        // Auto-login after registration without clearing isFirstLogin
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = tokenProvider.generateToken(authentication);
+
+        return AuthDto.AuthResponse.builder()
+                .token(jwt)
+                .id(savedUser.getId())
+                .email(savedUser.getEmail())
+                .role(savedUser.getRole().name())
+                .avatarId(savedUser.getAvatarId())
+                .isFirstLogin(savedUser.isFirstLogin())
+                .build();
     }
 
     @Transactional

@@ -88,7 +88,7 @@ public class AuthDto {
 
         @Schema(description = "Whether this is the user's first login (should be redirected to password reset flow)", example = "false")
         @JsonProperty("isFirstLogin")
-        private boolean isFirstLogin;
+        private Boolean isFirstLogin;
     }
 
     @Data
