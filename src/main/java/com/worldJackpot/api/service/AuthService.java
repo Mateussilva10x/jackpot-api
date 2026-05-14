@@ -149,7 +149,7 @@ public class AuthService {
     @Transactional
     public void forgotPassword(String email) {
         User user = userRepository.findByEmailIgnoreCase(email)
-                .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
+                .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + email));
 
         // Invalidate any existing token for this user
         tokenRepository.deleteByUser(user);
@@ -168,20 +168,28 @@ public class AuthService {
 
     @Transactional
     public void resetPassword(String token, String newPassword) {
-        PasswordResetToken resetToken = tokenRepository.findByToken(token)
-                .orElseThrow(() -> new RuntimeException("Invalid token"));
+        User user;
+        PasswordResetToken resetToken = tokenRepository.findByToken(token).orElse(null);
 
-        if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+        if (resetToken != null) {
+            // Flow 1: Recovery token (UUID) from forgot-password email
+            if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+                tokenRepository.delete(resetToken);
+                throw new IllegalArgumentException("Password reset token has expired");
+            }
+            user = resetToken.getUser();
             tokenRepository.delete(resetToken);
-            throw new RuntimeException("Token has expired");
+        } else if (tokenProvider.validateToken(token)) {
+            // Flow 2: JWT session token (e.g. from first login redirection)
+            String email = tokenProvider.getUsernameFromJWT(token);
+            user = userRepository.findByEmailIgnoreCase(email)
+                    .orElseThrow(() -> new IllegalArgumentException("User not found for the provided token"));
+        } else {
+            throw new IllegalArgumentException("Invalid password reset token");
         }
 
-        User user = resetToken.getUser();
         user.setPassword(passwordEncoder.encode(newPassword));
         user.setFirstLogin(false);
         userRepository.save(user);
-
-        // Delete token after successful reset
-        tokenRepository.delete(resetToken);
     }
 }
