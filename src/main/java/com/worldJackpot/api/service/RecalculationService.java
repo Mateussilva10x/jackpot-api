@@ -80,8 +80,6 @@ public class RecalculationService {
         int betHome = bet.getHomeScore();
         int betAway = bet.getAwayScore();
 
-        int basePoints = 0;
-
         int matchResult = Integer.compare(matchHome, matchAway);
         int betResult = Integer.compare(betHome, betAway);
 
@@ -89,6 +87,7 @@ public class RecalculationService {
         boolean hitAwayScore = matchAway == betAway;
         boolean hitWinnerOrDraw = matchResult == betResult;
 
+        int basePoints = 0;
         if (hitHomeScore && hitAwayScore) {
             basePoints = 10;
         } else if (hitWinnerOrDraw && (hitHomeScore || hitAwayScore)) {
@@ -97,6 +96,12 @@ public class RecalculationService {
             basePoints = 5;
         } else if (hitHomeScore || hitAwayScore) {
             basePoints = 3;
+        }
+
+        // Penalty winner bonus — awarded independently of base points
+        if (match.getPenaltyWinner() != null && bet.getSelectedWinner() != null
+                && match.getPenaltyWinner().getId().equals(bet.getSelectedWinner().getId())) {
+            basePoints += 5;
         }
 
         return basePoints;

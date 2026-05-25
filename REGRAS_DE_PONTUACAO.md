@@ -63,6 +63,16 @@ Quando seu palpite passa longe tanto do vencedor quanto dos placares das duas eq
 
 ---
 
+## 🥅 Bônus por Pênaltis
+
+Se a partida for decidida nos pênaltis, você ganha **+5 pontos** ao acertar qual seleção avança (campo "classificado" no seu palpite). Esse bônus é independente da pontuação do placar em 90 minutos e vale em qualquer fase.
+
+- **Exemplo:**
+  - Partida termina 1 x 1, Brasil vence nos pênaltis.
+  - Você palpitou 1 x 1 e marcou Brasil como classificado → 10 pts (placar exato) + 5 bônus pênaltis = **15 pontos**
+
+---
+
 ## 🏆 Apostas Bônus (Bonus Bets)
 
 Além dos palpites em cada jogo, você pode dar palpites extras para o desfecho do campeonato! Essas apostas são computadas ao fim do torneio.
