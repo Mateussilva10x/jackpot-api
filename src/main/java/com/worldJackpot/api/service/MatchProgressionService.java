@@ -14,8 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +27,28 @@ import java.util.stream.Collectors;
 public class MatchProgressionService {
 
     private final MatchRepository matchRepository;
+
+    /**
+     * Official FIFA World Cup 2026 constraint for placing the 8 best third-placed teams.
+     * Maps each Round-of-32 third-place slot (placeholder ISO) to the set of groups whose
+     * third-placed team is allowed to fill it. Derived from the official R32 schedule:
+     *   3RD1 -> match 74 (1E),  3RD2 -> match 81 (1D),  3RD3 -> match 77 (1I),
+     *   3RD4 -> match 79 (1A),  3RD5 -> match 80 (1L),  3RD6 -> match 82 (1G),
+     *   3RD7 -> match 85 (1B),  3RD8 -> match 87 (1K).
+     */
+    private static final Map<String, Set<String>> THIRD_SLOT_ALLOWED_GROUPS = Map.of(
+            "3RD1", Set.of("A", "B", "C", "D", "F"),
+            "3RD2", Set.of("B", "E", "F", "I", "J"),
+            "3RD3", Set.of("C", "D", "F", "G", "H"),
+            "3RD4", Set.of("C", "E", "F", "H", "I"),
+            "3RD5", Set.of("E", "H", "I", "J", "K"),
+            "3RD6", Set.of("A", "E", "H", "I", "J"),
+            "3RD7", Set.of("E", "F", "G", "I", "J"),
+            "3RD8", Set.of("D", "E", "I", "J", "L")
+    );
+
+    private static final List<String> THIRD_SLOTS =
+            List.of("3RD1", "3RD2", "3RD3", "3RD4", "3RD5", "3RD6", "3RD7", "3RD8");
 
     @Transactional
     public void processGroupStageCompletion(String groupName) {
@@ -159,31 +184,82 @@ public class MatchProgressionService {
         }
         
         log.info("All groups finished. Calculating best 3rds...");
-        
-        List<GroupStanding> allThirds = new ArrayList<>();
-        // Group by groupName
+
+        // Third-placed team per group, keyed by group letter (e.g. "A").
+        Map<String, Team> thirdTeamByGroup = new HashMap<>();
+        Map<String, GroupStanding> thirdStandingByGroup = new HashMap<>();
         Map<String, List<Match>> matchesByGroup = allGroupMatches.stream().collect(Collectors.groupingBy(Match::getGroupName));
-        
-        for (List<Match> groupMatches : matchesByGroup.values()) {
-            List<GroupStanding> standings = calculateGroupStandings(groupMatches);
+
+        for (Map.Entry<String, List<Match>> entry : matchesByGroup.entrySet()) {
+            List<GroupStanding> standings = calculateGroupStandings(entry.getValue());
             if (standings.size() >= 3) {
-                allThirds.add(standings.get(2));
+                thirdTeamByGroup.put(entry.getKey(), standings.get(2).getTeam());
+                thirdStandingByGroup.put(entry.getKey(), standings.get(2));
             }
         }
-        
-        // Sort best 3rds
-        allThirds.sort(Comparator.comparingInt(GroupStanding::getPoints).reversed()
-                .thenComparing(Comparator.comparingInt(GroupStanding::getGoalDifference).reversed())
-                .thenComparing(Comparator.comparingInt(GroupStanding::getGoalsFor).reversed()));
-                
-        // World Cup 2026 has 12 groups, advancing 8 best 3rds
-        int count = Math.min(allThirds.size(), 8);
-        for (int i = 0; i < count; i++) {
-            Team bestThird = allThirds.get(i).getTeam();
-            // The placeholder codes for best thirds in our seed data are "3RD1", "3RD2" ... "3RD8"
-            String placeholderIso = "3RD" + (i + 1);
-            replacePlaceholderWithRealTeam(placeholderIso, bestThird);
+
+        // Rank all third-placed teams; the World Cup 2026 advances the 8 best thirds.
+        List<String> rankedGroups = new ArrayList<>(thirdStandingByGroup.keySet());
+        rankedGroups.sort(Comparator
+                .comparingInt((String g) -> thirdStandingByGroup.get(g).getPoints()).reversed()
+                .thenComparing(Comparator.comparingInt((String g) -> thirdStandingByGroup.get(g).getGoalDifference()).reversed())
+                .thenComparing(Comparator.comparingInt((String g) -> thirdStandingByGroup.get(g).getGoalsFor()).reversed()));
+
+        int count = Math.min(rankedGroups.size(), 8);
+        List<String> qualifiedGroups = new ArrayList<>(rankedGroups.subList(0, count));
+        log.info("Qualified best-third groups: {}", qualifiedGroups);
+
+        // Assign qualified groups to slots respecting the official allowed-group constraints.
+        // FIFA publishes a fixed combination table; here we resolve a legal assignment so that no
+        // third-placed team is ever placed into a slot its group is not allowed to fill. When more
+        // than one legal assignment exists, the slots are filled in order trying groups alphabetically.
+        Map<String, String> slotToGroup = assignThirdsToSlots(qualifiedGroups);
+        if (slotToGroup == null) {
+            log.error("No valid third-place assignment found for qualified groups {}. Slots left unfilled.", qualifiedGroups);
+            return;
         }
+
+        for (String slot : THIRD_SLOTS) {
+            String group = slotToGroup.get(slot);
+            if (group == null) continue;
+            Team bestThird = thirdTeamByGroup.get(group);
+            log.info("Assigning 3rd of group {} ({}) to slot {}", group, bestThird.getIsoCode(), slot);
+            replacePlaceholderWithRealTeam(slot, bestThird);
+        }
+    }
+
+    /**
+     * Resolves a legal assignment of qualified third-place groups to R32 slots via backtracking,
+     * honouring {@link #THIRD_SLOT_ALLOWED_GROUPS}. Returns slot->group, or null if impossible.
+     */
+    Map<String, String> assignThirdsToSlots(List<String> qualifiedGroups) {
+        Map<String, String> result = new LinkedHashMap<>();
+        if (backtrackAssign(0, qualifiedGroups, new HashSet<>(), result)) {
+            return result;
+        }
+        return null;
+    }
+
+    private boolean backtrackAssign(int slotIndex, List<String> qualifiedGroups, Set<String> usedGroups, Map<String, String> result) {
+        if (slotIndex == THIRD_SLOTS.size()) {
+            return usedGroups.size() == qualifiedGroups.size();
+        }
+        String slot = THIRD_SLOTS.get(slotIndex);
+        Set<String> allowed = THIRD_SLOT_ALLOWED_GROUPS.get(slot);
+        List<String> candidates = qualifiedGroups.stream()
+                .filter(g -> allowed.contains(g) && !usedGroups.contains(g))
+                .sorted()
+                .collect(Collectors.toList());
+        for (String group : candidates) {
+            usedGroups.add(group);
+            result.put(slot, group);
+            if (backtrackAssign(slotIndex + 1, qualifiedGroups, usedGroups, result)) {
+                return true;
+            }
+            usedGroups.remove(group);
+            result.remove(slot);
+        }
+        return false;
     }
     
     public Map<String, List<com.worldJackpot.api.dto.match.GroupStandingDto>> calculateAllGroupStandingsDto() {

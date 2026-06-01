@@ -1469,8 +1469,8 @@
 
     {
       "referenceCode": "WC2026-R16-89",
-      "teamHomeIsoCode": "W74",
-      "teamAwayIsoCode": "W77",
+      "teamHomeIsoCode": "W73",
+      "teamAwayIsoCode": "W75",
       "matchDate": "2026-07-04T13:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
@@ -1478,8 +1478,8 @@
     },
     {
       "referenceCode": "WC2026-R16-90",
-      "teamHomeIsoCode": "W73",
-      "teamAwayIsoCode": "W75",
+      "teamHomeIsoCode": "W74",
+      "teamAwayIsoCode": "W77",
       "matchDate": "2026-07-04T16:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
@@ -1505,8 +1505,8 @@
     },
     {
       "referenceCode": "WC2026-R16-93",
-      "teamHomeIsoCode": "W81",
-      "teamAwayIsoCode": "W82",
+      "teamHomeIsoCode": "W83",
+      "teamAwayIsoCode": "W84",
       "matchDate": "2026-07-06T13:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
@@ -1514,8 +1514,8 @@
     },
     {
       "referenceCode": "WC2026-R16-94",
-      "teamHomeIsoCode": "W83",
-      "teamAwayIsoCode": "W84",
+      "teamHomeIsoCode": "W81",
+      "teamAwayIsoCode": "W82",
       "matchDate": "2026-07-06T16:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
@@ -1523,8 +1523,8 @@
     },
     {
       "referenceCode": "WC2026-R16-95",
-      "teamHomeIsoCode": "W85",
-      "teamAwayIsoCode": "W86",
+      "teamHomeIsoCode": "W86",
+      "teamAwayIsoCode": "W88",
       "matchDate": "2026-07-07T13:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
@@ -1532,8 +1532,8 @@
     },
     {
       "referenceCode": "WC2026-R16-96",
-      "teamHomeIsoCode": "W87",
-      "teamAwayIsoCode": "W88",
+      "teamHomeIsoCode": "W85",
+      "teamAwayIsoCode": "W87",
       "matchDate": "2026-07-07T16:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
@@ -1551,8 +1551,8 @@
     },
     {
       "referenceCode": "WC2026-QF-98",
-      "teamHomeIsoCode": "W91",
-      "teamAwayIsoCode": "W92",
+      "teamHomeIsoCode": "W93",
+      "teamAwayIsoCode": "W94",
       "matchDate": "2026-07-10T13:00:00",
       "phase": "QUARTER",
       "groupName": "KO",
@@ -1560,8 +1560,8 @@
     },
     {
       "referenceCode": "WC2026-QF-99",
-      "teamHomeIsoCode": "W93",
-      "teamAwayIsoCode": "W94",
+      "teamHomeIsoCode": "W91",
+      "teamAwayIsoCode": "W92",
       "matchDate": "2026-07-11T13:00:00",
       "phase": "QUARTER",
       "groupName": "KO",
