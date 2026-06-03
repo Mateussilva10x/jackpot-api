@@ -48,6 +48,7 @@ public class SecurityConfig {
                         .accessDeniedHandler(accessDeniedHandler)
                 )
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/health").permitAll()
                         .requestMatchers("/auth/**").permitAll() // Allow auth endpoints
                         .requestMatchers(org.springframework.http.HttpMethod.GET, "/matches").permitAll() // Allow public access to matches
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll() // Allow Swagger UI
