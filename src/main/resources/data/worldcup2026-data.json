@@ -677,7 +677,7 @@
     {
       "teamHomeIsoCode": "MEX",
       "teamAwayIsoCode": "ZAF",
-      "matchDate": "2026-06-11T12:00:00",
+      "matchDate": "2026-06-11T19:00:00",
       "phase": "GROUP",
       "groupName": "A",
       "status": "SCHEDULED",
@@ -686,7 +686,7 @@
     {
       "teamHomeIsoCode": "KOR",
       "teamAwayIsoCode": "CZE",
-      "matchDate": "2026-06-11T15:00:00",
+      "matchDate": "2026-06-12T02:00:00",
       "phase": "GROUP",
       "groupName": "A",
       "status": "SCHEDULED",
@@ -695,7 +695,7 @@
     {
       "teamHomeIsoCode": "MEX",
       "teamAwayIsoCode": "KOR",
-      "matchDate": "2026-06-17T12:00:00",
+      "matchDate": "2026-06-19T01:00:00",
       "phase": "GROUP",
       "groupName": "A",
       "status": "SCHEDULED",
@@ -704,7 +704,7 @@
     {
       "teamHomeIsoCode": "ZAF",
       "teamAwayIsoCode": "CZE",
-      "matchDate": "2026-06-17T15:00:00",
+      "matchDate": "2026-06-18T16:00:00",
       "phase": "GROUP",
       "groupName": "A",
       "status": "SCHEDULED",
@@ -713,7 +713,7 @@
     {
       "teamHomeIsoCode": "ZAF",
       "teamAwayIsoCode": "KOR",
-      "matchDate": "2026-06-23T16:00:00",
+      "matchDate": "2026-06-25T01:00:00",
       "phase": "GROUP",
       "groupName": "A",
       "status": "SCHEDULED",
@@ -722,7 +722,7 @@
     {
       "teamHomeIsoCode": "CZE",
       "teamAwayIsoCode": "MEX",
-      "matchDate": "2026-06-23T16:00:00",
+      "matchDate": "2026-06-25T01:00:00",
       "phase": "GROUP",
       "groupName": "A",
       "status": "SCHEDULED",
@@ -731,7 +731,7 @@
     {
       "teamHomeIsoCode": "CAN",
       "teamAwayIsoCode": "BIH",
-      "matchDate": "2026-06-12T12:00:00",
+      "matchDate": "2026-06-12T19:00:00",
       "phase": "GROUP",
       "groupName": "B",
       "status": "SCHEDULED",
@@ -740,7 +740,7 @@
     {
       "teamHomeIsoCode": "QAT",
       "teamAwayIsoCode": "SUI",
-      "matchDate": "2026-06-12T15:00:00",
+      "matchDate": "2026-06-13T19:00:00",
       "phase": "GROUP",
       "groupName": "B",
       "status": "SCHEDULED",
@@ -749,7 +749,7 @@
     {
       "teamHomeIsoCode": "CAN",
       "teamAwayIsoCode": "QAT",
-      "matchDate": "2026-06-18T12:00:00",
+      "matchDate": "2026-06-18T22:00:00",
       "phase": "GROUP",
       "groupName": "B",
       "status": "SCHEDULED",
@@ -758,7 +758,7 @@
     {
       "teamHomeIsoCode": "BIH",
       "teamAwayIsoCode": "SUI",
-      "matchDate": "2026-06-18T15:00:00",
+      "matchDate": "2026-06-18T19:00:00",
       "phase": "GROUP",
       "groupName": "B",
       "status": "SCHEDULED",
@@ -767,7 +767,7 @@
     {
       "teamHomeIsoCode": "BIH",
       "teamAwayIsoCode": "QAT",
-      "matchDate": "2026-06-24T16:00:00",
+      "matchDate": "2026-06-24T19:00:00",
       "phase": "GROUP",
       "groupName": "B",
       "status": "SCHEDULED",
@@ -776,7 +776,7 @@
     {
       "teamHomeIsoCode": "SUI",
       "teamAwayIsoCode": "CAN",
-      "matchDate": "2026-06-24T16:00:00",
+      "matchDate": "2026-06-24T19:00:00",
       "phase": "GROUP",
       "groupName": "B",
       "status": "SCHEDULED",
@@ -785,7 +785,7 @@
     {
       "teamHomeIsoCode": "BRA",
       "teamAwayIsoCode": "MAR",
-      "matchDate": "2026-06-12T18:00:00",
+      "matchDate": "2026-06-13T22:00:00",
       "phase": "GROUP",
       "groupName": "C",
       "status": "SCHEDULED",
@@ -794,7 +794,7 @@
     {
       "teamHomeIsoCode": "HAI",
       "teamAwayIsoCode": "SCO",
-      "matchDate": "2026-06-12T21:00:00",
+      "matchDate": "2026-06-14T01:00:00",
       "phase": "GROUP",
       "groupName": "C",
       "status": "SCHEDULED",
@@ -803,7 +803,7 @@
     {
       "teamHomeIsoCode": "BRA",
       "teamAwayIsoCode": "HAI",
-      "matchDate": "2026-06-18T18:00:00",
+      "matchDate": "2026-06-20T00:30:00",
       "phase": "GROUP",
       "groupName": "C",
       "status": "SCHEDULED",
@@ -812,7 +812,7 @@
     {
       "teamHomeIsoCode": "MAR",
       "teamAwayIsoCode": "SCO",
-      "matchDate": "2026-06-18T21:00:00",
+      "matchDate": "2026-06-19T22:00:00",
       "phase": "GROUP",
       "groupName": "C",
       "status": "SCHEDULED",
@@ -821,7 +821,7 @@
     {
       "teamHomeIsoCode": "MAR",
       "teamAwayIsoCode": "HAI",
-      "matchDate": "2026-06-24T20:00:00",
+      "matchDate": "2026-06-24T22:00:00",
       "phase": "GROUP",
       "groupName": "C",
       "status": "SCHEDULED",
@@ -830,7 +830,7 @@
     {
       "teamHomeIsoCode": "SCO",
       "teamAwayIsoCode": "BRA",
-      "matchDate": "2026-06-24T20:00:00",
+      "matchDate": "2026-06-24T22:00:00",
       "phase": "GROUP",
       "groupName": "C",
       "status": "SCHEDULED",
@@ -839,7 +839,7 @@
     {
       "teamHomeIsoCode": "USA",
       "teamAwayIsoCode": "PAR",
-      "matchDate": "2026-06-13T12:00:00",
+      "matchDate": "2026-06-13T01:00:00",
       "phase": "GROUP",
       "groupName": "D",
       "status": "SCHEDULED",
@@ -848,7 +848,7 @@
     {
       "teamHomeIsoCode": "AUS",
       "teamAwayIsoCode": "TUR",
-      "matchDate": "2026-06-13T15:00:00",
+      "matchDate": "2026-06-14T16:00:00",
       "phase": "GROUP",
       "groupName": "D",
       "status": "SCHEDULED",
@@ -857,7 +857,7 @@
     {
       "teamHomeIsoCode": "USA",
       "teamAwayIsoCode": "AUS",
-      "matchDate": "2026-06-19T12:00:00",
+      "matchDate": "2026-06-19T19:00:00",
       "phase": "GROUP",
       "groupName": "D",
       "status": "SCHEDULED",
@@ -866,7 +866,7 @@
     {
       "teamHomeIsoCode": "PAR",
       "teamAwayIsoCode": "TUR",
-      "matchDate": "2026-06-19T15:00:00",
+      "matchDate": "2026-06-20T03:00:00",
       "phase": "GROUP",
       "groupName": "D",
       "status": "SCHEDULED",
@@ -875,7 +875,7 @@
     {
       "teamHomeIsoCode": "PAR",
       "teamAwayIsoCode": "AUS",
-      "matchDate": "2026-06-25T16:00:00",
+      "matchDate": "2026-06-26T02:00:00",
       "phase": "GROUP",
       "groupName": "D",
       "status": "SCHEDULED",
@@ -884,7 +884,7 @@
     {
       "teamHomeIsoCode": "TUR",
       "teamAwayIsoCode": "USA",
-      "matchDate": "2026-06-25T16:00:00",
+      "matchDate": "2026-06-26T02:00:00",
       "phase": "GROUP",
       "groupName": "D",
       "status": "SCHEDULED",
@@ -893,7 +893,7 @@
     {
       "teamHomeIsoCode": "GER",
       "teamAwayIsoCode": "CUW",
-      "matchDate": "2026-06-13T18:00:00",
+      "matchDate": "2026-06-14T17:00:00",
       "phase": "GROUP",
       "groupName": "E",
       "status": "SCHEDULED",
@@ -902,7 +902,7 @@
     {
       "teamHomeIsoCode": "CIV",
       "teamAwayIsoCode": "ECU",
-      "matchDate": "2026-06-13T21:00:00",
+      "matchDate": "2026-06-14T23:00:00",
       "phase": "GROUP",
       "groupName": "E",
       "status": "SCHEDULED",
@@ -911,7 +911,7 @@
     {
       "teamHomeIsoCode": "GER",
       "teamAwayIsoCode": "CIV",
-      "matchDate": "2026-06-19T18:00:00",
+      "matchDate": "2026-06-20T20:00:00",
       "phase": "GROUP",
       "groupName": "E",
       "status": "SCHEDULED",
@@ -920,7 +920,7 @@
     {
       "teamHomeIsoCode": "CUW",
       "teamAwayIsoCode": "ECU",
-      "matchDate": "2026-06-19T21:00:00",
+      "matchDate": "2026-06-21T00:00:00",
       "phase": "GROUP",
       "groupName": "E",
       "status": "SCHEDULED",
@@ -947,7 +947,7 @@
     {
       "teamHomeIsoCode": "NED",
       "teamAwayIsoCode": "JPN",
-      "matchDate": "2026-06-14T12:00:00",
+      "matchDate": "2026-06-14T20:00:00",
       "phase": "GROUP",
       "groupName": "F",
       "status": "SCHEDULED",
@@ -956,7 +956,7 @@
     {
       "teamHomeIsoCode": "SWE",
       "teamAwayIsoCode": "TUN",
-      "matchDate": "2026-06-14T15:00:00",
+      "matchDate": "2026-06-15T02:00:00",
       "phase": "GROUP",
       "groupName": "F",
       "status": "SCHEDULED",
@@ -965,7 +965,7 @@
     {
       "teamHomeIsoCode": "NED",
       "teamAwayIsoCode": "SWE",
-      "matchDate": "2026-06-20T12:00:00",
+      "matchDate": "2026-06-20T17:00:00",
       "phase": "GROUP",
       "groupName": "F",
       "status": "SCHEDULED",
@@ -974,7 +974,7 @@
     {
       "teamHomeIsoCode": "JPN",
       "teamAwayIsoCode": "TUN",
-      "matchDate": "2026-06-20T15:00:00",
+      "matchDate": "2026-06-21T04:00:00",
       "phase": "GROUP",
       "groupName": "F",
       "status": "SCHEDULED",
@@ -983,7 +983,7 @@
     {
       "teamHomeIsoCode": "JPN",
       "teamAwayIsoCode": "SWE",
-      "matchDate": "2026-06-26T16:00:00",
+      "matchDate": "2026-06-25T23:00:00",
       "phase": "GROUP",
       "groupName": "F",
       "status": "SCHEDULED",
@@ -992,7 +992,7 @@
     {
       "teamHomeIsoCode": "TUN",
       "teamAwayIsoCode": "NED",
-      "matchDate": "2026-06-26T16:00:00",
+      "matchDate": "2026-06-25T23:00:00",
       "phase": "GROUP",
       "groupName": "F",
       "status": "SCHEDULED",
@@ -1001,7 +1001,7 @@
     {
       "teamHomeIsoCode": "BEL",
       "teamAwayIsoCode": "EGY",
-      "matchDate": "2026-06-14T18:00:00",
+      "matchDate": "2026-06-15T19:00:00",
       "phase": "GROUP",
       "groupName": "G",
       "status": "SCHEDULED",
@@ -1010,7 +1010,7 @@
     {
       "teamHomeIsoCode": "IRN",
       "teamAwayIsoCode": "NZL",
-      "matchDate": "2026-06-14T21:00:00",
+      "matchDate": "2026-06-16T01:00:00",
       "phase": "GROUP",
       "groupName": "G",
       "status": "SCHEDULED",
@@ -1019,7 +1019,7 @@
     {
       "teamHomeIsoCode": "BEL",
       "teamAwayIsoCode": "IRN",
-      "matchDate": "2026-06-20T18:00:00",
+      "matchDate": "2026-06-21T19:00:00",
       "phase": "GROUP",
       "groupName": "G",
       "status": "SCHEDULED",
@@ -1028,7 +1028,7 @@
     {
       "teamHomeIsoCode": "EGY",
       "teamAwayIsoCode": "NZL",
-      "matchDate": "2026-06-20T21:00:00",
+      "matchDate": "2026-06-22T01:00:00",
       "phase": "GROUP",
       "groupName": "G",
       "status": "SCHEDULED",
@@ -1037,7 +1037,7 @@
     {
       "teamHomeIsoCode": "EGY",
       "teamAwayIsoCode": "IRN",
-      "matchDate": "2026-06-26T20:00:00",
+      "matchDate": "2026-06-27T03:00:00",
       "phase": "GROUP",
       "groupName": "G",
       "status": "SCHEDULED",
@@ -1046,7 +1046,7 @@
     {
       "teamHomeIsoCode": "NZL",
       "teamAwayIsoCode": "BEL",
-      "matchDate": "2026-06-26T20:00:00",
+      "matchDate": "2026-06-27T03:00:00",
       "phase": "GROUP",
       "groupName": "G",
       "status": "SCHEDULED",
@@ -1055,7 +1055,7 @@
     {
       "teamHomeIsoCode": "ESP",
       "teamAwayIsoCode": "CPV",
-      "matchDate": "2026-06-15T12:00:00",
+      "matchDate": "2026-06-15T16:00:00",
       "phase": "GROUP",
       "groupName": "H",
       "status": "SCHEDULED",
@@ -1064,7 +1064,7 @@
     {
       "teamHomeIsoCode": "KSA",
       "teamAwayIsoCode": "URU",
-      "matchDate": "2026-06-15T15:00:00",
+      "matchDate": "2026-06-15T22:00:00",
       "phase": "GROUP",
       "groupName": "H",
       "status": "SCHEDULED",
@@ -1073,7 +1073,7 @@
     {
       "teamHomeIsoCode": "ESP",
       "teamAwayIsoCode": "KSA",
-      "matchDate": "2026-06-21T12:00:00",
+      "matchDate": "2026-06-21T16:00:00",
       "phase": "GROUP",
       "groupName": "H",
       "status": "SCHEDULED",
@@ -1082,7 +1082,7 @@
     {
       "teamHomeIsoCode": "CPV",
       "teamAwayIsoCode": "URU",
-      "matchDate": "2026-06-21T15:00:00",
+      "matchDate": "2026-06-21T22:00:00",
       "phase": "GROUP",
       "groupName": "H",
       "status": "SCHEDULED",
@@ -1091,7 +1091,7 @@
     {
       "teamHomeIsoCode": "CPV",
       "teamAwayIsoCode": "KSA",
-      "matchDate": "2026-06-27T16:00:00",
+      "matchDate": "2026-06-27T00:00:00",
       "phase": "GROUP",
       "groupName": "H",
       "status": "SCHEDULED",
@@ -1100,7 +1100,7 @@
     {
       "teamHomeIsoCode": "URU",
       "teamAwayIsoCode": "ESP",
-      "matchDate": "2026-06-27T16:00:00",
+      "matchDate": "2026-06-27T00:00:00",
       "phase": "GROUP",
       "groupName": "H",
       "status": "SCHEDULED",
@@ -1109,7 +1109,7 @@
     {
       "teamHomeIsoCode": "FRA",
       "teamAwayIsoCode": "SEN",
-      "matchDate": "2026-06-15T18:00:00",
+      "matchDate": "2026-06-16T19:00:00",
       "phase": "GROUP",
       "groupName": "I",
       "status": "SCHEDULED",
@@ -1118,7 +1118,7 @@
     {
       "teamHomeIsoCode": "IRQ",
       "teamAwayIsoCode": "NOR",
-      "matchDate": "2026-06-15T21:00:00",
+      "matchDate": "2026-06-16T22:00:00",
       "phase": "GROUP",
       "groupName": "I",
       "status": "SCHEDULED",
@@ -1127,7 +1127,7 @@
     {
       "teamHomeIsoCode": "FRA",
       "teamAwayIsoCode": "IRQ",
-      "matchDate": "2026-06-21T18:00:00",
+      "matchDate": "2026-06-22T21:00:00",
       "phase": "GROUP",
       "groupName": "I",
       "status": "SCHEDULED",
@@ -1136,7 +1136,7 @@
     {
       "teamHomeIsoCode": "SEN",
       "teamAwayIsoCode": "NOR",
-      "matchDate": "2026-06-21T21:00:00",
+      "matchDate": "2026-06-23T00:00:00",
       "phase": "GROUP",
       "groupName": "I",
       "status": "SCHEDULED",
@@ -1145,7 +1145,7 @@
     {
       "teamHomeIsoCode": "SEN",
       "teamAwayIsoCode": "IRQ",
-      "matchDate": "2026-06-27T20:00:00",
+      "matchDate": "2026-06-26T19:00:00",
       "phase": "GROUP",
       "groupName": "I",
       "status": "SCHEDULED",
@@ -1154,7 +1154,7 @@
     {
       "teamHomeIsoCode": "NOR",
       "teamAwayIsoCode": "FRA",
-      "matchDate": "2026-06-27T20:00:00",
+      "matchDate": "2026-06-26T19:00:00",
       "phase": "GROUP",
       "groupName": "I",
       "status": "SCHEDULED",
@@ -1163,7 +1163,7 @@
     {
       "teamHomeIsoCode": "ARG",
       "teamAwayIsoCode": "ALG",
-      "matchDate": "2026-06-16T12:00:00",
+      "matchDate": "2026-06-17T01:00:00",
       "phase": "GROUP",
       "groupName": "J",
       "status": "SCHEDULED",
@@ -1172,7 +1172,7 @@
     {
       "teamHomeIsoCode": "AUT",
       "teamAwayIsoCode": "JOR",
-      "matchDate": "2026-06-16T15:00:00",
+      "matchDate": "2026-06-17T04:00:00",
       "phase": "GROUP",
       "groupName": "J",
       "status": "SCHEDULED",
@@ -1181,7 +1181,7 @@
     {
       "teamHomeIsoCode": "ARG",
       "teamAwayIsoCode": "AUT",
-      "matchDate": "2026-06-22T12:00:00",
+      "matchDate": "2026-06-22T17:00:00",
       "phase": "GROUP",
       "groupName": "J",
       "status": "SCHEDULED",
@@ -1190,7 +1190,7 @@
     {
       "teamHomeIsoCode": "ALG",
       "teamAwayIsoCode": "JOR",
-      "matchDate": "2026-06-22T15:00:00",
+      "matchDate": "2026-06-23T03:00:00",
       "phase": "GROUP",
       "groupName": "J",
       "status": "SCHEDULED",
@@ -1199,7 +1199,7 @@
     {
       "teamHomeIsoCode": "ALG",
       "teamAwayIsoCode": "AUT",
-      "matchDate": "2026-06-27T16:00:00",
+      "matchDate": "2026-06-28T02:00:00",
       "phase": "GROUP",
       "groupName": "J",
       "status": "SCHEDULED",
@@ -1208,7 +1208,7 @@
     {
       "teamHomeIsoCode": "JOR",
       "teamAwayIsoCode": "ARG",
-      "matchDate": "2026-06-27T16:00:00",
+      "matchDate": "2026-06-28T02:00:00",
       "phase": "GROUP",
       "groupName": "J",
       "status": "SCHEDULED",
@@ -1217,7 +1217,7 @@
     {
       "teamHomeIsoCode": "POR",
       "teamAwayIsoCode": "COD",
-      "matchDate": "2026-06-16T18:00:00",
+      "matchDate": "2026-06-17T17:00:00",
       "phase": "GROUP",
       "groupName": "K",
       "status": "SCHEDULED",
@@ -1226,7 +1226,7 @@
     {
       "teamHomeIsoCode": "UZB",
       "teamAwayIsoCode": "COL",
-      "matchDate": "2026-06-16T21:00:00",
+      "matchDate": "2026-06-18T02:00:00",
       "phase": "GROUP",
       "groupName": "K",
       "status": "SCHEDULED",
@@ -1235,7 +1235,7 @@
     {
       "teamHomeIsoCode": "POR",
       "teamAwayIsoCode": "UZB",
-      "matchDate": "2026-06-22T18:00:00",
+      "matchDate": "2026-06-23T17:00:00",
       "phase": "GROUP",
       "groupName": "K",
       "status": "SCHEDULED",
@@ -1244,7 +1244,7 @@
     {
       "teamHomeIsoCode": "COD",
       "teamAwayIsoCode": "COL",
-      "matchDate": "2026-06-22T21:00:00",
+      "matchDate": "2026-06-24T02:00:00",
       "phase": "GROUP",
       "groupName": "K",
       "status": "SCHEDULED",
@@ -1253,7 +1253,7 @@
     {
       "teamHomeIsoCode": "COD",
       "teamAwayIsoCode": "UZB",
-      "matchDate": "2026-06-27T20:00:00",
+      "matchDate": "2026-06-27T23:30:00",
       "phase": "GROUP",
       "groupName": "K",
       "status": "SCHEDULED",
@@ -1262,7 +1262,7 @@
     {
       "teamHomeIsoCode": "COL",
       "teamAwayIsoCode": "POR",
-      "matchDate": "2026-06-27T20:00:00",
+      "matchDate": "2026-06-27T23:30:00",
       "phase": "GROUP",
       "groupName": "K",
       "status": "SCHEDULED",
@@ -1271,7 +1271,7 @@
     {
       "teamHomeIsoCode": "ENG",
       "teamAwayIsoCode": "CRO",
-      "matchDate": "2026-06-17T12:00:00",
+      "matchDate": "2026-06-17T20:00:00",
       "phase": "GROUP",
       "groupName": "L",
       "status": "SCHEDULED",
@@ -1280,7 +1280,7 @@
     {
       "teamHomeIsoCode": "GHA",
       "teamAwayIsoCode": "PAN",
-      "matchDate": "2026-06-17T15:00:00",
+      "matchDate": "2026-06-17T23:00:00",
       "phase": "GROUP",
       "groupName": "L",
       "status": "SCHEDULED",
@@ -1289,7 +1289,7 @@
     {
       "teamHomeIsoCode": "ENG",
       "teamAwayIsoCode": "GHA",
-      "matchDate": "2026-06-23T12:00:00",
+      "matchDate": "2026-06-23T20:00:00",
       "phase": "GROUP",
       "groupName": "L",
       "status": "SCHEDULED",
@@ -1298,7 +1298,7 @@
     {
       "teamHomeIsoCode": "CRO",
       "teamAwayIsoCode": "PAN",
-      "matchDate": "2026-06-23T15:00:00",
+      "matchDate": "2026-06-23T23:00:00",
       "phase": "GROUP",
       "groupName": "L",
       "status": "SCHEDULED",
@@ -1307,7 +1307,7 @@
     {
       "teamHomeIsoCode": "CRO",
       "teamAwayIsoCode": "GHA",
-      "matchDate": "2026-06-27T16:00:00",
+      "matchDate": "2026-06-27T21:00:00",
       "phase": "GROUP",
       "groupName": "L",
       "status": "SCHEDULED",
@@ -1316,7 +1316,7 @@
     {
       "teamHomeIsoCode": "PAN",
       "teamAwayIsoCode": "ENG",
-      "matchDate": "2026-06-27T16:00:00",
+      "matchDate": "2026-06-27T21:00:00",
       "phase": "GROUP",
       "groupName": "L",
       "status": "SCHEDULED",
@@ -1326,7 +1326,7 @@
       "referenceCode": "WC2026-R32-73",
       "teamHomeIsoCode": "2A",
       "teamAwayIsoCode": "2B",
-      "matchDate": "2026-06-28T13:00:00",
+      "matchDate": "2026-06-28T19:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1335,7 +1335,7 @@
       "referenceCode": "WC2026-R32-74",
       "teamHomeIsoCode": "1E",
       "teamAwayIsoCode": "3RD1",
-      "matchDate": "2026-06-29T13:00:00",
+      "matchDate": "2026-06-29T17:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1344,7 +1344,7 @@
       "referenceCode": "WC2026-R32-75",
       "teamHomeIsoCode": "1F",
       "teamAwayIsoCode": "2C",
-      "matchDate": "2026-06-29T16:00:00",
+      "matchDate": "2026-06-29T20:30:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1353,7 +1353,7 @@
       "referenceCode": "WC2026-R32-76",
       "teamHomeIsoCode": "1C",
       "teamAwayIsoCode": "2F",
-      "matchDate": "2026-06-29T19:00:00",
+      "matchDate": "2026-06-30T01:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1362,7 +1362,7 @@
       "referenceCode": "WC2026-R32-77",
       "teamHomeIsoCode": "1I",
       "teamAwayIsoCode": "3RD3",
-      "matchDate": "2026-06-30T13:00:00",
+      "matchDate": "2026-06-30T17:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1371,7 +1371,7 @@
       "referenceCode": "WC2026-R32-78",
       "teamHomeIsoCode": "2E",
       "teamAwayIsoCode": "2I",
-      "matchDate": "2026-06-30T16:00:00",
+      "matchDate": "2026-06-30T21:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1380,7 +1380,7 @@
       "referenceCode": "WC2026-R32-79",
       "teamHomeIsoCode": "1A",
       "teamAwayIsoCode": "3RD4",
-      "matchDate": "2026-06-30T19:00:00",
+      "matchDate": "2026-07-01T01:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1389,7 +1389,7 @@
       "referenceCode": "WC2026-R32-80",
       "teamHomeIsoCode": "1L",
       "teamAwayIsoCode": "3RD5",
-      "matchDate": "2026-07-01T13:00:00",
+      "matchDate": "2026-07-01T16:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1398,7 +1398,7 @@
       "referenceCode": "WC2026-R32-81",
       "teamHomeIsoCode": "1D",
       "teamAwayIsoCode": "3RD2",
-      "matchDate": "2026-07-01T16:00:00",
+      "matchDate": "2026-07-01T20:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1407,7 +1407,7 @@
       "referenceCode": "WC2026-R32-82",
       "teamHomeIsoCode": "1G",
       "teamAwayIsoCode": "3RD6",
-      "matchDate": "2026-07-01T19:00:00",
+      "matchDate": "2026-07-02T00:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1416,7 +1416,7 @@
       "referenceCode": "WC2026-R32-83",
       "teamHomeIsoCode": "2K",
       "teamAwayIsoCode": "2L",
-      "matchDate": "2026-07-02T13:00:00",
+      "matchDate": "2026-07-02T19:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1425,7 +1425,7 @@
       "referenceCode": "WC2026-R32-84",
       "teamHomeIsoCode": "1H",
       "teamAwayIsoCode": "2J",
-      "matchDate": "2026-07-02T16:00:00",
+      "matchDate": "2026-07-02T23:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1434,7 +1434,7 @@
       "referenceCode": "WC2026-R32-85",
       "teamHomeIsoCode": "1B",
       "teamAwayIsoCode": "3RD7",
-      "matchDate": "2026-07-02T19:00:00",
+      "matchDate": "2026-07-03T03:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1443,7 +1443,7 @@
       "referenceCode": "WC2026-R32-86",
       "teamHomeIsoCode": "1J",
       "teamAwayIsoCode": "2H",
-      "matchDate": "2026-07-03T13:00:00",
+      "matchDate": "2026-07-03T18:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1452,7 +1452,7 @@
       "referenceCode": "WC2026-R32-87",
       "teamHomeIsoCode": "1K",
       "teamAwayIsoCode": "3RD8",
-      "matchDate": "2026-07-03T16:00:00",
+      "matchDate": "2026-07-03T22:00:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1461,17 +1461,16 @@
       "referenceCode": "WC2026-R32-88",
       "teamHomeIsoCode": "2D",
       "teamAwayIsoCode": "2G",
-      "matchDate": "2026-07-03T19:00:00",
+      "matchDate": "2026-07-04T01:30:00",
       "phase": "ROUND_32",
       "groupName": "KO",
       "status": "SCHEDULED"
     },
-
     {
       "referenceCode": "WC2026-R16-89",
       "teamHomeIsoCode": "W73",
       "teamAwayIsoCode": "W75",
-      "matchDate": "2026-07-04T13:00:00",
+      "matchDate": "2026-07-04T17:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1480,7 +1479,7 @@
       "referenceCode": "WC2026-R16-90",
       "teamHomeIsoCode": "W74",
       "teamAwayIsoCode": "W77",
-      "matchDate": "2026-07-04T16:00:00",
+      "matchDate": "2026-07-04T21:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1489,7 +1488,7 @@
       "referenceCode": "WC2026-R16-91",
       "teamHomeIsoCode": "W76",
       "teamAwayIsoCode": "W78",
-      "matchDate": "2026-07-05T13:00:00",
+      "matchDate": "2026-07-05T20:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1498,7 +1497,7 @@
       "referenceCode": "WC2026-R16-92",
       "teamHomeIsoCode": "W79",
       "teamAwayIsoCode": "W80",
-      "matchDate": "2026-07-05T16:00:00",
+      "matchDate": "2026-07-06T00:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1507,7 +1506,7 @@
       "referenceCode": "WC2026-R16-93",
       "teamHomeIsoCode": "W83",
       "teamAwayIsoCode": "W84",
-      "matchDate": "2026-07-06T13:00:00",
+      "matchDate": "2026-07-06T19:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1516,7 +1515,7 @@
       "referenceCode": "WC2026-R16-94",
       "teamHomeIsoCode": "W81",
       "teamAwayIsoCode": "W82",
-      "matchDate": "2026-07-06T16:00:00",
+      "matchDate": "2026-07-07T00:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1525,7 +1524,7 @@
       "referenceCode": "WC2026-R16-95",
       "teamHomeIsoCode": "W86",
       "teamAwayIsoCode": "W88",
-      "matchDate": "2026-07-07T13:00:00",
+      "matchDate": "2026-07-07T16:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1534,17 +1533,16 @@
       "referenceCode": "WC2026-R16-96",
       "teamHomeIsoCode": "W85",
       "teamAwayIsoCode": "W87",
-      "matchDate": "2026-07-07T16:00:00",
+      "matchDate": "2026-07-07T20:00:00",
       "phase": "ROUND_16",
       "groupName": "KO",
       "status": "SCHEDULED"
     },
-
     {
       "referenceCode": "WC2026-QF-97",
       "teamHomeIsoCode": "W89",
       "teamAwayIsoCode": "W90",
-      "matchDate": "2026-07-09T13:00:00",
+      "matchDate": "2026-07-09T20:00:00",
       "phase": "QUARTER",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1553,7 +1551,7 @@
       "referenceCode": "WC2026-QF-98",
       "teamHomeIsoCode": "W93",
       "teamAwayIsoCode": "W94",
-      "matchDate": "2026-07-10T13:00:00",
+      "matchDate": "2026-07-10T19:00:00",
       "phase": "QUARTER",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1562,7 +1560,7 @@
       "referenceCode": "WC2026-QF-99",
       "teamHomeIsoCode": "W91",
       "teamAwayIsoCode": "W92",
-      "matchDate": "2026-07-11T13:00:00",
+      "matchDate": "2026-07-11T21:00:00",
       "phase": "QUARTER",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1571,17 +1569,16 @@
       "referenceCode": "WC2026-QF-100",
       "teamHomeIsoCode": "W95",
       "teamAwayIsoCode": "W96",
-      "matchDate": "2026-07-11T16:00:00",
+      "matchDate": "2026-07-12T01:00:00",
       "phase": "QUARTER",
       "groupName": "KO",
       "status": "SCHEDULED"
     },
-
     {
       "referenceCode": "WC2026-SF-101",
       "teamHomeIsoCode": "W97",
       "teamAwayIsoCode": "W98",
-      "matchDate": "2026-07-14T13:00:00",
+      "matchDate": "2026-07-14T19:00:00",
       "phase": "SEMI",
       "groupName": "KO",
       "status": "SCHEDULED"
@@ -1590,27 +1587,25 @@
       "referenceCode": "WC2026-SF-102",
       "teamHomeIsoCode": "W99",
       "teamAwayIsoCode": "W100",
-      "matchDate": "2026-07-15T13:00:00",
+      "matchDate": "2026-07-15T19:00:00",
       "phase": "SEMI",
       "groupName": "KO",
       "status": "SCHEDULED"
     },
-
     {
       "referenceCode": "WC2026-3RD-103",
       "teamHomeIsoCode": "L101",
       "teamAwayIsoCode": "L102",
-      "matchDate": "2026-07-18T13:00:00",
+      "matchDate": "2026-07-18T21:00:00",
       "phase": "THIRD_PLACE",
       "groupName": "KO",
       "status": "SCHEDULED"
     },
-
     {
       "referenceCode": "WC2026-FIN-104",
       "teamHomeIsoCode": "W101",
       "teamAwayIsoCode": "W102",
-      "matchDate": "2026-07-19T15:00:00",
+      "matchDate": "2026-07-19T19:00:00",
       "phase": "FINAL",
       "groupName": "KO",
       "status": "SCHEDULED"
