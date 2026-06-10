@@ -1,6 +1,7 @@
 package com.worldJackpot.api.dto.user;
 
 import com.worldJackpot.api.dto.bet.BetDto;
+import com.worldJackpot.api.dto.bet.BonusBetDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,4 +32,7 @@ public class UserProfileDto {
     
     @Schema(description = "List of matches with the user's bets")
     private List<BetDto.MatchGroupResponse> bets;
+
+    @Schema(description = "User's extra bets (champion, runner-up, top scorer)")
+    private BonusBetDto.BonusBetResponse bonusBet;
 }

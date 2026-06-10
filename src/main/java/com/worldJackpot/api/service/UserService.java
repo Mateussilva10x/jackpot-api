@@ -15,6 +15,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final MatchService matchService;
+    private final BonusBetService bonusBetService;
 
     public UserProfileDto getUserProfile(Long userId) {
         User user = userRepository.findById(userId)
@@ -22,9 +23,11 @@ public class UserService {
 
         List<BetDto.MatchGroupResponse> userBets = matchService.getMatchesGroupedByGroup(userId, null);
 
+        com.worldJackpot.api.dto.bet.BonusBetDto.BonusBetResponse bonusBet = bonusBetService.getBonusBet(userId);
+
         // Calculate approximate ranking position for display, if desired.
         // For simplicity and reusing existing entity fields, we just use the user fields.
-        
+
         return UserProfileDto.builder()
                 .id(user.getId())
                 .name(user.getName())
@@ -32,6 +35,7 @@ public class UserService {
                 .rankingPosition(user.getRankingPosition())
                 .avatarId(user.getAvatarId())
                 .bets(userBets)
+                .bonusBet(bonusBet)
                 .build();
     }
 }
