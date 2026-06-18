@@ -21,6 +21,10 @@ public class UserRankingDto {
     private Integer rankingPosition;
     @Schema(description = "User's avatar ID", example = "avatar_1")
     private String avatarId;
-    @Schema(description = "Number of exact scores the user hit (FINISHED matches)", example = "3")
+    @Schema(description = "Number of exact scores the user hit (10 pts, FINISHED matches)", example = "3")
     private Integer exactScores;
+    @Schema(description = "Number of partial hits — correct winner/draw but not exact score (7 or 5 pts)", example = "5")
+    private Integer partialScores;
+    @Schema(description = "Number of just-goals hits — wrong winner/draw but one score matched (3 pts)", example = "2")
+    private Integer justGoals;
 }

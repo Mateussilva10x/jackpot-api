@@ -37,6 +37,8 @@ public class UserService {
                 .rankingPosition(user.getRankingPosition())
                 .avatarId(user.getAvatarId())
                 .exactScores((int) betRepository.countExactScoresByUserId(userId))
+                .partialScores((int) betRepository.countPartialScoresByUserId(userId))
+                .justGoals((int) betRepository.countJustGoalsByUserId(userId))
                 .bets(userBets)
                 .bonusBet(bonusBet)
                 .build();

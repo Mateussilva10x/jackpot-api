@@ -37,4 +37,46 @@ public interface BetRepository extends JpaRepository<Bet, Long> {
            "AND b.awayScore = b.match.awayScore " +
            "AND b.user.id = :userId")
     long countExactScoresByUserId(@Param("userId") Long userId);
+
+    // --- Partial hits (7 or 5 points): correct winner/draw but NOT exact score ---
+
+    @Query("SELECT b.user.id, COUNT(b) FROM Bet b " +
+           "WHERE b.match.status = com.worldJackpot.api.model.enums.MatchStatus.FINISHED " +
+           "AND ((b.match.homeScore > b.match.awayScore AND b.homeScore > b.awayScore) " +
+           "  OR (b.match.homeScore < b.match.awayScore AND b.homeScore < b.awayScore) " +
+           "  OR (b.match.homeScore = b.match.awayScore AND b.homeScore = b.awayScore)) " +
+           "AND NOT (b.homeScore = b.match.homeScore AND b.awayScore = b.match.awayScore) " +
+           "AND b.user.id IN :userIds " +
+           "GROUP BY b.user.id")
+    List<Object[]> countPartialScoresByUserIds(@Param("userIds") List<Long> userIds);
+
+    @Query("SELECT COUNT(b) FROM Bet b " +
+           "WHERE b.match.status = com.worldJackpot.api.model.enums.MatchStatus.FINISHED " +
+           "AND ((b.match.homeScore > b.match.awayScore AND b.homeScore > b.awayScore) " +
+           "  OR (b.match.homeScore < b.match.awayScore AND b.homeScore < b.awayScore) " +
+           "  OR (b.match.homeScore = b.match.awayScore AND b.homeScore = b.awayScore)) " +
+           "AND NOT (b.homeScore = b.match.homeScore AND b.awayScore = b.match.awayScore) " +
+           "AND b.user.id = :userId")
+    long countPartialScoresByUserId(@Param("userId") Long userId);
+
+    // --- Just-goals hits (3 points): wrong winner/draw but at least one score matches ---
+
+    @Query("SELECT b.user.id, COUNT(b) FROM Bet b " +
+           "WHERE b.match.status = com.worldJackpot.api.model.enums.MatchStatus.FINISHED " +
+           "AND NOT ((b.match.homeScore > b.match.awayScore AND b.homeScore > b.awayScore) " +
+           "  OR (b.match.homeScore < b.match.awayScore AND b.homeScore < b.awayScore) " +
+           "  OR (b.match.homeScore = b.match.awayScore AND b.homeScore = b.awayScore)) " +
+           "AND (b.homeScore = b.match.homeScore OR b.awayScore = b.match.awayScore) " +
+           "AND b.user.id IN :userIds " +
+           "GROUP BY b.user.id")
+    List<Object[]> countJustGoalsByUserIds(@Param("userIds") List<Long> userIds);
+
+    @Query("SELECT COUNT(b) FROM Bet b " +
+           "WHERE b.match.status = com.worldJackpot.api.model.enums.MatchStatus.FINISHED " +
+           "AND NOT ((b.match.homeScore > b.match.awayScore AND b.homeScore > b.awayScore) " +
+           "  OR (b.match.homeScore < b.match.awayScore AND b.homeScore < b.awayScore) " +
+           "  OR (b.match.homeScore = b.match.awayScore AND b.homeScore = b.awayScore)) " +
+           "AND (b.homeScore = b.match.homeScore OR b.awayScore = b.match.awayScore) " +
+           "AND b.user.id = :userId")
+    long countJustGoalsByUserId(@Param("userId") Long userId);
 }

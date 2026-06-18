@@ -46,9 +46,17 @@ public class RankingController {
                 .map(User::getId)
                 .toList();
         java.util.Map<Long, Integer> exactScoresByUser = new java.util.HashMap<>();
+        java.util.Map<Long, Integer> partialScoresByUser = new java.util.HashMap<>();
+        java.util.Map<Long, Integer> justGoalsByUser = new java.util.HashMap<>();
         if (!userIds.isEmpty()) {
             for (Object[] row : betRepository.countExactScoresByUserIds(userIds)) {
                 exactScoresByUser.put((Long) row[0], ((Number) row[1]).intValue());
+            }
+            for (Object[] row : betRepository.countPartialScoresByUserIds(userIds)) {
+                partialScoresByUser.put((Long) row[0], ((Number) row[1]).intValue());
+            }
+            for (Object[] row : betRepository.countJustGoalsByUserIds(userIds)) {
+                justGoalsByUser.put((Long) row[0], ((Number) row[1]).intValue());
             }
         }
 
@@ -58,6 +66,8 @@ public class RankingController {
                 .totalPoints(user.getTotalPoints() == null ? 0 : user.getTotalPoints())
                 .avatarId(user.getAvatarId())
                 .exactScores(exactScoresByUser.getOrDefault(user.getId(), 0))
+                .partialScores(partialScoresByUser.getOrDefault(user.getId(), 0))
+                .justGoals(justGoalsByUser.getOrDefault(user.getId(), 0))
                 .build());
 
         // Set the ranking position logically based on the page/index
