@@ -3,6 +3,7 @@ package com.worldJackpot.api.controller;
 import com.worldJackpot.api.dto.user.UserProfileDto;
 import com.worldJackpot.api.dto.user.UserRankingDto;
 import com.worldJackpot.api.model.User;
+import com.worldJackpot.api.repository.BetRepository;
 import com.worldJackpot.api.repository.UserRepository;
 import com.worldJackpot.api.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,6 +30,7 @@ public class RankingController {
 
     private final UserRepository userRepository;
     private final UserService userService;
+    private final BetRepository betRepository;
 
     @GetMapping
     @Operation(summary = "Get the global leaderboard ranking")
@@ -38,14 +40,26 @@ public class RankingController {
             @RequestParam(defaultValue = "50") int size) {
         
         Page<User> usersPage = userRepository.findAllOrderByTotalPointsDesc(PageRequest.of(page, size));
-        
+
+        // Fetch exact-score counts only for the users on this page (avoids N+1).
+        java.util.List<Long> userIds = usersPage.getContent().stream()
+                .map(User::getId)
+                .toList();
+        java.util.Map<Long, Integer> exactScoresByUser = new java.util.HashMap<>();
+        if (!userIds.isEmpty()) {
+            for (Object[] row : betRepository.countExactScoresByUserIds(userIds)) {
+                exactScoresByUser.put((Long) row[0], ((Number) row[1]).intValue());
+            }
+        }
+
         Page<UserRankingDto> dtoPage = usersPage.map(user -> UserRankingDto.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .totalPoints(user.getTotalPoints() == null ? 0 : user.getTotalPoints())
                 .avatarId(user.getAvatarId())
+                .exactScores(exactScoresByUser.getOrDefault(user.getId(), 0))
                 .build());
-                
+
         // Set the ranking position logically based on the page/index
         int offset = page * size;
         int i = 0;

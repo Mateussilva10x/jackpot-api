@@ -29,7 +29,10 @@ public class UserProfileDto {
     
     @Schema(description = "User's avatar ID", example = "avatar_1")
     private String avatarId;
-    
+
+    @Schema(description = "Number of exact scores the user hit (FINISHED matches)", example = "3")
+    private Integer exactScores;
+
     @Schema(description = "List of matches with the user's bets")
     private List<BetDto.MatchGroupResponse> bets;
 

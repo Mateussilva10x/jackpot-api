@@ -3,6 +3,7 @@ package com.worldJackpot.api.service;
 import com.worldJackpot.api.dto.bet.BetDto;
 import com.worldJackpot.api.dto.user.UserProfileDto;
 import com.worldJackpot.api.model.User;
+import com.worldJackpot.api.repository.BetRepository;
 import com.worldJackpot.api.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final MatchService matchService;
     private final BonusBetService bonusBetService;
+    private final BetRepository betRepository;
 
     public UserProfileDto getUserProfile(Long userId) {
         User user = userRepository.findById(userId)
@@ -34,6 +36,7 @@ public class UserService {
                 .totalPoints(user.getTotalPoints() == null ? 0 : user.getTotalPoints())
                 .rankingPosition(user.getRankingPosition())
                 .avatarId(user.getAvatarId())
+                .exactScores((int) betRepository.countExactScoresByUserId(userId))
                 .bets(userBets)
                 .bonusBet(bonusBet)
                 .build();
