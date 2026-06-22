@@ -1,5 +1,6 @@
 package com.worldJackpot.api.controller;
 
+import com.worldJackpot.api.dto.user.UserEvolutionDto;
 import com.worldJackpot.api.dto.user.UserProfileDto;
 import com.worldJackpot.api.dto.user.UserRankingDto;
 import com.worldJackpot.api.model.User;
@@ -18,9 +19,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/ranking")
@@ -92,5 +96,15 @@ public class RankingController {
             return ResponseEntity.ok(userService.getUserProfile(user.getId()));
         }
         return ResponseEntity.status(401).build();
+    }
+
+    @GetMapping("/{userId}/evolution")
+    @Operation(summary = "Get a user's ranking position evolution over time (one entry per day with finished matches)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Evolution timeline retrieved successfully"),
+            @ApiResponse(responseCode = "404", description = "User not found")
+    })
+    public ResponseEntity<List<UserEvolutionDto>> getUserEvolution(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.getUserEvolution(userId));
     }
 }

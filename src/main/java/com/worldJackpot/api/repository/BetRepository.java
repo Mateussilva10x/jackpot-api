@@ -79,4 +79,14 @@ public interface BetRepository extends JpaRepository<Bet, Long> {
            "AND (b.homeScore = b.match.homeScore OR b.awayScore = b.match.awayScore) " +
            "AND b.user.id = :userId")
     long countJustGoalsByUserId(@Param("userId") Long userId);
+
+    /**
+     * Returns rows of [userId (Long), matchDate (Instant), pointsEarned (Integer)] for every
+     * scored bet on a FINISHED match. Used to reconstruct historical ranking positions over time.
+     */
+    @Query("SELECT b.user.id, b.match.matchDate, b.pointsEarned FROM Bet b " +
+           "WHERE b.match.status = com.worldJackpot.api.model.enums.MatchStatus.FINISHED " +
+           "AND b.pointsEarned IS NOT NULL " +
+           "AND b.match.matchDate IS NOT NULL")
+    List<Object[]> findFinishedBetPointsWithDate();
 }
