@@ -128,11 +128,90 @@ public class MatchProgressionService {
             }
         }
 
-        // Sort: Points DESC, GoalDiff DESC, GoalsFor DESC
-        return standingMap.values().stream()
-                .sorted(Comparator.comparingInt(GroupStanding::getPoints).reversed()
-                        .thenComparing(Comparator.comparingInt(GroupStanding::getGoalDifference).reversed())
-                        .thenComparing(Comparator.comparingInt(GroupStanding::getGoalsFor).reversed()))
+        // First order by overall points; ties are then broken by the official FIFA criteria.
+        List<GroupStanding> byPoints = standingMap.values().stream()
+                .sorted(Comparator.comparingInt(GroupStanding::getPoints).reversed())
+                .collect(Collectors.toList());
+
+        return resolveTieBreaks(byPoints, matches);
+    }
+
+    /**
+     * Applies the official FIFA 2026 group tie-break order. Teams are first grouped by equal points;
+     * within each tied block the order is decided by head-to-head (points, goal diff, goals for in
+     * matches only among the tied teams), then falling back to overall goal difference and goals for.
+     *
+     * Note: fair-play (disciplinary) and drawing of lots are not implemented — the model does not
+     * track cards. Also, this uses the common single-pass head-to-head approximation: it does not
+     * recursively re-evaluate a subset that remains tied after head-to-head separates the others.
+     */
+    private List<GroupStanding> resolveTieBreaks(List<GroupStanding> byPoints, List<Match> matches) {
+        List<GroupStanding> result = new ArrayList<>();
+        int i = 0;
+        while (i < byPoints.size()) {
+            int j = i;
+            int points = byPoints.get(i).getPoints();
+            while (j < byPoints.size() && byPoints.get(j).getPoints() == points) {
+                j++;
+            }
+            List<GroupStanding> tied = byPoints.subList(i, j);
+            if (tied.size() == 1) {
+                result.add(tied.get(0));
+            } else {
+                result.addAll(orderTiedTeams(tied, matches));
+            }
+            i = j;
+        }
+        return result;
+    }
+
+    /**
+     * Orders teams tied on points using head-to-head results (matches among the tied teams only),
+     * then overall goal difference and overall goals for.
+     */
+    private List<GroupStanding> orderTiedTeams(List<GroupStanding> tied, List<Match> matches) {
+        Set<Team> tiedTeams = tied.stream().map(GroupStanding::getTeam).collect(Collectors.toSet());
+
+        // h2h[team] = {points, goalDifference, goalsFor} considering only matches within the tied set
+        Map<Team, int[]> h2h = new HashMap<>();
+        for (Team t : tiedTeams) {
+            h2h.put(t, new int[]{0, 0, 0});
+        }
+
+        for (Match m : matches) {
+            if (m.getStatus() != MatchStatus.FINISHED) continue;
+            Team home = m.getTeamHome();
+            Team away = m.getTeamAway();
+            if (home == null || away == null) continue;
+            if (!tiedTeams.contains(home) || !tiedTeams.contains(away)) continue;
+
+            int homeGoals = m.getHomeScore() == null ? 0 : m.getHomeScore();
+            int awayGoals = m.getAwayScore() == null ? 0 : m.getAwayScore();
+
+            int[] hs = h2h.get(home);
+            int[] as = h2h.get(away);
+            hs[1] += homeGoals - awayGoals;
+            hs[2] += homeGoals;
+            as[1] += awayGoals - homeGoals;
+            as[2] += awayGoals;
+
+            if (homeGoals > awayGoals) {
+                hs[0] += 3;
+            } else if (awayGoals > homeGoals) {
+                as[0] += 3;
+            } else {
+                hs[0] += 1;
+                as[0] += 1;
+            }
+        }
+
+        return tied.stream()
+                .sorted(Comparator
+                        .comparingInt((GroupStanding s) -> h2h.get(s.getTeam())[0]).reversed()       // h2h points
+                        .thenComparing(Comparator.comparingInt((GroupStanding s) -> h2h.get(s.getTeam())[1]).reversed()) // h2h goal diff
+                        .thenComparing(Comparator.comparingInt((GroupStanding s) -> h2h.get(s.getTeam())[2]).reversed()) // h2h goals for
+                        .thenComparing(Comparator.comparingInt(GroupStanding::getGoalDifference).reversed())            // overall goal diff
+                        .thenComparing(Comparator.comparingInt(GroupStanding::getGoalsFor).reversed()))                 // overall goals for
                 .collect(Collectors.toList());
     }
 
@@ -200,10 +279,12 @@ public class MatchProgressionService {
 
         // Rank all third-placed teams; the World Cup 2026 advances the 8 best thirds.
         List<String> rankedGroups = new ArrayList<>(thirdStandingByGroup.keySet());
+        // FIFA best-third criteria: points -> goal diff -> goals for -> wins -> (fair play / draw, not implemented)
         rankedGroups.sort(Comparator
                 .comparingInt((String g) -> thirdStandingByGroup.get(g).getPoints()).reversed()
                 .thenComparing(Comparator.comparingInt((String g) -> thirdStandingByGroup.get(g).getGoalDifference()).reversed())
-                .thenComparing(Comparator.comparingInt((String g) -> thirdStandingByGroup.get(g).getGoalsFor()).reversed()));
+                .thenComparing(Comparator.comparingInt((String g) -> thirdStandingByGroup.get(g).getGoalsFor()).reversed())
+                .thenComparing(Comparator.comparingInt((String g) -> thirdStandingByGroup.get(g).getWins()).reversed()));
 
         int count = Math.min(rankedGroups.size(), 8);
         List<String> qualifiedGroups = new ArrayList<>(rankedGroups.subList(0, count));
