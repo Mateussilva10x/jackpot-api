@@ -72,12 +72,28 @@ public class MatchService {
         Match match = matchRepository.findById(matchId)
                 .orElseThrow(() -> new com.worldJackpot.api.exception.ResourceNotFoundException("Match not found: " + matchId));
 
+        boolean isKnockout = match.getPhase() != com.worldJackpot.api.model.enums.MatchPhase.GROUP;
+        boolean isDraw = dto.getHomeScore().equals(dto.getAwayScore());
+
+        if (isKnockout && isDraw && dto.getPenaltyWinnerId() == null) {
+            throw new IllegalArgumentException(
+                "Knockout matches ending in a draw require penaltyWinnerId (the team that advanced on penalties).");
+        }
+
         match.setHomeScore(dto.getHomeScore());
         match.setAwayScore(dto.getAwayScore());
-        
+
         if (dto.getPenaltyWinnerId() != null) {
             com.worldJackpot.api.model.Team penaltyWinner = teamRepository.findById(dto.getPenaltyWinnerId())
                 .orElseThrow(() -> new com.worldJackpot.api.exception.ResourceNotFoundException("Team not found"));
+
+            Long homeId = match.getTeamHome() != null ? match.getTeamHome().getId() : null;
+            Long awayId = match.getTeamAway() != null ? match.getTeamAway().getId() : null;
+            if (!penaltyWinner.getId().equals(homeId) && !penaltyWinner.getId().equals(awayId)) {
+                throw new IllegalArgumentException(
+                    "penaltyWinnerId must be one of the two teams playing this match.");
+            }
+
             match.setPenaltyWinner(penaltyWinner);
         }
         
@@ -113,6 +129,8 @@ public class MatchService {
 
         return BetDto.MatchBetResponse.builder()
                 .id(match.getId())
+                .homeTeamId(match.getTeamHome().getId())
+                .awayTeamId(match.getTeamAway().getId())
                 .homeTeam(match.getTeamHome().getName())
                 .awayTeam(match.getTeamAway().getName())
                 .homeTeamFlag(match.getTeamHome().getFlagUrl())

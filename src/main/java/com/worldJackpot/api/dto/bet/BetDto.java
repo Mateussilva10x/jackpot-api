@@ -62,6 +62,10 @@ public class BetDto {
     public static class MatchBetResponse {
         @Schema(description = "Match ID", example = "10")
         private Long id;
+        @Schema(description = "Home team ID", example = "5")
+        private Long homeTeamId;
+        @Schema(description = "Away team ID", example = "8")
+        private Long awayTeamId;
         @Schema(description = "Home team name", example = "Brazil")
         private String homeTeam;
         @Schema(description = "Away team name", example = "Argentina")

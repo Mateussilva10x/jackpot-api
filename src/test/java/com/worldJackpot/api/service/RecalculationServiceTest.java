@@ -73,13 +73,13 @@ class RecalculationServiceTest {
     }
 
     @Test
-    void testCalculatePoints_WinnerAndGoalDiff_7Points() throws Exception {
+    void testCalculatePoints_WinnerAndOneExactScore_7Points() throws Exception {
         match.setHomeScore(3);
         match.setAwayScore(1);
 
         Bet bet = new Bet();
-        bet.setHomeScore(2);
-        bet.setAwayScore(0); // Winner is Home, Diff is 2 (3-1 == 2-0)
+        bet.setHomeScore(3);
+        bet.setAwayScore(0); // Home wins (correct result) and home score is exact (3)
 
         invokeCalculatePointsForBet(match, bet);
 
@@ -107,14 +107,11 @@ class RecalculationServiceTest {
 
         Bet bet = new Bet();
         bet.setHomeScore(0);
-        bet.setAwayScore(0); // Draw, but different score. Note: diff is 0 for both, but diff rule only applies to winner/loser based on reqs? 
-        // Wait, for draw, if you guessed 0-0 and it was 1-1, diff is 0 == 0. So does it get 7 pts or 5 pts?
-        // Let's check rule: "Acertou empate mas com placar diferente -> 5 pontos"
-        // In our logic: matchResult(0) == betResult(0). matchDiff(0) == betDiff(0). It returns 7.
-        // We need to fix the logic to explicitly return 5 for draws if exact score is wrong, because a draw always has diff 0.
-        // Let's write the test first as expected by the rule (5 points).
-        
-        // Let's test the logic.
+        bet.setAwayScore(0); // Draw correct, but neither score matches (0!=1) -> 5 points
+
+        invokeCalculatePointsForBet(match, bet);
+
+        assertEquals(5, bet.getPointsEarned());
     }
     
     @Test
@@ -124,7 +121,7 @@ class RecalculationServiceTest {
 
         Bet bet = new Bet();
         bet.setHomeScore(0);
-        bet.setAwayScore(1); // Away wins
+        bet.setAwayScore(3); // Away wins (wrong result) and neither score matches (0!=2, 3!=1)
 
         invokeCalculatePointsForBet(match, bet);
 

@@ -5,7 +5,11 @@
       "PowerShell(.\\\\mvnw.cmd -q -Dtest=RecalculationServiceTest test)",
       "PowerShell($j = Get-ChildItem 'C:\\\\Program Files\\\\Java','C:\\\\Program Files\\\\Eclipse Adoptium','C:\\\\Program Files\\\\Microsoft' -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'jdk' } | Select-Object -First 1 -ExpandProperty FullName; Write-Output $j)",
       "PowerShell($env:JAVA_HOME = 'C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q -Dtest=RecalculationServiceTest test)",
-      "PowerShell(git stash; $env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q -Dtest='RecalculationServiceTest#testCalculatePoints_WinnerAndGoalDiff_7Points+testCalculatePoints_TotalMiss_0Points' test 2>&1 | Select-String 'Tests run'; git stash pop)"
+      "PowerShell(git stash; $env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q -Dtest='RecalculationServiceTest#testCalculatePoints_WinnerAndGoalDiff_7Points+testCalculatePoints_TotalMiss_0Points' test 2>&1 | Select-String 'Tests run'; git stash pop)",
+      "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q compile 2>&1 | Select-String -Pattern 'ERROR|BUILD' | Select-Object -First 20)",
+      "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q compile; Write-Output \"EXIT=$LASTEXITCODE\")",
+      "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -Dtest=MatchPayloadIntegrationTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"EXIT=$LASTEXITCODE\")",
+      "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -Dtest=RecalculationServiceTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"EXIT=$LASTEXITCODE\")"
     ]
   }
 }
