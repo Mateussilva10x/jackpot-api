@@ -65,11 +65,15 @@ Quando seu palpite passa longe tanto do vencedor quanto dos placares das duas eq
 
 ## 🥅 Bônus por Pênaltis
 
-Se a partida for decidida nos pênaltis, você ganha **+5 pontos** ao acertar qual seleção avança (campo "classificado" no seu palpite). Esse bônus é independente da pontuação do placar em 90 minutos e vale em qualquer fase.
+Se a partida for decidida nos pênaltis, você ganha **+5 pontos** ao acertar qual seleção avança (campo "classificado" no seu palpite), **desde que seu palpite tenha sido de empate**. Como o placar vale apenas os 90 minutos, somente quem aposta no empate fica elegível ao bônus dos pênaltis. Vale em qualquer fase.
 
-- **Exemplo:**
+- **Exemplo 1 (palpite de empate — recebe bônus):**
   - Partida termina 1 x 1, Brasil vence nos pênaltis.
-  - Você palpitou 1 x 1 e marcou Brasil como classificado → 10 pts (placar exato) + 5 bônus pênaltis = **15 pontos**
+  - Você palpitou 1 x 1 e marcou Brasil como classificado → 10 pts (placar exato) + 5 bônus pênaltis = **15 pontos**.
+  - Você palpitou 2 x 2 (empate, placar errado) e marcou Brasil → 5 pts (acertou o empate) + 5 bônus = **10 pontos**.
+- **Exemplo 2 (palpite de vitória — NÃO recebe bônus):**
+  - Partida termina 1 x 1, Brasil vence nos pênaltis.
+  - Você palpitou 2 x 1 Brasil e marcou Brasil como classificado → 3 pts (acertou 1 placar), **sem bônus** pois não apostou no empate = **3 pontos**.
 
 ---
 

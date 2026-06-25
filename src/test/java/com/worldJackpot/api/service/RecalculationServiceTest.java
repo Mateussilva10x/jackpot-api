@@ -179,4 +179,78 @@ class RecalculationServiceTest {
 
         assertEquals(10, bet.getPointsEarned());
     }
+
+    @Test
+    void testCalculatePoints_PenaltyBonus_DrawBetAndCorrectAdvancer_Adds5() throws Exception {
+        match.setHomeScore(1);
+        match.setAwayScore(1);
+        com.worldJackpot.api.model.Team brazil = new com.worldJackpot.api.model.Team();
+        brazil.setId(1L);
+        match.setPenaltyWinner(brazil); // Brazil advanced on penalties
+
+        Bet bet = new Bet();
+        bet.setHomeScore(0);
+        bet.setAwayScore(0); // Draw bet, wrong score -> 5 base
+        bet.setSelectedWinner(brazil); // Picked Brazil to advance
+
+        invokeCalculatePointsForBet(match, bet);
+
+        assertEquals(10, bet.getPointsEarned()); // 5 base + 5 penalty bonus
+    }
+
+    @Test
+    void testCalculatePoints_PenaltyBonus_DrawBetExactScore_Adds5() throws Exception {
+        match.setHomeScore(1);
+        match.setAwayScore(1);
+        com.worldJackpot.api.model.Team brazil = new com.worldJackpot.api.model.Team();
+        brazil.setId(1L);
+        match.setPenaltyWinner(brazil);
+
+        Bet bet = new Bet();
+        bet.setHomeScore(1);
+        bet.setAwayScore(1); // Exact draw -> 10 base
+        bet.setSelectedWinner(brazil);
+
+        invokeCalculatePointsForBet(match, bet);
+
+        assertEquals(15, bet.getPointsEarned()); // 10 base + 5 penalty bonus
+    }
+
+    @Test
+    void testCalculatePoints_PenaltyBonus_WinnerBet_NoBonus() throws Exception {
+        match.setHomeScore(1);
+        match.setAwayScore(1);
+        com.worldJackpot.api.model.Team brazil = new com.worldJackpot.api.model.Team();
+        brazil.setId(1L);
+        match.setPenaltyWinner(brazil);
+
+        Bet bet = new Bet();
+        bet.setHomeScore(2);
+        bet.setAwayScore(1); // Winner bet, not a draw -> 3 base (hit away score)
+        bet.setSelectedWinner(brazil); // Correct advancer, but not a draw bet
+
+        invokeCalculatePointsForBet(match, bet);
+
+        assertEquals(3, bet.getPointsEarned()); // 3 base, no bonus because bet was not a draw
+    }
+
+    @Test
+    void testCalculatePoints_PenaltyBonus_WrongAdvancer_NoBonus() throws Exception {
+        match.setHomeScore(1);
+        match.setAwayScore(1);
+        com.worldJackpot.api.model.Team brazil = new com.worldJackpot.api.model.Team();
+        brazil.setId(1L);
+        com.worldJackpot.api.model.Team argentina = new com.worldJackpot.api.model.Team();
+        argentina.setId(2L);
+        match.setPenaltyWinner(brazil);
+
+        Bet bet = new Bet();
+        bet.setHomeScore(1);
+        bet.setAwayScore(1); // Exact draw -> 10 base
+        bet.setSelectedWinner(argentina); // Wrong advancer
+
+        invokeCalculatePointsForBet(match, bet);
+
+        assertEquals(10, bet.getPointsEarned()); // 10 base, no bonus
+    }
 }

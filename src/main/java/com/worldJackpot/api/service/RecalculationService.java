@@ -98,8 +98,10 @@ public class RecalculationService {
             basePoints = 3;
         }
 
-        // Penalty winner bonus — awarded independently of base points
-        if (match.getPenaltyWinner() != null && bet.getSelectedWinner() != null
+        // Penalty winner bonus — only for bets that predicted a draw and got the
+        // advancing team right. The score covers the 90 minutes only, so a draw bet
+        // is the prerequisite to be eligible for the penalty bonus.
+        if (match.getPenaltyWinner() != null && betResult == 0 && bet.getSelectedWinner() != null
                 && match.getPenaltyWinner().getId().equals(bet.getSelectedWinner().getId())) {
             basePoints += 5;
         }
