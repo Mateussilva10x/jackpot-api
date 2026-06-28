@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 public class MatchProgressionService {
 
     private final MatchRepository matchRepository;
+    private final com.worldJackpot.api.repository.TeamRepository teamRepository;
 
     /**
      * Official FIFA World Cup 2026 constraint for placing the 8 best third-placed teams.
@@ -37,7 +38,7 @@ public class MatchProgressionService {
      *   3RD7 -> match 85 (1B),  3RD8 -> match 87 (1K).
      */
     private static final Map<String, Set<String>> THIRD_SLOT_ALLOWED_GROUPS = Map.of(
-            "3RD1", Set.of("A", "B", "C", "D", "F"),
+            "3RD1", Set.of("C", "D", "F", "G", "H"),
             "3RD2", Set.of("B", "E", "F", "I", "J"),
             "3RD3", Set.of("C", "D", "F", "G", "H"),
             "3RD4", Set.of("C", "E", "F", "H", "I"),
@@ -49,6 +50,21 @@ public class MatchProgressionService {
 
     private static final List<String> THIRD_SLOTS =
             List.of("3RD1", "3RD2", "3RD3", "3RD4", "3RD5", "3RD6", "3RD7", "3RD8");
+
+    /**
+     * Maps each third-place placeholder slot to the R32 match (referenceCode) whose AWAY team it fills.
+     * Used to roll the away slot back to its placeholder before re-running the third-place allocation.
+     */
+    private static final Map<String, String> THIRD_SLOT_TO_R32_REFCODE = Map.of(
+            "3RD1", "WC2026-R32-74",
+            "3RD2", "WC2026-R32-81",
+            "3RD3", "WC2026-R32-77",
+            "3RD4", "WC2026-R32-79",
+            "3RD5", "WC2026-R32-80",
+            "3RD6", "WC2026-R32-82",
+            "3RD7", "WC2026-R32-85",
+            "3RD8", "WC2026-R32-87"
+    );
 
     @Transactional
     public void processGroupStageCompletion(String groupName) {
@@ -307,6 +323,41 @@ public class MatchProgressionService {
             log.info("Assigning 3rd of group {} ({}) to slot {}", group, bestThird.getIsoCode(), slot);
             replacePlaceholderWithRealTeam(slot, bestThird);
         }
+    }
+
+    /**
+     * Non-destructive re-resolution of the eight third-place R32 slots. Rolls each away slot back to
+     * its placeholder team ("3RD1".."3RD8") and re-runs the third-place allocation with the current
+     * (corrected) allowed-groups matrix. Group results and bets are preserved. Third-place R32 matches
+     * that have already been played (FINISHED) are skipped so their results are not clobbered.
+     */
+    @Transactional
+    public void reapplyBestThirds() {
+        log.info("Re-applying best-third allocation to R32 slots.");
+
+        for (String slot : THIRD_SLOTS) {
+            String refCode = THIRD_SLOT_TO_R32_REFCODE.get(slot);
+            Match match = matchRepository.findByReferenceCode(refCode).orElse(null);
+            if (match == null) {
+                log.warn("R32 match {} for slot {} not found. Skipping.", refCode, slot);
+                continue;
+            }
+            if (match.getStatus() == MatchStatus.FINISHED) {
+                log.warn("R32 match {} (slot {}) already FINISHED. Skipping reset to avoid clobbering result.", refCode, slot);
+                continue;
+            }
+            Team placeholder = teamRepository.findByIsoCode(slot).orElse(null);
+            if (placeholder == null) {
+                log.error("Placeholder team {} not found. Cannot reset slot.", slot);
+                continue;
+            }
+            match.setTeamAway(placeholder);
+            matchRepository.save(match);
+            log.info("Reset away slot of match {} back to placeholder {}.", refCode, slot);
+        }
+
+        checkAndProcessBestThirds();
+        log.info("Best-third re-allocation finished.");
     }
 
     /**

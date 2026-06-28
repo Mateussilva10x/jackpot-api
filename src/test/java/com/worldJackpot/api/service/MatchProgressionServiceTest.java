@@ -26,6 +26,9 @@ class MatchProgressionServiceTest {
     @Mock
     private MatchRepository matchRepository;
 
+    @Mock
+    private com.worldJackpot.api.repository.TeamRepository teamRepository;
+
     @InjectMocks
     private MatchProgressionService matchProgressionService;
 
@@ -174,6 +177,28 @@ class MatchProgressionServiceTest {
         verify(matchRepository, times(2)).save(any(Match.class));
         assertThat(finalMatch.getTeamHome()).isEqualTo(teamHome);   // KOR goes to final
         assertThat(thirdPlaceMatch.getTeamHome()).isEqualTo(teamAway); // BRA goes to 3rd place
+    }
+
+    // -------------------------------------------------------------------------
+    @Test
+    void assignThirdsToSlots_matchesOfficial2026Allocation() {
+        // Actual 2026 qualifying third-place groups (top 8): B, D, E, F, I, J, K, L
+        List<String> qualified = List.of("B", "D", "E", "F", "I", "J", "K", "L");
+
+        java.util.Map<String, String> slotToGroup = matchProgressionService.assignThirdsToSlots(qualified);
+
+        // Official FIFA pairings: 1E vs 3D, 1D vs 3B, 1I vs 3F, 1A vs 3E,
+        //                         1L vs 3K, 1G vs 3I, 1B vs 3J, 1K vs 3L
+        assertThat(slotToGroup).containsOnly(
+                org.assertj.core.api.Assertions.entry("3RD1", "D"), // match 74 (1E)
+                org.assertj.core.api.Assertions.entry("3RD2", "B"), // match 81 (1D)
+                org.assertj.core.api.Assertions.entry("3RD3", "F"), // match 77 (1I)
+                org.assertj.core.api.Assertions.entry("3RD4", "E"), // match 79 (1A)
+                org.assertj.core.api.Assertions.entry("3RD5", "K"), // match 80 (1L)
+                org.assertj.core.api.Assertions.entry("3RD6", "I"), // match 82 (1G)
+                org.assertj.core.api.Assertions.entry("3RD7", "J"), // match 85 (1B)
+                org.assertj.core.api.Assertions.entry("3RD8", "L")  // match 87 (1K)
+        );
     }
 
     // -------------------------------------------------------------------------

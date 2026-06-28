@@ -3,6 +3,7 @@ package com.worldJackpot.api.controller;
 import com.worldJackpot.api.dto.bet.BonusBetDto;
 import com.worldJackpot.api.dto.match.MatchScoreUpdateDto;
 import com.worldJackpot.api.service.BonusBetService;
+import com.worldJackpot.api.service.MatchProgressionService;
 import com.worldJackpot.api.service.MatchService;
 import com.worldJackpot.api.service.SystemResetService;
 import jakarta.validation.Valid;
@@ -27,6 +28,7 @@ public class AdminController {
     private final MatchService matchService;
     private final BonusBetService bonusBetService;
     private final SystemResetService systemResetService;
+    private final MatchProgressionService matchProgressionService;
 
     @PutMapping("/matches/{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -53,6 +55,19 @@ public class AdminController {
     })
     public ResponseEntity<Void> resolveBonusBets(@RequestBody @Valid BonusBetDto.BonusBetResolutionRequest request) {
         bonusBetService.resolveBonusBets(request);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/knockout/reapply-thirds")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Re-apply best-third allocation", description = "Non-destructive: resets the eight third-place R32 slots to placeholders and re-runs the allocation with the corrected FIFA matrix. Preserves group results and bets. Skips third-place R32 matches already finished.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Third-place slots re-allocated"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden - requires ADMIN role")
+    })
+    public ResponseEntity<Void> reapplyBestThirds() {
+        matchProgressionService.reapplyBestThirds();
         return ResponseEntity.ok().build();
     }
 
