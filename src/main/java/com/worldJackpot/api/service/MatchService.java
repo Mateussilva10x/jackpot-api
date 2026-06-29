@@ -83,7 +83,10 @@ public class MatchService {
         match.setHomeScore(dto.getHomeScore());
         match.setAwayScore(dto.getAwayScore());
 
-        if (dto.getPenaltyWinnerId() != null) {
+        // A penalty winner only makes sense when the official result is a draw (penalties decide
+        // a tie). On a non-draw the field is ignored and any previously stored value is cleared,
+        // so a team that won in regulation never grants the penalty bonus.
+        if (isDraw && dto.getPenaltyWinnerId() != null) {
             com.worldJackpot.api.model.Team penaltyWinner = teamRepository.findById(dto.getPenaltyWinnerId())
                 .orElseThrow(() -> new com.worldJackpot.api.exception.ResourceNotFoundException("Team not found"));
 
@@ -95,6 +98,8 @@ public class MatchService {
             }
 
             match.setPenaltyWinner(penaltyWinner);
+        } else {
+            match.setPenaltyWinner(null);
         }
         
         match.setStatus(MatchStatus.FINISHED);

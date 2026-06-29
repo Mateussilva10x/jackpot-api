@@ -250,4 +250,25 @@ class RecalculationServiceTest {
 
         assertEquals(10, bet.getPointsEarned()); // 10 base, no bonus
     }
+
+    @Test
+    void testCalculatePoints_PenaltyBonus_OfficialNotDraw_NoBonus() throws Exception {
+        // Real scenario: official result 1x0 (Canada wins in regulation), but a penaltyWinner
+        // is mistakenly set on the match. A draw bet that picked the winner must NOT get the bonus.
+        match.setHomeScore(1);
+        match.setAwayScore(0); // Not a draw
+        com.worldJackpot.api.model.Team canada = new com.worldJackpot.api.model.Team();
+        canada.setId(1L);
+        match.setPenaltyWinner(canada); // Wrongly set on a non-draw match
+
+        Bet bet = new Bet();
+        bet.setHomeScore(1);
+        bet.setAwayScore(1); // Draw bet
+        bet.setSelectedWinner(canada); // Picked Canada to advance
+
+        invokeCalculatePointsForBet(match, bet);
+
+        // hit home score (1) only, wrong result -> 3 base, NO bonus because official is not a draw
+        assertEquals(3, bet.getPointsEarned());
+    }
 }

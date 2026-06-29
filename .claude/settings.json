@@ -11,7 +11,8 @@
       "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -Dtest=MatchPayloadIntegrationTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"EXIT=$LASTEXITCODE\")",
       "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -Dtest=RecalculationServiceTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"EXIT=$LASTEXITCODE\")",
       "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -Dtest=MatchProgressionServiceTest test 2>&1 | Select-String -Pattern 'Tests run:|assignThirds|expected|but was'; Write-Output \"EXIT=$LASTEXITCODE\")",
-      "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q compile; Write-Output \"COMPILE_EXIT=$LASTEXITCODE\"; .\\\\mvnw.cmd -Dtest=MatchProgressionServiceTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"TEST_EXIT=$LASTEXITCODE\")"
+      "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q compile; Write-Output \"COMPILE_EXIT=$LASTEXITCODE\"; .\\\\mvnw.cmd -Dtest=MatchProgressionServiceTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"TEST_EXIT=$LASTEXITCODE\")",
+      "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q compile; Write-Output \"COMPILE=$LASTEXITCODE\"; .\\\\mvnw.cmd -Dtest=RecalculationServiceTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"TEST=$LASTEXITCODE\")"
     ]
   }
 }
