@@ -1,6 +1,7 @@
 package com.worldJackpot.api.controller;
 
 import com.worldJackpot.api.dto.bet.BonusBetDto;
+import com.worldJackpot.api.dto.match.MatchDateUpdateDto;
 import com.worldJackpot.api.dto.match.MatchScoreUpdateDto;
 import com.worldJackpot.api.service.BonusBetService;
 import com.worldJackpot.api.service.MatchProgressionService;
@@ -41,6 +42,21 @@ public class AdminController {
     })
     public ResponseEntity<Void> finalizeMatch(@PathVariable Long id, @RequestBody @Valid MatchScoreUpdateDto dto) {
         matchService.finalizeMatch(id, dto);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/matches/{referenceCode}/date")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Reschedule a match", description = "Updates a match kickoff date/time (UTC) by its referenceCode. Also moves the bet deadline. Blocked for finished matches.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Match date successfully updated"),
+            @ApiResponse(responseCode = "400", description = "Invalid request or match already finished"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden - requires ADMIN role"),
+            @ApiResponse(responseCode = "404", description = "Match not found")
+    })
+    public ResponseEntity<Void> updateMatchDate(@PathVariable String referenceCode, @RequestBody @Valid MatchDateUpdateDto dto) {
+        matchService.updateMatchDate(referenceCode, dto.getMatchDate());
         return ResponseEntity.ok().build();
     }
 

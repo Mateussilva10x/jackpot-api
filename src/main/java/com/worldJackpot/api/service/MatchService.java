@@ -68,6 +68,20 @@ public class MatchService {
     }
 
     @Transactional
+    public void updateMatchDate(String referenceCode, java.time.Instant matchDate) {
+        Match match = matchRepository.findByReferenceCode(referenceCode)
+                .orElseThrow(() -> new com.worldJackpot.api.exception.ResourceNotFoundException(
+                        "Match not found: " + referenceCode));
+
+        if (match.getStatus() == MatchStatus.FINISHED) {
+            throw new IllegalArgumentException("Cannot reschedule a finished match: " + referenceCode);
+        }
+
+        match.setMatchDate(matchDate);
+        matchRepository.save(match);
+    }
+
+    @Transactional
     public void finalizeMatch(Long matchId, MatchScoreUpdateDto dto) {
         Match match = matchRepository.findById(matchId)
                 .orElseThrow(() -> new com.worldJackpot.api.exception.ResourceNotFoundException("Match not found: " + matchId));

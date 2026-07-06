@@ -12,7 +12,10 @@
       "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -Dtest=RecalculationServiceTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"EXIT=$LASTEXITCODE\")",
       "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -Dtest=MatchProgressionServiceTest test 2>&1 | Select-String -Pattern 'Tests run:|assignThirds|expected|but was'; Write-Output \"EXIT=$LASTEXITCODE\")",
       "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q compile; Write-Output \"COMPILE_EXIT=$LASTEXITCODE\"; .\\\\mvnw.cmd -Dtest=MatchProgressionServiceTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"TEST_EXIT=$LASTEXITCODE\")",
-      "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q compile; Write-Output \"COMPILE=$LASTEXITCODE\"; .\\\\mvnw.cmd -Dtest=RecalculationServiceTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"TEST=$LASTEXITCODE\")"
+      "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q compile; Write-Output \"COMPILE=$LASTEXITCODE\"; .\\\\mvnw.cmd -Dtest=RecalculationServiceTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"TEST=$LASTEXITCODE\")",
+      "PowerShell(if \\(Test-Path .\\\\mvnw.cmd\\) { .\\\\mvnw.cmd -q compile } else { mvn -q compile }; \"EXIT=$LASTEXITCODE\")",
+      "PowerShell($j = Get-ChildItem \"C:\\\\Program Files\\\\Java\",\"C:\\\\Program Files\\\\Eclipse Adoptium\",\"$env:LOCALAPPDATA\\\\Programs\" -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'jdk|java' } | Select-Object -First 5 -ExpandProperty FullName; $j; \"---\"; \\(Get-Command java -ErrorAction SilentlyContinue\\).Source)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot\"; if \\(Test-Path .\\\\mvnw.cmd\\) { .\\\\mvnw.cmd -q compile } else { mvn -q compile }; \"EXIT=$LASTEXITCODE\")"
     ]
   }
 }
