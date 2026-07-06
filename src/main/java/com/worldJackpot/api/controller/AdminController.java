@@ -3,6 +3,7 @@ package com.worldJackpot.api.controller;
 import com.worldJackpot.api.dto.bet.BonusBetDto;
 import com.worldJackpot.api.dto.match.MatchDateUpdateDto;
 import com.worldJackpot.api.dto.match.MatchScoreUpdateDto;
+import com.worldJackpot.api.dto.match.MatchTeamsUpdateDto;
 import com.worldJackpot.api.service.BonusBetService;
 import com.worldJackpot.api.service.MatchProgressionService;
 import com.worldJackpot.api.service.MatchService;
@@ -57,6 +58,21 @@ public class AdminController {
     })
     public ResponseEntity<Void> updateMatchDate(@PathVariable String referenceCode, @RequestBody @Valid MatchDateUpdateDto dto) {
         matchService.updateMatchDate(referenceCode, dto.getMatchDate());
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/matches/{referenceCode}/teams")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Reassign a match's teams", description = "Corrects the home/away teams of a not-yet-finished match by its referenceCode, using team ISO codes. Only provided slots change; existing bets are left intact. Blocked for finished matches.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Match teams successfully reassigned"),
+            @ApiResponse(responseCode = "400", description = "Invalid request or match already finished"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden - requires ADMIN role"),
+            @ApiResponse(responseCode = "404", description = "Match or team not found")
+    })
+    public ResponseEntity<Void> updateMatchTeams(@PathVariable String referenceCode, @RequestBody @Valid MatchTeamsUpdateDto dto) {
+        matchService.updateMatchTeams(referenceCode, dto.getHomeTeamIsoCode(), dto.getAwayTeamIsoCode());
         return ResponseEntity.ok().build();
     }
 

@@ -3,6 +3,7 @@ package com.worldJackpot.api.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.worldJackpot.api.dto.auth.AuthDto;
 import com.worldJackpot.api.dto.match.MatchScoreUpdateDto;
+import com.worldJackpot.api.dto.match.MatchTeamsUpdateDto;
 import com.worldJackpot.api.model.Match;
 import com.worldJackpot.api.model.Team;
 import com.worldJackpot.api.model.enums.MatchPhase;
@@ -26,6 +27,7 @@ import java.time.LocalDateTime;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -133,6 +135,34 @@ class AdminMatchIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void shouldReassignMatchTeamsSuccessfully() throws Exception {
+        Team teamC = teamRepository.save(Team.builder().name("C").group("A").isoCode("C").build());
+        MatchTeamsUpdateDto dto = new MatchTeamsUpdateDto("C", null);
+
+        mockMvc.perform(patch("/admin/matches/M1/teams")
+                        .header("Authorization", "Bearer " + adminToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(dto)))
+                .andExpect(status().isOk());
+
+        Match updated = matchRepository.findByReferenceCode("M1").orElseThrow();
+        assert(updated.getTeamHome().getIsoCode().equals("C"));
+        assert(updated.getTeamAway().getIsoCode().equals("B"));
+        assert(updated.getStatus() == MatchStatus.SCHEDULED);
+    }
+
+    @Test
+    void shouldReturn403ForNonAdminReassigningTeams() throws Exception {
+        MatchTeamsUpdateDto dto = new MatchTeamsUpdateDto("B", null);
+
+        mockMvc.perform(patch("/admin/matches/M1/teams")
+                        .header("Authorization", "Bearer " + userToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(dto)))
+                .andExpect(status().isForbidden());
     }
 
     @Test

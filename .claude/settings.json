@@ -15,7 +15,13 @@
       "PowerShell($env:JAVA_HOME='C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot'; .\\\\mvnw.cmd -q compile; Write-Output \"COMPILE=$LASTEXITCODE\"; .\\\\mvnw.cmd -Dtest=RecalculationServiceTest test 2>&1 | Select-String -Pattern 'Tests run:'; Write-Output \"TEST=$LASTEXITCODE\")",
       "PowerShell(if \\(Test-Path .\\\\mvnw.cmd\\) { .\\\\mvnw.cmd -q compile } else { mvn -q compile }; \"EXIT=$LASTEXITCODE\")",
       "PowerShell($j = Get-ChildItem \"C:\\\\Program Files\\\\Java\",\"C:\\\\Program Files\\\\Eclipse Adoptium\",\"$env:LOCALAPPDATA\\\\Programs\" -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'jdk|java' } | Select-Object -First 5 -ExpandProperty FullName; $j; \"---\"; \\(Get-Command java -ErrorAction SilentlyContinue\\).Source)",
-      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot\"; if \\(Test-Path .\\\\mvnw.cmd\\) { .\\\\mvnw.cmd -q compile } else { mvn -q compile }; \"EXIT=$LASTEXITCODE\")"
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot\"; if \\(Test-Path .\\\\mvnw.cmd\\) { .\\\\mvnw.cmd -q compile } else { mvn -q compile }; \"EXIT=$LASTEXITCODE\")",
+      "PowerShell(.\\\\mvnw.cmd -q -DskipTests compile)",
+      "PowerShell($j = Get-Command java -ErrorAction SilentlyContinue; if \\($j\\) { Write-Output \\(\"java: \" + $j.Source\\) }; Write-Output \\(\"JAVA_HOME=\" + $env:JAVA_HOME\\); Get-ChildItem \"C:\\\\Program Files\\\\Java\",\"C:\\\\Program Files\\\\Eclipse Adoptium\",\"C:\\\\Program Files\\\\Microsoft\" -ErrorAction SilentlyContinue | Select-Object FullName)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot\"; .\\\\mvnw.cmd -q -DskipTests compile)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot\"; .\\\\mvnw.cmd -q -Dtest=AdminMatchIntegrationTest test)",
+      "PowerShell(Select-String -Path \"C:\\\\Users\\\\mateu\\\\.claude\\\\projects\\\\c--Projetos-jackpot-api\\\\a76661a5-a1b6-4b0f-b633-2984eedeffec\\\\tool-results\\\\bu2nr3il6.txt\" -Pattern \"Tests run|BUILD SUCCESS|BUILD FAILURE|ERROR\\\\]\" | Select-Object -Last 15 | ForEach-Object { $_.Line })",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-21.0.10.7-hotspot\"; [xml]$r = Get-Content \"target\\\\surefire-reports\\\\TEST-com.worldJackpot.api.controller.AdminMatchIntegrationTest.xml\"; $s = $r.testsuite; Write-Output \\(\"tests=$\\($s.tests\\) failures=$\\($s.failures\\) errors=$\\($s.errors\\) skipped=$\\($s.skipped\\) time=$\\($s.time\\)\"\\); $s.testcase | ForEach-Object { Write-Output \\(\"  \" + $_.name\\) })"
     ]
   }
 }

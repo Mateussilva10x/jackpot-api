@@ -81,6 +81,48 @@ public class MatchService {
         matchRepository.save(match);
     }
 
+    /**
+     * Corrects the participating teams of a not-yet-finished match, identified by its referenceCode.
+     * Only the slots whose ISO code is provided are changed; a null leaves that slot untouched.
+     * Existing bets are left intact — scores are re-evaluated at finalize time, and an advance pick
+     * ("quem avança") for a team no longer in the match simply won't score.
+     */
+    @Transactional
+    public void updateMatchTeams(String referenceCode, String homeTeamIsoCode, String awayTeamIsoCode) {
+        Match match = matchRepository.findByReferenceCode(referenceCode)
+                .orElseThrow(() -> new com.worldJackpot.api.exception.ResourceNotFoundException(
+                        "Match not found: " + referenceCode));
+
+        if (match.getStatus() == MatchStatus.FINISHED) {
+            throw new IllegalArgumentException("Cannot reassign teams of a finished match: " + referenceCode);
+        }
+
+        if (homeTeamIsoCode == null && awayTeamIsoCode == null) {
+            throw new IllegalArgumentException("At least one of homeTeamIsoCode or awayTeamIsoCode must be provided.");
+        }
+
+        if (homeTeamIsoCode != null) {
+            match.setTeamHome(resolveTeam(homeTeamIsoCode));
+        }
+        if (awayTeamIsoCode != null) {
+            match.setTeamAway(resolveTeam(awayTeamIsoCode));
+        }
+
+        Long homeId = match.getTeamHome() != null ? match.getTeamHome().getId() : null;
+        Long awayId = match.getTeamAway() != null ? match.getTeamAway().getId() : null;
+        if (homeId != null && homeId.equals(awayId)) {
+            throw new IllegalArgumentException("Home and away teams must be different.");
+        }
+
+        matchRepository.save(match);
+    }
+
+    private com.worldJackpot.api.model.Team resolveTeam(String isoCode) {
+        return teamRepository.findByIsoCode(isoCode)
+                .orElseThrow(() -> new com.worldJackpot.api.exception.ResourceNotFoundException(
+                        "Team not found: " + isoCode));
+    }
+
     @Transactional
     public void finalizeMatch(Long matchId, MatchScoreUpdateDto dto) {
         Match match = matchRepository.findById(matchId)
