@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.Normalizer;
 import java.util.List;
 
 @Service
@@ -92,7 +93,7 @@ public class BonusBetService {
 
             // Check Top Scorer
             if (bet.getTopScorer() != null && request.getTopScorer() != null) {
-                if (bet.getTopScorer().trim().equalsIgnoreCase(request.getTopScorer().trim())) {
+                if (topScorerMatches(bet.getTopScorer(), request.getTopScorer())) {
                     pointsEarned += 70;
                 }
             }
@@ -102,5 +103,36 @@ public class BonusBetService {
                 userRepository.save(user);
             }
         }
+    }
+
+    // Accepts full name, last name only, or "first-initial + last name" variants
+    // (e.g. "Kylian Mbappe" also matches "mbappe", "k.mbappe", "k mbappe").
+    private boolean topScorerMatches(String guess, String official) {
+        String normalizedGuess = normalizePlayerName(guess);
+        String normalizedOfficial = normalizePlayerName(official);
+
+        if (normalizedGuess.isEmpty() || normalizedOfficial.isEmpty()) {
+            return false;
+        }
+        if (normalizedGuess.equals(normalizedOfficial)) {
+            return true;
+        }
+
+        String[] officialTokens = normalizedOfficial.split(" ");
+        String officialLastName = officialTokens[officialTokens.length - 1];
+        if (normalizedGuess.equals(officialLastName)) {
+            return true;
+        }
+
+        String officialFirstInitial = officialTokens[0].substring(0, 1);
+        String initialPlusLastName = officialFirstInitial + " " + officialLastName;
+        String initialPlusLastNameNoSpace = officialFirstInitial + officialLastName;
+        return normalizedGuess.equals(initialPlusLastName) || normalizedGuess.equals(initialPlusLastNameNoSpace);
+    }
+
+    private String normalizePlayerName(String name) {
+        String withoutAccents = Normalizer.normalize(name.trim().toLowerCase(), Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "");
+        return withoutAccents.replaceAll("[^a-z0-9]+", " ").trim().replaceAll(" +", " ");
     }
 }
